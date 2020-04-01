@@ -1,0 +1,1316 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimal-ui">
+    <title>NOSA</title>
+    <link type="text/css" rel="stylesheet" href="assets/css/github-markdown.css">
+    <link type="text/css" rel="stylesheet" href="assets/css/pilcrow.css">
+    <link type="text/css" rel="stylesheet" href="assets/css/hljs-github.min.css"/>
+  </head>
+  <body>
+    <article class="markdown-body"><h1 id="nosa"><a class="header-link" href="#nosa"></a>NOSA</h1>
+<p>Content: </p>
+<ol class="list">
+<li><a href="#general-information">General Information</a></li>
+<li><a href="#contact-information">Contact Information</a></li>
+<li><a href="#license-information">License Information</a></li>
+<li><a href="#software-nosa-uses-and-their-licenses">Software NOSA uses and their Licenses</a></li>
+<li><a href="#nosa-user-manual">NOSA User Manual</a></li>
+<li><a href="#nosa-developer-manual">NOSA Developer Manual</a></li>
+</ol>
+<h2 id="general-information"><a class="header-link" href="#general-information"></a>General Information</h2>
+<p>NOSA (Neuro-Optical Signal Analysis) is a software tool that specializes on optical electrophysiology using voltage sensitive fluorescence proteins. However, NOSA can also evaluate data recorded using voltage-sensitive dyes and patch clamp data.</p>
+<p>NOSA should be used with care and users should read the <a href="#nosa-user-manual">user manual</a> first. NOSA will not check every input for validity and may crash when bad settings are made. </p>
+<h2 id="contact-information"><a class="header-link" href="#contact-information"></a>Contact Information</h2>
+<p>NOSA is developed and provided by the <a href="https://neurophysiologie.charite.de/en/">Institute of Neurophysiology of Charité Berlin</a>. Contact Person is <a href="https://neurophysiologie.charite.de/en/metas/person_detail/person/address_detail/raccuglia/">Davide Raccuglia</a>. </p>
+<h2 id="license-information"><a class="header-link" href="#license-information"></a>License Information</h2>
+<p>NOSA is distributed with the MIT license. The license file is named <code>LICENSE.txt</code> and should be part of this software package. Information about the MIT license can be found <a href="https://choosealicense.com/licenses/mit/">here</a>.</p>
+<h2 id="software-nosa-uses-and-their-licenses"><a class="header-link" href="#software-nosa-uses-and-their-licenses"></a>Software NOSA uses and their Licenses</h2>
+<p>NOSA is written in <a href="https://www.python.org/">Python</a> 3.7.1 (see <a href="https://docs.python.org/3/license.html">https://docs.python.org/3/license.html</a> for license information), and next to its default packages and built in functions, NOSA uses a variety of additional packages. In the following table, an overview is given. Additionally, this documentation includes a directory named <code>package_licenses</code> where, a copy of the license for every used package is provided.</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Version</th>
+<th>License type</th>
+<th>Copyright Notice</th>
+<th>Website</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>NumPy</td>
+<td>1.16.2</td>
+<td><a href="https://www.numpy.org/license.html#license">BSD</a></td>
+<td>Copyright © 2005-2018, NumPy Developers.<br>All rights reserved.</td>
+<td><a href="https://www.numpy.org">https://www.numpy.org</a></td>
+</tr>
+<tr>
+<td>SciPy</td>
+<td>1.2.1</td>
+<td><a href="https://scipy.org/scipylib/license.html">BSD</a></td>
+<td>Copyright © 2001, 2002 Enthought, Inc.<br>All rights reserved.<br><br>Copyright © 2003-2013 SciPy Developers.<br>All rights reserved.</td>
+<td><a href="https://www.scipy.org">https://www.scipy.org</a></td>
+</tr>
+<tr>
+<td>PyQt5</td>
+<td>5.11.3</td>
+<td><a href="https://www.riverbankcomputing.com/static/Docs/PyQt5/introduction.html#license">GPL v3</a></td>
+<td>Copyright © 2018 Riverbank Computing Limited</td>
+<td><a href="https://www.riverbankcomputing.com/software/pyqt/">https://www.riverbankcomputing.com/software/pyqt/</a></td>
+</tr>
+<tr>
+<td>PyQtGraph</td>
+<td>0.10.0</td>
+<td><a href="https://github.com/pyqtgraph/pyqtgraph/blob/develop/LICENSE.txt">MIT</a></td>
+<td>Copyright (c) 2012  University of North Carolina at Chapel Hill<br>Luke Campagnola (&#39;luke.campagnola@%s.com&#39; % &#39;gmail&#39;)</td>
+<td><a href="http://www.pyqtgraph.org">http://www.pyqtgraph.org</a></td>
+</tr>
+<tr>
+<td>Matplotlib</td>
+<td>3.0.3</td>
+<td><a href="https://matplotlib.org/users/license.html">PSF-based</a></td>
+<td>© Copyright 2002 - 2012 John Hunter, Darren Dale, Eric Firing, Michael Droettboom and the Matplotlib development team; 2012 - 2018 The Matplotlib development team</td>
+<td><a href="http://matplotlib.org">http://matplotlib.org</a></td>
+</tr>
+<tr>
+<td>pyStackReg</td>
+<td>0.2.1</td>
+<td><a href="https://bitbucket.org/glichtner/pystackreg/src/master/LICENSE.txt">custom</a></td>
+<td>C++ Port of the TurboReg ImageJ Plugin<br><br>Original code by Philippe Thevenaz (see the file <code>package_licenses/custom_license_for_pyStackReg.txt</code>)<br><br>Porting by Gregor Lichtner</td>
+<td><a href="https://bitbucket.org/glichtner/pystackreg">https://bitbucket.org/glichtner/pystackreg</a></td>
+</tr>
+<tr>
+<td>DIPY</td>
+<td>0.15.0</td>
+<td><a href="http://nipy.org/nipy/license.html">revised BSD-2-Clause</a></td>
+<td>Copyright (c) 2008-2019, dipy developers<br>All rights reserved.</td>
+<td><a href="http://dipy.org">http://dipy.org</a></td>
+</tr>
+<tr>
+<td>QDarkStyle</td>
+<td>2.5.4</td>
+<td><a href="https://github.com/ColinDuquesnoy/QDarkStyleSheet/blob/master/LICENSE.md">MIT</a></td>
+<td>Copyright (c) 2013-2018 Colin Duquesnoy</td>
+<td><a href="https://github.com/ColinDuquesnoy/QDarkStyleSheet">https://github.com/ColinDuquesnoy/QDarkStyleSheet</a></td>
+</tr>
+<tr>
+<td>neo</td>
+<td>0.7.1</td>
+<td><a href="https://github.com/NeuralEnsemble/python-neo/blob/master/LICENSE.txt">BSD-3-Clause</a></td>
+<td>Copyright (c) 2010-2018, Neo authors and contributors</td>
+<td><a href="http://neuralensemble.org/neo">http://neuralensemble.org/neo</a></td>
+</tr>
+<tr>
+<td>quantities</td>
+<td>0.12.3</td>
+<td><a href="https://python-quantities.readthedocs.io/en/latest/user/license.html">BSD</a></td>
+<td>Copyright (c) 2012, Darren Dale <a href="mailto:&#x64;&#115;&#x64;&#x61;&#x6c;&#101;&#50;&#x34;&#64;&#x67;&#x6d;&#x61;&#105;&#108;&#46;&#x63;&#111;&#x6d;">&#x64;&#115;&#x64;&#x61;&#x6c;&#101;&#50;&#x34;&#64;&#x67;&#x6d;&#x61;&#105;&#108;&#46;&#x63;&#111;&#x6d;</a> All rights reserved.</td>
+<td><a href="http://python-quantities.readthedocs.io/">http://python-quantities.readthedocs.io/</a></td>
+</tr>
+<tr>
+<td>XlsxWriter</td>
+<td>1.1.5</td>
+<td><a href="https://xlsxwriter.readthedocs.io/license.html">BSD</a></td>
+<td>Copyright (c) 2013, John McNamara <a href="mailto:&#106;&#109;&#99;&#110;&#97;&#109;&#97;&#x72;&#97;&#x40;&#x63;&#x70;&#97;&#x6e;&#x2e;&#x6f;&#x72;&#103;">&#106;&#109;&#99;&#110;&#97;&#109;&#97;&#x72;&#97;&#x40;&#x63;&#x70;&#97;&#x6e;&#x2e;&#x6f;&#x72;&#103;</a> All rights reserved.</td>
+<td><a href="https://github.com/jmcnamara/XlsxWriter">https://github.com/jmcnamara/XlsxWriter</a></td>
+</tr>
+<tr>
+<td>tifffile</td>
+<td>2019.3.8</td>
+<td><a href="https://www.lfd.uci.edu/~gohlke/">BSD</a></td>
+<td>Copyright (c) 1994-2019, Christoph Gohlke<br>All rights reserved.</td>
+<td><a href="https://www.lfd.uci.edu/~gohlke/">https://www.lfd.uci.edu/~gohlke/</a></td>
+</tr>
+<tr>
+<td>PyInstaller</td>
+<td>3.4</td>
+<td><a href="http://www.pyinstaller.org/license.html">GPL-based</a></td>
+<td>Copyright (c) 2010-2019, PyInstaller Development Team<br>Copyright (c) 2005-2009, Giovanni Bajo<br>Based on previous work under copyright (c) 2002 McMillan Enterprises, Inc.</td>
+<td><a href="http://www.pyinstaller.org/">http://www.pyinstaller.org/</a></td>
+</tr>
+<tr>
+<td>Markdown</td>
+<td>1.0.1</td>
+<td><a href="https://daringfireball.net/projects/markdown/license">BSD-style</a></td>
+<td>Copyright © 2004, John Gruber<br><a href="http://daringfireball.net/">http://daringfireball.net/</a><br>All rights reserved.</td>
+<td><a href="https://daringfireball.net/projects/markdown/">https://daringfireball.net/projects/markdown/</a></td>
+</tr>
+<tr>
+<td>markdown-styles</td>
+<td>3.1.10</td>
+<td><a href="https://www.npmjs.com/package/markdown-styles">BSD-3-Clause</a></td>
+<td>none provided -- created by GitHub user <a href="https://github.com/mixu">mixu (Mikito Takada)</a></td>
+<td><a href="https://github.com/mixu/markdown-styles">https://github.com/mixu/markdown-styles</a></td>
+</tr>
+</tbody>
+</table>
+<p>Since NOSA uses the PyQt5 package as stated above, it should be noted that the <a href="https://www.qt.io/">Qt</a> package is used with the <a href="https://doc.qt.io/qt-5/lgpl.html">LGPL v3</a> license.</p>
+<p>The software PyInstaller is used for building the application. See also the README file provided with NOSA.</p>
+<p>The software Markdown and markdown-styles are used for this documentation. It is written in the Markdown language and to convert the <code>.md</code> file to a <code>.html</code> file, the markdown-styles software is used. Please note that there is no explicit copyright notice provided for the markdown-styles software, and there is no license text. This is why in the <code>packages_licenses</code> directory, there is a default BSD-3-Clause license named <code>default-BSD-3-Clause_license_for_markdown-styles.txt</code>. </p>
+<p>UML Diagrams that are used in the <a href="#nosa-developer-manual">NOSA Developer Manual</a> are created with Visual Paradigm Community Edition, which is available at <a href="https://www.visual-paradigm.com/">https://www.visual-paradigm.com/</a>. </p>
+<p>Since NOSA uses the pyStackReg package as stated above, we want to note the publication the original source code originates from: <a href="https://doi.org/10.1109/83.650848">P. Thevenaz, U. E. Ruttimann, and M. Unser (1998). A pyramid approach to subpixel registration based on intensity. <em>IEEE Transactions on Image Processing, 7</em>(1), 27-41</a></p>
+<p>Since NOSA uses the DIPY package as stated above, we want to note the publication it originates from: <a href="https://doi.org/10.3389/fninf.2014.00008">E. Garyfallidis, M. Brett, B. Amirbekian, A. Rokem, S. van der Walt, M. Descoteaux, I. Nimmo-Smith, and Dipy Contributors (2014). DIPY, a library for the analysis of diffusion MRI data. <em>Frontiers in Neuroinformatics, vol.8</em> (8)</a>. </p>
+<h2 id="nosa-user-manual"><a class="header-link" href="#nosa-user-manual"></a>NOSA User Manual</h2>
+<p>In the following sections, these aspects of NOSA will be explained:</p>
+<ol class="list">
+<li><a href="#gui-components">GUI (Graphical User Interface) Components</a></li>
+<li><a href="#features-and-methods">Features and Methods</a></li>
+<li><a href="#performance-aspects">Performance Aspects</a></li>
+<li><a href="#typical-workflow-examples">Typical Workflow Examples</a></li>
+</ol>
+<h3 id="gui-components"><a class="header-link" href="#gui-components"></a>GUI Components</h3>
+<p>When starting NOSA, the user will see a screen similar to this:</p>
+<p class="img-container"><img src="images/screen-empty.png" alt="empty screen" title="empty screen"></p>
+<p>Once data is imported, features are activated and plots are customized, it may look similar to this:</p>
+<p class="img-container"><img src="images/screen-filled.png" alt="filled screen" title="filled screen"></p>
+<p>In the following image, specific areas are highlighted describing the components of NOSA. All components will be described in the following sections.</p>
+<ol class="list">
+<li><a href="#source-manager">Source Manager</a></li>
+<li><a href="#object-manager">Object Manager</a></li>
+<li><a href="#cell-selection-and-raw-plot">Cell Selection and Raw Plot</a></li>
+<li><a href="#plots">Plots</a></li>
+<li><a href="#pipeline-manager">Pipeline Manager</a></li>
+<li><a href="#feature-view">Feature View</a></li>
+</ol>
+<p class="img-container"><img src="images/screen-filled-marked.png" alt="filled screen with marked areas" title="filled screen with marked areas"></p>
+<p><strong>Please note</strong>: It may happen that the user interface is inconsistent. For example, this sometimes happened when one selects an object: the checkboxes that indicate the active state of the features were not refreshed. Or plots were not repainted, still showing data from the object that was selected before. If something like this happens, one should move the mouse over the inconsistent area, such that the area will be repainted. </p>
+<h4 id="source-manager"><a class="header-link" href="#source-manager"></a>Source Manager</h4>
+<p>The Source Manager gives an overview of imported files (called sources).</p>
+<p>In the following images, specific areas are highlighted describing the components of the Source Manager. All components will be described in the following sections.</p>
+<ol class="list">
+<li><a href="#list-of-sources">List of sources</a></li>
+<li><a href="#add">Button: Add</a></li>
+<li><a href="#movement-correction">Button: Movement Correction</a></li>
+<li><a href="#crop">Button: Crop</a></li>
+<li><a href="#offset">Button: Offset</a></li>
+<li><a href="#delete">Button: Delete</a></li>
+<li><a href="#adjust-frequency">Option with right click: Adjust Frequency</a></li>
+</ol>
+<p><img src="images/screen-sourcemanager-marked.png" alt="Source Manager with marked areas" title="Source Manager with marked areas">
+<img src="images/screen-sourcemanager-rightclick-marked.png" alt="Source Manager right click with marked areas" title="Source Manager right click with marked areas"></p>
+<h5 id="list-of-sources"><a class="header-link" href="#list-of-sources"></a>List of sources</h5>
+<p>The Source Manager lists all sources that are in the program. The filename, the frame selection, frequency, and offset are displayed. 
+If there is at least one source in the program, there will always be exactly one source that is selected.</p>
+<h5 id="add"><a class="header-link" href="#add"></a>Add</h5>
+<p>With this button, the user can import sources into the program. A file dialog will pop up and the user should select a file from their computer. Right now, the following data types are supported:</p>
+<p>Optical data:</p>
+<ul class="list">
+<li>Tagged Image File Format (TIFF) (<code>.tif</code>, <code>.tiff</code>)</li>
+</ul>
+<p>Patch clamp data:</p>
+<ul class="list">
+<li>Axon Binary File (ABF) (<code>.abf</code>)</li>
+</ul>
+<p>When importing a TIFF, the user additionally must set the recording frequency such that the number of frames can be transformed into a time scale.</p>
+<p>When importing an ABF, the user can ask NOSA to connect multiple sweeps that belong to the same channel, are continuous in time, and have the same unit (see the following images). In both cases, the user must select what they want to import by checking the checkboxes in the first column of the table. NOSA does not distinguish between units. The user can import data of any unit, and NOSA will name the y-axes of <a href="#plots">plots</a> accordingly and name the unit when <a href="#export">exporting</a>.</p>
+<p><img src="images/screen-import-abf-1.png" alt="Import of ABF, signals not connected" title="Import of ABF, signals not connected">
+<img src="images/screen-import-abf-2.png" alt="Import of ABF, signals connected" title="Import of ABF, signals connected"></p>
+<h5 id="movement-correction"><a class="header-link" href="#movement-correction"></a>Movement Correction</h5>
+<p>With this button, the user can do a x-y-movement correction for the currently selected optical data source. For more information, see the <a href="#movement-correction-1">feature Movement Correction</a>.</p>
+<h5 id="crop"><a class="header-link" href="#crop"></a>Crop</h5>
+<p>With this button, the user can crop frames of the currently selected source to select a time window of interest. For example, this is useful when a measurement was started long before the experiment of interest begins. In such an example, the user can tell NOSA to use a later frame as the start frame. </p>
+<p>The frame specified by cropping are based on the recorded frequency and not affected by the <a href="#adjust-frequency-1">Feature Adjust Frequency</a>.</p>
+<p>Please note that when the <a href="#movement-correction-1">feature Movement Correction</a> is active for the currently selected source and the user crops, the Movement Correction will be recomputed. This may take a while.</p>
+<h5 id="offset"><a class="header-link" href="#offset"></a>Offset</h5>
+<p>With this button, the user can set an offset for the currently selected source. This is essential for a correct calculation within the features <a href="#amplitude-cross-correlation">Amplitude Cross Correlation</a> and <a href="#spike-cross-correlation">Spike Cross Correlation</a> and the correct representation when <a href="#compare-objects">comparing data in plots</a>. For the following images, four different objects belonging to four different sources were added in NOSA. The depicted data is the same, but it is lagged. In the first image (1), there is no offset; in the second image (2), the offset is set correctly.</p>
+<p><img src="images/screen-offset-notset-same-cell-marked.png" alt="Comparing plots of time-lagged data" title="Comparing plots of time-lagged data">
+<img src="images/screen-offset-same-cell-marked.png" alt="Comparing plots of time-lagged data with a correct offset" title="Comparing plots of time-lagged data with a correct offset"></p>
+<h5 id="delete"><a class="header-link" href="#delete"></a>Delete</h5>
+<p>With this button, the user can delete the currently selected source. This also removes all the objects that belong to the source. </p>
+<p>This does NOT remove the actual file from the disk content.</p>
+<h5 id="adjust-frequency"><a class="header-link" href="#adjust-frequency"></a>Adjust Frequency</h5>
+<p>With a right click, the user can adjust the frequency of the currently selected source. This does not affect <a href="#crop">cropping</a>. For more information, see the <a href="#adjust-frequency-1">feature Adjust Frequency</a>.</p>
+<h4 id="object-manager"><a class="header-link" href="#object-manager"></a>Object Manager</h4>
+<p>The Object Manager gives an overview of all objects that belong to sources. An object is named ROI (Region of Interest) when it belongs to an optical data source.</p>
+<p>In the following images, specific areas are highlighted describing the components of the Object Manager. All components will be described in the following sections.</p>
+<ol class="list">
+<li><a href="#list-of-objects">List of objects</a></li>
+<li><a href="#add-1">Button: Add</a></li>
+<li><a href="#add-copies">Button: Add Copies</a></li>
+<li><a href="#name">Button: Name</a></li>
+<li><a href="#delete-1">Button: Delete</a></li>
+<li><a href="#export">Button: Export</a></li>
+<li><a href="#invert-all">Option with right click: invert all</a></li>
+<li><a href="#remove-invert-all">Option with right click: remove invert all</a></li>
+<li><a href="#delete-multiple">Option with right click: delete multiple</a></li>
+</ol>
+<p><img src="images/screen-objectmanager-marked.png" alt="Object Manager with marked areas" title="Object Manager with marked areas">
+<img src="images/screen-objectmanager-rightclick-marked.png" alt="Object Manager right click with marked areas" title="Object Manager right click with marked areas"></p>
+<h5 id="list-of-objects"><a class="header-link" href="#list-of-objects"></a>List of objects</h5>
+<p>The Object Manager displays a list of all objects that are in the program. Whenever a source is imported into the program, an object that belongs to this source is created automatically. If there is at least one object in the program, there will always be exactly one object that is selected.</p>
+<p>In the first column, every object has a checkbox. This checkbox determines whether this object is displayed in the <a href="#cell-selection">Cell Selection</a> (if it belongs to an optical source), in the <a href="#compare-objects">comparing plots</a> and in the Features <a href="#amplitude-cross-correlation">Amplitude Cross Correlation</a> and <a href="#spike-cross-correlation">Spike Cross Correlation</a>.</p>
+<p>In the second column, the name of every object is displayed. The default name is &quot;ROI x - y&quot; for optical data with x and y as generic numbers. For example, the default name &quot;ROI 3 - 2&quot; is the second added ROI for the third-imported source. Objects that belong to patch clamp data sources are default named &quot;Z x - 1&quot;, where x is again a generic number and Z is the file type. For example, &quot;ABF 2 - 1&quot; is the object that belongs to the second-imported source, which is of the type ABF. The name of every object can be changed by either double clicking on that object or using the <a href="#button-name">name button</a>. </p>
+<p>The third column references the source the object belongs to. </p>
+<p>In the fourth column, every object has a checkbox. This checkbox determines whether the <a href="#data-notations] of this object should be inverted (multiplied by -1">processed data</a>. This can also be done for multiple objects at once by using the <a href="#invert-all">option with right click: invert all</a> and the <a href="#remove-invert-all">option with right click: remove invert all</a>. </p>
+<h5 id="add-1"><a class="header-link" href="#add-1"></a>Add</h5>
+<p>With this button, the user can add a new object. Initially, the newly added object will have the same settings as the selected object, except for the position, size, and angle. Here, the default parameters will be used. After the new object is added, it is automatically the selected object. </p>
+<h5 id="add-copies"><a class="header-link" href="#add-copies"></a>Add Copies</h5>
+<p>With this button, the user can add multiple new objects. A dialog will show, where the user can select a checkbox for every existing object. For every checked checkbox, a new object will be created whose initial settings will be copied from the referenced existing object. All objects created in this way will belong to the currently selected source.</p>
+<h5 id="name"><a class="header-link" href="#name"></a>Name</h5>
+<p>With this button, the user can rename the currently selected object.</p>
+<h5 id="delete-1"><a class="header-link" href="#delete-1"></a>Delete</h5>
+<p>With this button, the user can delete the currently selected object. If the currently selected object is the only object belonging to the source it belongs to, the source will be deleted too. With the <a href="#delete-multiple">option with right click: delete multiple</a>, multiple objects can be deleted at once. </p>
+<h5 id="export"><a class="header-link" href="#export"></a>Export</h5>
+<p>With this button, the user can export data into a Microsoft Excel Open XML Format Spreadsheet (<code>.xlsx</code>) file. When the button is clicked, a dialog similar to this will show:</p>
+<p class="img-container"><img src="images/screen-export-marked.png" alt="Export dialog with marked areas" title="Export dialog with marked areas"></p>
+<p>The marked areas are components that are described as follows:</p>
+<ol class="list">
+<li>List with checkboxes for every object. The user can select which objects to export. With a right click in this area, the user has two more options: selecting and deselecting all objects at once.</li>
+<li>List with checkboxes for every piece of data. The user can select which data to export. This list consists of the <a href="#data-notations">raw data</a>, the <a href="#data-notations">processed data</a> and the <a href="#features-and-methods">Processing and Analysis Features</a>. With a right click in this area, the user has two more options: selecting and deselecting all data options at once.</li>
+<li>Settings to be made. For now, this includes the setting <code>CC only inside sources</code>, which means that the Cross Correlation data will be exported only for combinations of objects that belong to the same source. </li>
+<li>The file to be created and a button to change it. The user can click on the button and a file dialog will show, that allows the user to set a location and filename. Please note: if the given filename has a specified file type that is not <code>.xlsx</code>, e.g. <code>.txt</code>, the filename is not valid and will not be used. However, the user may select a filename that ends with <code>.txt.xlsx</code>, for example.</li>
+<li>The buttons Export and Cancel. The Export button will create the specified file and fill it with the specified data. The Cancel button will cancel the process.</li>
+</ol>
+<p>Please note that when there are objects with many data points, exporting some of the data may take a long time. Only data with up to 1,048,475 data points can be exported correctly.</p>
+<h5 id="invert-all"><a class="header-link" href="#invert-all"></a>Invert all</h5>
+<p>With a right click, the user can invert all objects at once.</p>
+<h5 id="remove-invert-all"><a class="header-link" href="#remove-invert-all"></a>Remove invert all</h5>
+<p>With a right click, the user can remove the inversion for all objects at once.</p>
+<h5 id="delete-multiple"><a class="header-link" href="#delete-multiple"></a>Delete multiple</h5>
+<p>With a right click, the user can delete multiple objects at once. </p>
+<h4 id="cell-selection-and-raw-plot"><a class="header-link" href="#cell-selection-and-raw-plot"></a>Cell Selection and Raw Plot</h4>
+<p>For optical data, the cell selection gives the user the ability to select a ROI, and displays all ROIs belonging to the currently selected source. For patch clamp data, the cell selection is not used. The raw plot displays the <a href="#data-notations">raw data</a> or the output of the <a href="#background-subtraction">Background Subtraction</a>, if it is active.</p>
+<p>In the following images, specific areas are highlighted describing the components of the cell selection and raw plot. All components will be described in the following sections.</p>
+<ol class="list">
+<li><a href="#cell-selection">Cell Selection</a></li>
+<li><a href="#raw-plot">Raw Plot</a></li>
+<li><a href="#pyqtgraph-mouse-interaction">Options with right click: PyQTGraph context menu options</a> </li>
+<li><a href="#live-preview-mode">Option with right click: live preview mode</a></li>
+<li><a href="#ellipse-mode">Option with right click: ellipse mode</a></li>
+</ol>
+<p><img src="images/screen-cellselection-rawplot-marked.png" alt="Cell Selection and Raw Plot with marked areas" title="Cell Selection and Raw Plot with marked areas">
+<img src="images/screen-cellselection-rawplot-rightclick-marked.png" alt="Cell Selection right click with marked areas" title="Cell Selection right click with marked areas"></p>
+<h5 id="cell-selection"><a class="header-link" href="#cell-selection"></a>Cell Selection</h5>
+<p>In the example image above, multiple things in the Cell Selection are visible:</p>
+<ul class="list">
+<li>the four colored objects: ROIs, which can be further divided into:<ul class="list">
+<li>the currently selected ROI (the purple circle in the bottom area of the Cell Selection)</li>
+<li>the <a href="#background-subtraction">Background Subtraction ROI</a> of the currently selected ROI (the blue dashed line style circle in the top right of the Cell Selection)</li>
+<li>all other ROIs that belong to the currently selected source (the green rectangle and the red ellipse)</li>
+</ul>
+</li>
+<li>the image displayed: the currently selected frame of the video source</li>
+<li>contrast modulation on the right side: provided by <a href="http://www.pyqtgraph.org/documentation/widgets/imageview.html">PyQtGraph&#39;s ImageView</a>, described as &quot;histogram of image data with movable region defining the dark/light levels&quot;</li>
+</ul>
+<p>ROIs can be recognized by the following style rules:</p>
+<ul class="list">
+<li><a href="#background-subtraction">Background Subtraction ROIs</a> are always blue-colored and dash-lined, all other ROIs are never blue-colored and solid-lined</li>
+<li>the line color of every ROI is the same as the color it has in the <a href="#list-of-objects">list of objects in the Object Manager</a></li>
+<li>only the currently selected ROI and the <a href="#background-subtraction">Background Subtraction ROI</a> have handles (the small circle and rectangle in the right area of the ROI)</li>
+</ul>
+<p>The currently selected ROI and the <a href="#background-subtraction">Background Subtraction ROI</a> can be moved and changed in size and angle (the ROI&#39;s angle can not be changed if in <a href="#ellipse-mode">rectangle mode</a>). Changing the size and angle can result in an ROI similar to the red one in the example image above. The purple one is of default size and angle. The green one is in <a href="#ellipse-mode">rectangle mode</a>. </p>
+<p>A <a href="#background-subtraction">Background Subtraction ROI</a> is only displayed if the <a href="#background-subtraction">Background Subtraction</a> is active for the currently selected object.</p>
+<p>For mouse interaction like zooming or dragging, please see <a href="#pyqtgraph-mouse-interaction">PyQtGraph mouse interaction</a>.</p>
+<h5 id="raw-plot"><a class="header-link" href="#raw-plot"></a>Raw Plot</h5>
+<p>In white, the raw plot displays the <a href="#data-notations">raw data</a> or the output of the <a href="#background-subtraction">Background Subtraction</a>, if it is active. The yellow vertical line at frame 0 in the example image above is used as the <a href="#cell-selection">Cell Selection</a> video slider. The user can drag this line in the interval of valid frames.</p>
+<p>Please note: the raw plot also displays the <a href="#polynomial-fitting">markers used in the Baseline Polynomial Fitting</a>. These look very similar to the video slider. </p>
+<p>The x-axis of the raw plot displays the number of frames. This axis will not be affected by the feature <a href="#adjust-frequency-1">Adjust Frequency</a>.</p>
+<p>For mouse interaction like zooming or dragging, please see <a href="#pyqtgraph-mouse-interaction">PyQtGraph mouse interaction</a>.</p>
+<h5 id="live-preview-mode"><a class="header-link" href="#live-preview-mode"></a>Live preview mode</h5>
+<p>With a right click, the user can activate and deactivate the live preview mode. Whenever a ROI is changed in position, angle, or size, the <a href="#raw-plot">raw plot</a> and the <a href="#data-notations">processed data</a> will be refreshed once the mouse button is released. The live preview mode determines whether this update should also happen while the mouse button is clicked, e.g. while the user is moving the ROI.</p>
+<h5 id="ellipse-mode"><a class="header-link" href="#ellipse-mode"></a>Ellipse mode</h5>
+<p>With a right click, the user can switch between the ellipse mode (ellipse mode active) and rectangle mode (ellipse mode not active). This mode is specific for every ROI and determines whether the ROI is an ellipse (ellipse mode) or a rectangle (rectangle mode). </p>
+<h4 id="plots"><a class="header-link" href="#plots"></a>Plots</h4>
+<p>In the following image, specific plot areas are highlighted displaying the following data:</p>
+<ol class="list">
+<li>Processed data (changed by <a href="#background-subtraction">Background Subtraction</a>, <a href="#baseline">Baseline</a>, <a href="#smoothing">Smoothing</a>, <a href="#list-of-objects">inversion</a> and <a href="#adjust-frequency-1">Adjust Frequency</a>)</li>
+<li><a href="#spike-detection">Spike Detection</a> (left) and <a href="#burst-detection">Burst Detection</a> (right, not visible in the example image)</li>
+<li><a href="#event-shape">Event Shape</a> (left) and <a href="#power-spectrum">Power Spectrum</a> (right)</li>
+<li><a href="#amplitude-cross-correlation">Amplitude Cross Correlation</a> (left) and <a href="#spike-cross-correlation">Spike Cross Correlation</a> (right, not visible in the example image)</li>
+</ol>
+<p class="img-container"><img src="images/screen-plots-marked.png" alt="Plots with marked areas" title="Plots with marked areas"></p>
+<p>The plots will be resized automatically whenever <a href="#activate-or-deactivate-feature">features are activated or deactivated</a>, or another object that has different active features is selected. The user can resize all plots manually by dragging the lines that act as borders between the plots.</p>
+<p>In the following images, specific areas are highlighted describing the components of a plot. All components will be described in the following sections.</p>
+<ol class="list">
+<li><a href="#show-legend">Button: Show Legend</a></li>
+<li><a href="#compare-objects">Checkbox: Compare Objects</a></li>
+<li><a href="#one-plot">Checkbox: One Plot</a></li>
+<li><a href="#view-all">View All</a></li>
+<li><a href="pyqtgraph-mouse-interaction">Options with right click: PyQtGraph context menu</a></li>
+</ol>
+<p><img src="images/screen-plots-single-marked.png" alt="A Plot with marked areas" title="A plot with marked areas">
+<img src="images/screen-plots-single-rightclick-marked.png" alt="A Plot right click with marked areas" title="A plot right click with marked areas"></p>
+<p>For mouse interaction like zooming or dragging, please see <a href="#pyqtgraph-mouse-interaction">PyQtGraph mouse interaction</a>.</p>
+<h5 id="show-legend"><a class="header-link" href="#show-legend"></a>Show Legend</h5>
+<p>With this button, the user can show or hide a legend. In this legend, the user can relate between the color of the curve and name of the object this curve belongs to. He may also use checkboxes to show or hide individual curves. </p>
+<h5 id="compare-objects"><a class="header-link" href="#compare-objects"></a>Compare Objects</h5>
+<p>With this checkbox the user can activate the plot comparison mode. Initially, this mode is not active, and the plot will display data only from the currently selected object. When the comparison mode is active, data from all active objects will be displayed. An object is active if the checkbox in the first column of the <a href="#list-of-objects">list of objects in the Object Manager</a> is checked, the object contains adequate data (e.g. an object with inactive Spike Detection will not be displayed when comparing objects in Spike Detection plot), and the checkbox in the <a href="#show-legend">plot legend</a> is checked.</p>
+<p>The <a href="#one-plot">checkbox: one plot</a> is only available in the comparison mode. </p>
+<p>The following images show the comparison mode deactivated (1), the comparison mode activated with the <a href="#one-plot">checkbox: one plot</a> checked (2), and the <a href="#one-plot">checkbox: one plot</a> unchecked (3):</p>
+<p><img src="images/screen-plot-mode1-marked.png" alt="Plot with inactive comparison mode" title="Plot with inactive comparison mode">
+<img src="images/screen-plot-mode2-marked.png" alt="Plot with active comparison mode and active one plot" title="Plot with active comparison mode and active one plot">
+<img src="images/screen-plot-mode3-marked.png" alt="Plot with active comparison mode and inactive one plot" title="Plot with active comparison mode and inactive one plot"></p>
+<h5 id="one-plot"><a class="header-link" href="#one-plot"></a>One Plot</h5>
+<p>With this checkbox, the user can control whether the comparison should happen in one plot or in multiple plots. Default is one plot. This option is only available when the plot is in comparison mode. For further details, please see the section about <a href="#compare-objects">comparing objects</a>.</p>
+<h5 id="view-all"><a class="header-link" href="#view-all"></a>View All</h5>
+<p>If the user drags a plot around or zooms, an <code>A</code> in a rectangle will show in the bottom left corner of the plot. Clicking this resets the plot to the original position and zoom. This is provided by the <a href="http://pyqtgraph.org/">PyQtGraph package</a>. For more information, see <a href="#pyqtgraph-mouse-interaction">PyQtGraph mouse interaction</a>.</p>
+<h5 id="pyqtgraph-mouse-interaction"><a class="header-link" href="#pyqtgraph-mouse-interaction"></a>PyQtGraph Mouse Interaction</h5>
+<p>NOSA uses the <a href="http://pyqtgraph.org/">PyQtGraph package</a> (see also <a href="#software-nosa-uses-and-their-licenses">the packages NOSA uses</a>) for plotting and displaying data. The components used for this have some functionality, including moving, zooming, and a context menu with more options. More information about the PyQtGraph mouse interaction can be found here: <a href="http://www.pyqtgraph.org/documentation/mouse_interaction.html#mouse-interaction">http://www.pyqtgraph.org/documentation/mouse_interaction.html#mouse-interaction</a>.</p>
+<h4 id="pipeline-manager"><a class="header-link" href="#pipeline-manager"></a>Pipeline Manager</h4>
+<p>The Pipeline Manager gives the user the ability to activate and deactivate <a href="#features-and-methods">features</a> as part of a pipeline. This pipeline is unique for every object. This means that any settings, like the active state of a feature, do not influence the settings of another object. </p>
+<p>In the following images, specific areas are highlighted describing the components of the Pipeline Manager. All components will be described in the following sections.</p>
+<ol class="list">
+<li><a href="#activate-or-deactivate-feature">Checkboxes: Activate or Deactivate Feature</a></li>
+<li><a href="#select-feature">Buttons: Select Feature</a></li>
+<li><a href="#activate-or-deactivate-for-multiple-objects">Option with right click on checkboxes: Activate or Deactivate for Multiple Objects</a></li>
+<li><a href="#copy-settings-to-multiple-objects">Option with right click on buttons: Copy Settings to Multiple Objects</a></li>
+</ol>
+<p><img src="images/screen-pipelinemanager-marked.png" alt="Pipeline Manager with marked areas" title="Pipeline Manager with marked areas">
+<img src="images/screen-pipelinemanager-rightclick1-marked.png" alt="Pipeline Manager checkbox right click with marked areas" title="Pipeline Manager checkbox right click with marked areas">
+<img src="images/screen-pipelinemanager-rightclick2-marked.png" alt="Pipeline Manager button right click with marked areas" title="Pipeline Manager button right click with marked areas"></p>
+<h5 id="activate-or-deactivate-feature"><a class="header-link" href="#activate-or-deactivate-feature"></a>Activate or Deactivate Feature</h5>
+<p>With these checkboxes, the user can activate or deactivate single features. When a feature is activated, this feature is automatically <a href="#select-feature">selected</a>. When a feature is deactivated, this feature is automatically <a href="#select-feature">deselected</a>. Whenever one of these checkboxes is changed, automatic <a href="#plots">plot resizing</a> may happen.</p>
+<p>Clicking the checkbox for the <a href="#background-subtraction">Background Subtraction</a> when the currently selected object belongs to a patch clamp data source will not have any effect.</p>
+<h5 id="select-feature"><a class="header-link" href="#select-feature"></a>Select Feature</h5>
+<p>With these buttons, the user selects a feature that will be displayed in the <a href="#feature-view">Feature View</a>. When the checkbox for a specific feature is not checked, a click on its button will check the checkbox. </p>
+<h5 id="activate-or-deactivate-for-multiple-objects"><a class="header-link" href="#activate-or-deactivate-for-multiple-objects"></a>Activate or Deactivate for Multiple Objects</h5>
+<p>With a right click, the user can activate or deactivate this feature for multiple objects. A dialog appears and the user can select for each object whether the feature should be active or inactive. </p>
+<p>Please note that only the active state will be set, not the selected method or chosen parameters. For setting the selected method and chosen parameters for a feature for multiple objects, use the <a href="#copy-settings-to-multiple-objects">right click on buttons in the Pipeline Manager</a>.</p>
+<p>This option will only be shown if there are at least two objects. If the feature is <a href="#background-subtraction">Background Subtraction</a>, the option will only be shown if the amount of objects belonging to optical data sources is at least two. If the feature is <a href="#background-subtraction">Background Subtraction</a>, only objects belonging to optical data sources will be displayed in the dialog. If the feature is <a href="#amplitude-cross-correlation">Amplitude Cross Correlation</a> or <a href="#spike-cross-correlation">Spike Cross Correlation</a>, this option is not shown.</p>
+<h5 id="copy-settings-to-multiple-objects"><a class="header-link" href="#copy-settings-to-multiple-objects"></a>Copy Settings to Multiple Objects</h5>
+<p>With a right click, the user can copy the settings of the current feature to multiple other objects. A dialog appears and the user can select for each other object whether the settings should be copied or not. </p>
+<p>Please note that only the selected method and chosen parameters will be copied, not the active state. For setting the active state of a feature for multiple objects, use the <a href="#activate-or-deactivate-for-multiple-objects">right click on checkboxes in the Pipeline Manager</a>.</p>
+<p>This option will only be shown if there are at least two objects. If the feature is <a href="#background-subtraction">Background Subtraction</a>, the option will only be shown if the current source belongs to optical data and there is at least one other object that belongs to an optical data source. If the feature is <a href="#background-subtraction">Background Subtraction</a>, only objects belonging to optical data sources will be displayed in the dialog. If the feature is <a href="#amplitude-cross-correlation">Amplitude Cross Correlation</a> or <a href="#spike-cross-correlation">Spike Cross Correlation</a>, this option is not shown.</p>
+<p>Please note: when copying parameters to another object, these parameters may be invalid for this object. For example, this may be due to a different recording frequency of the source the other object belongs to. <strong>Copying invalid settings to other objects may let NOSA crash.</strong></p>
+<h4 id="feature-view"><a class="header-link" href="#feature-view"></a>Feature View</h4>
+<p>The Feature View gives the user the ability to choose a method and set parameters for the currently selected feature. </p>
+<p>In the following image, specific areas are highlighted describing the components of the Feature View. All components will be described in the following sections.</p>
+<ol class="list">
+<li><a href="#heading">Heading</a></li>
+<li><a href="#choosing-method">Combobox for Choosing Method</a></li>
+<li><a href="#parameter-settings">Parameter Settings</a></li>
+</ol>
+<p class="img-container"><img src="images/screen-featureview-marked.png" alt="Feature View with marked areas" title="Feature View with marked areas"></p>
+<h5 id="heading"><a class="header-link" href="#heading"></a>Heading</h5>
+<p>The Heading in the Feature View displays the type of the selected <a href="#features-and-methods">feature</a>.</p>
+<h5 id="choosing-method"><a class="header-link" href="#choosing-method"></a>Choosing Method</h5>
+<p>Some features have a variety of <a href="#features-and-methods">available methods</a>. With the Combobox in the Feature View the user can select one of these methods. If a feature has exactly one method, the Combobox is not displayed.</p>
+<h5 id="parameter-settings"><a class="header-link" href="#parameter-settings"></a>Parameter Settings</h5>
+<p>In the area below the <a href="#heading">Heading</a> and the <a href="#choosing-method">Combobox: Choosing Method</a>, the user can set parameters for the selected feature and method. </p>
+<p>In the example image above, there are two Sliders and a Checkbox visible. The user can change the Slider range by clicking the button that displays the current Slider range in the right area of the Slider. </p>
+<p>One should read the documentation of the <a href="#features-and-methods">features</a> before using them. <strong>NOSA will not check every parameter for validity and may crash when invalid parameters are set.</strong></p>
+<h3 id="features-and-methods"><a class="header-link" href="#features-and-methods"></a>Features and Methods</h3>
+<p>The core functionalities of NOSA are its processing and analysis features. Features may have multiple methods and parameters. The following table gives a brief overview:</p>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Type</th>
+<th>Methods</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#movement-correction-1">Movement Correction</a></td>
+<td>processing</td>
+<td>Symmetric Diffeomorphic, Translation, Rigid Body, Scaled Rotation, Affine</td>
+<td>Movement correction for optical data</td>
+</tr>
+<tr>
+<td><a href="#background-subtraction">Background Subtraction</a></td>
+<td>processing</td>
+<td>ROI, Perisomatic</td>
+<td>Subtraction of a background ROI mean</td>
+</tr>
+<tr>
+<td><a href="#baseline">Baseline</a></td>
+<td>processing</td>
+<td>Polynomial Fitting, Asymmetric Least Squares, Top Hat, Moving Average</td>
+<td>Subtraction of a baseline and calculation of gradient</td>
+</tr>
+<tr>
+<td><a href="#adjust-frequency-1">Adjust Frequency</a></td>
+<td>processing</td>
+<td>Nearest Neighbour, Linear, Cubic</td>
+<td>Interpolation of data to work with a special frequency</td>
+</tr>
+<tr>
+<td><a href="#smoothing">Smoothing</a></td>
+<td>processing</td>
+<td>Savitzky Golay, Moving Average, Butterworth</td>
+<td>Smoothing / low pass filter</td>
+</tr>
+<tr>
+<td><a href="#spike-detection">Spike Detection</a></td>
+<td>analysis</td>
+<td></td>
+<td>semi automatic spike detection</td>
+</tr>
+<tr>
+<td><a href="#burst-detection">Burst Detection</a></td>
+<td>analysis</td>
+<td></td>
+<td>semi automatic burst detection</td>
+</tr>
+<tr>
+<td><a href="#event-shape">Event Shape</a></td>
+<td>analysis</td>
+<td>Spike Shape, Burst Shape</td>
+<td>Mean of spike or burst shape</td>
+</tr>
+<tr>
+<td><a href="#power-spectrum">Power Spectrum</a></td>
+<td>analysis</td>
+<td></td>
+<td>Power-Spectral-Density analysis</td>
+</tr>
+<tr>
+<td><a href="#spike-cross-correlation">Spike Cross Correlation</a></td>
+<td>analysis</td>
+<td></td>
+<td>Cross correlation of spike trains</td>
+</tr>
+<tr>
+<td><a href="#amplitude-cross-correlation">Amplitude Cross Correlation</a></td>
+<td>analysis</td>
+<td></td>
+<td>Cross correlation of processed data</td>
+</tr>
+</tbody>
+</table>
+<p>In the following sections, some data notations, the features, and their methods are explained in more detail.</p>
+<h4 id="data-notations"><a class="header-link" href="#data-notations"></a>Data notations</h4>
+<p>The following data notations are used within this documentation:</p>
+<ul class="list">
+<li><strong>raw data</strong>: the raw data describes the data extracted from the source without any processing. For optical data, it&#39;s the mean of the ROI, for patch clamp data its just the data from the source. If the <a href="#background subtraction">Background Subtraction</a> is not active, the raw data is displayed in the <a href="#raw-plot">raw plot</a>.</li>
+<li><strong>processed data</strong>: the processed data describes the data after all processing features and the inversion. It is the input data for all analysing features and displayed in the processed plot. </li>
+</ul>
+<h4 id="movement-correction-1"><a class="header-link" href="#movement-correction-1"></a>Movement Correction</h4>
+<p>The Movement Correction is available for every optical data source via the <a href="#movement-correction">button: Movement Correction</a>. It detects and corrects Movement in optical data sources.</p>
+<p>In the following image, specific areas are highlighted describing the components of the Movement Correction dialog. All components will be described in the following sections.</p>
+<ol class="list">
+<li><a href="#correction">Combobox: Correction</a></li>
+<li><a href="#comparison">Combobox: Comparison</a></li>
+<li><a href="#save-as-file">Button: Save as File</a></li>
+<li><a href="#save-in-nosa">Button: Save in NOSA</a></li>
+<li><a href="#cancel">Button: Cancel</a></li>
+<li><a href="#correction-view">Correction View</a></li>
+<li><a href="#comparison-view">Comparison View</a></li>
+</ol>
+<p class="img-container"><img src="images/screen-movementcorrection-marked.png" alt="Movement Correction dialog with marked areas" title="Movement Correction dialog with marked areas"></p>
+<p>The Movement Correction has the following methods:</p>
+<ul class="list">
+<li>None [original image]</li>
+<li>Symmetric Diffeomorphic</li>
+<li>Translation </li>
+<li>Rigid Body </li>
+<li>Scaled Rotation</li>
+<li>Affine</li>
+</ul>
+<p>When choosing the method None [original image], the Movement Correction is not active.</p>
+<p>The Symmetric Diffeomorphic method requires a lot of time, but worked best in our tests. It was originally presented as an image registration for deformed brain images recorded with magnetic resonance imaging (MRI). For more information, please see: <a href="https://doi.org/10.1016/j.media.2007.06.004">B. B. Avants, C. L. Epstein, M. Grossman, and J. C. Gee (2007). Symmetric diffeomorphic image registration with cross-correlation: evaluating automated labeling of elderly and neurodegenerative brain. <em>Medical image analysis, 12</em>(1), 26-41</a>. For information about the concrete implementation, please see the <a href="#movementcorrection">code documentation of Movement Correction</a>.</p>
+<p>All other methods (Translation, Rigid Body, Scaled Rotation, Affine) take less time and are based on the following publication: <a href="https://doi.org/10.1109/83.650848">P. Thevenaz, U. E. Ruttimann, and M. Unser (1998). A pyramid approach to subpixel registration based on intensity. <em>IEEE Transactions on Image Processing, 7</em>(1), 27-41</a>. For information about the concrete implementation, please see the <a href="#movementcorrection">code documentation of Movement Correction</a>.</p>
+<h5 id="correction"><a class="header-link" href="#correction"></a>Correction</h5>
+<p>In this Combobox, the user can set what method should be used for the correction. When the user selects a method, NOSA will compute the correction and afterwards show the result in the <a href="#correction-view">correction view</a>. The computation may take some time. Once a method was selected and the result was computed, it will be temporarily saved while the Movement Correction dialog is open. This means that the user can switch between already computed results quickly. The temporarily saved data is shared between the corrected and the <a href="#comparison">comparison Combobox</a>.</p>
+<h5 id="comparison"><a class="header-link" href="#comparison"></a>Comparison</h5>
+<p>In this Combobox, the user can set what method should be used for the comparison. It works analogous to the <a href="#correction">correction Combobox</a>.</p>
+<h5 id="save-as-file"><a class="header-link" href="#save-as-file"></a>Save as File</h5>
+<p>With this button, the user can save the result of the currently selected correction as a <code>.tiff</code> file. Please note that a filename with a specified file type that is not <code>.tiff</code>, e.g. <code>.txt</code>, is not valid and the saving process will not be done. No file will be saved if the currently selected correction is None [original image].</p>
+<h5 id="save-in-nosa"><a class="header-link" href="#save-in-nosa"></a>Save in NOSA</h5>
+<p>With this button, the user can save the result of the currently selected correction in NOSA. This means that NOSA will use the corrected data as the data source for its objects.</p>
+<h5 id="cancel"><a class="header-link" href="#cancel"></a>Cancel</h5>
+<p>With this button, the Movement Correction dialog is closed without saving any changes.</p>
+<h5 id="correction-view"><a class="header-link" href="#correction-view"></a>Correction View</h5>
+<p>In this view, the user can see the result of the currently selected correction. With the yellow vertical line in the bottom area of the view, the user can change the currently selected frame, which will be synchronized with the currently selected frame of the <a href="#comparison-view">comparison view</a>. This way, the user can effectively see differences between Movement Correction methods.</p>
+<h5 id="comparison-view"><a class="header-link" href="#comparison-view"></a>Comparison View</h5>
+<p>In this view, the user can see the result of the currently selected comparison. It works analogous to the <a href="#correction-view">correction view</a>.</p>
+<h4 id="background-subtraction"><a class="header-link" href="#background-subtraction"></a>Background Subtraction</h4>
+<p>The Background Subtraction is available for every optical data source. To reduce noise and artefacts in the processed data, the mean fluorescence intensity of a background ROI is subtracted from the mean fluorescence intensity of the selected ROI. </p>
+<p>The Background Subtraction feature has the following methods that will be explained in the following sections:</p>
+<ul class="list">
+<li><a href="#roi">ROI</a></li>
+<li><a href="#perisomatic">Perisomatic</a></li>
+</ul>
+<h5 id="roi"><a class="header-link" href="#roi"></a>ROI</h5>
+<p>With the ROI method, the user manually selects a background ROI in the <a href="#cell-selection">Cell Selection</a>.  </p>
+<h5 id="perisomatic"><a class="header-link" href="#perisomatic"></a>Perisomatic</h5>
+<p>With the Perisomatic method, the user selects a radius. This radius determines a Background ROI that lies like a ring with the given radius around the ROI. </p>
+<h4 id="baseline"><a class="header-link" href="#baseline"></a>Baseline</h4>
+<p>The Baseline feature affects patch clamp and optical data different.</p>
+<p>For patch clamp data, a baseline is calculated and subtracted from the data. Please note that this feature is designed to be used with optical data. Using a baseline for patch clamp data alters its absolute values and may only be useful for particular measurements.</p>
+<p>For optical data, a baseline is calculated and used to calculate the relative change in fluorescence for each time point: <code>result = ((data - baseline) ÷ baseline) × 100</code>. Please note that when the baseline crosses the x-axis, the resulting values may be erroneous.</p>
+<p>The Baseline feature has the following methods that will be explained in the following sections:</p>
+<ul class="list">
+<li><a href="#polynomial-fitting">Polynomial Fitting</a></li>
+<li><a href="#asymmetric-least-squares">Asymmetric Least Squares</a></li>
+<li><a href="#top-hat">Top Hat</a></li>
+<li><a href="#moving-average">Moving Average</a></li>
+</ul>
+<h5 id="polynomial-fitting"><a class="header-link" href="#polynomial-fitting"></a>Polynomial Fitting</h5>
+<p>The Polynomial Fitting method uses non-linear least squares to fit a polynomial function to the data. This polynomial function will be used as baseline. The user can choose the order of the polynomial function with the parameter <code>polyorder</code>. The minimum order is 0 (which results in a constant baseline), the maximum order is 6. The <code>intercept</code> parameter gives the user the ability to correct the polynomial function by an offset. With the option <code>Use Baseline Markers</code>, the user can use markers to mark data points to let the polynomial function be fitted specifically to these points. The user can add and remove markers with buttons and drag them by clicking on them. The number of markers must be at least <code>polyorder + 1</code>. The markers will be displayed in the <a href="#raw-plot">raw plot</a>.</p>
+<p>Please note: the the <a href="#raw-plot">raw plot</a> displays a line that controls the currently displayed image in the <a href="#cell-selection">Cell Selection</a>. This line looks very similar to the marker lines.</p>
+<p>For information about the concrete implementation, please see the <a href="#polynomial-fitting-baseline">code documentation of Polynomial Fitting Baseline</a>. </p>
+<h5 id="asymmetric-least-squares"><a class="header-link" href="#asymmetric-least-squares"></a>Asymmetric Least Squares</h5>
+<p>This method was originally presented in the following manuscript: <a href="https://zanran_storage.s3.amazonaws.com/www.science.uva.nl/ContentPages/443199618.pdf">Paul H. C. Eilers, and Hans F. M. Boelens (2005). Baseline Correction with Asymmetric Least Squares Smoothing</a>.</p>
+<p>For information about the concrete implementation, please see the <a href="#asymmetrical-least-squares-baseline">code documentation of Asymmetrical Least Squares Baseline</a>. </p>
+<h5 id="top-hat"><a class="header-link" href="#top-hat"></a>Top Hat</h5>
+<p>The Top Hat Method is <a href="http://machc.blogspot.com/2008/12/tophat-filter.html">&quot;a method borrowed from the image processing community that treats a 1D graph as a 2D black and white image. It is primarily used to remove the baseline noise that may be contained in a spectrum&quot;</a>. The <code>factor</code> parameter determines how finely the filter is applied.</p>
+<p>For information about the concrete implementation, please see the <a href="#top-hat-baseline">code documentation of Top Hat Baseline</a>. </p>
+<h5 id="moving-average"><a class="header-link" href="#moving-average"></a>Moving Average</h5>
+<p>The Moving Average Method calculates a weighted moving average of the data and uses this as a baseline. The user can choose the window length of the moving average with the parameter <code>window</code>.</p>
+<p>For information about the concrete implementation, please see the <a href="#moving-average-baseline">code documentation of Moving Average Baseline</a>. </p>
+<h4 id="adjust-frequency-1"><a class="header-link" href="#adjust-frequency-1"></a>Adjust Frequency</h4>
+<p>This feature is available with the <a href="#adjust-frequency">adjust frequency button</a> in the <a href="#source-manager">Source Manager</a>. With this feature, the user can adjust the frequency of a source. This may be useful for <a href="#adjust-frequency-2">performance increase</a> and to get the same time intervals for sources with different recording frequencies.</p>
+<p>To adjust the frequency, the user can choose an adjusted frequency and an interpolation method. Three interpolation methods are available:</p>
+<ul class="list">
+<li>Nearest Neighbour</li>
+<li>Linear</li>
+<li>Cubic</li>
+</ul>
+<p>In the following image, the given interpolation methods are illustrated. The image is licensed under the <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.en">Creative Commons Attribution-Share Alike 4.0 International license</a> and originally created by <a href="https://commons.wikimedia.org/wiki/User:Cmglee">CMG Lee</a>.</p>
+<p class="img-container"><img src="images/comparison_of_interpolation_methods.png" alt="Comparison of Interpolation Methods" title="Comparison of Interpolation Methods"></p>
+<p>The adjusted frequency may require frames at time points where no frames exist. These frames will be interpolated with the given interpolation method. The adjusted frequency may also ignore frames at time points where frames exist. This means that interpolated data points may be used and real data points may not be used anymore. </p>
+<p>For information about the concrete implementation, please see the <a href="#AdjustFrequency">code documentation of Adjust Frequency</a>.</p>
+<h4 id="smoothing"><a class="header-link" href="#smoothing"></a>Smoothing</h4>
+<p>The Smoothing Feature smoothes the data. The user can choose of three different smoothing methods, all of which are described in the following sections:</p>
+<ol class="list">
+<li><a href="#savitzky-golay">Savitzky Golay</a></li>
+<li><a href="#moving-average-1">Moving Average</a></li>
+<li><a href="#butterworth">Butterworth</a></li>
+</ol>
+<p>If the Smoothing Feature is activated, it calculates the standard deviation of the noise. This may be used later in <a href="#spike-detection">Spike Detection</a> and <a href="#burst-detection">Burst Detection</a>.</p>
+<p>In the following image, the three methods of the Smoothing Feature are used and compared with the unsmoothed data:</p>
+<ol class="list">
+<li>green graph: unsmoothed (note: recording frequency in this example is 250 Hz, the Feature Adjust Frequency is not used)</li>
+<li>red graph: <a href="#savitzky-golay">Savitzky Golay</a>, <code>window</code>: 11, <code>polyorder</code>: 3</li>
+<li>purple graph: <a href="#moving-average-1">Moving Average</a>, <code>window</code>: 11</li>
+<li>brown graph: <a href="#butterworth">Butterworth</a>, <code>highcut</code>: 30, <code>order</code>: 3</li>
+</ol>
+<p class="img-container"><img src="images/screen-smoothing-example.png" alt="Smoothing example" title="Smoothing example"></p>
+<p>For information about the concrete implementation, please see the <a href="#smoothing-1">code documentation of Smoothing</a>. </p>
+<h5 id="savitzky-golay"><a class="header-link" href="#savitzky-golay"></a>Savitzky Golay</h5>
+<p>A Savitzky-Golay filter works as follows: for every data point, all data points in a window around the data point are used in a polynomial regression. The value in the center of the fitted polynomial will be used as a smoothed value for the data point. The user can change the window size with the <code>window</code> parameter and the order of the polynomial with the <code>polyorder</code> parameter. Please note that the following must hold: <code>window &gt; polyorder</code>. If it does not hold, the data will not be smoothed. If an even value is given for <code>window</code>, it is increased by 1. The Savitzky-Golay filter was originally described in this publication: <a href="https://doi.org/10.1021/ac60214a047">Abraham Savitzky and Marcel J. E. Golay (1964). Smoothing and Differentiation of Data by Simplified Least Squares Procedures. <em>Analytical Chemistry, 36</em>(8), 1627-1639</a>.</p>
+<p>For information about the concrete implementation, please see the <a href="#savitzky-golay-smoothing">code documentation of Savitzky Golay Smoothing</a>.</p>
+<h5 id="moving-average-1"><a class="header-link" href="#moving-average-1"></a>Moving Average</h5>
+<p>The Moving Average Method smoothes the data by calculating a weighted moving average for every data point. The user can choose the window length over that the average will be computed with the parameter <code>window</code>.</p>
+<p>For information about the concrete implementation, please see the <a href="#moving-average-smoothing">code documentation of Moving Average Smoothing</a>. </p>
+<h5 id="butterworth"><a class="header-link" href="#butterworth"></a>Butterworth</h5>
+<p>The Butterworth Method uses a butterworth filter to smooth the data. The butterworth filter is a continuous frequency filter and used here as a low-pass filter. The parameter <code>highcut</code> determines what frequency (in Hz) is used as the low-pass cutoff frequency. Please note that the following must hold: <code>highcut &lt;= floor(frequency÷2)</code> (<code>floor(x)</code> rounds <code>x</code> down, <code>frequency</code> is the adjusted frequency if one is set, otherwise the recording frequency). If it does not hold, the program might crash. The butterworth filter was originally described in the following publication: Stephen Butterworth (1930). On the Theory of Filter Amplifiers. <em>Wireless Engineer, 7</em>, 536-541.</p>
+<p>For information about the concrete implementation, please see the <a href="#butterworth-smoothing">code documentation of Butterworth Smoothing</a>. </p>
+<h4 id="spike-detection"><a class="header-link" href="#spike-detection"></a>Spike Detection</h4>
+<p>The Feature Spike Detection detects spike events in the processed data. For this, the user selects a <code>minimal amplitude</code> as a threshold. This threshold has two checkable options:</p>
+<ul class="list">
+<li><code>dynamic threshold</code>: when this option is checked, the threshold is not a constant function but a weighted moving average of the processed data plus the <code>minimal amplitude</code> parameter.</li>
+<li><code>relative threshold</code>: when this option is checked, the <code>minimal amplitude</code> will be multiplied with either the standard deviation of the noise (calculated by the <a href="#smoothing">Feature Smoothing</a>) or the processed data. </li>
+</ul>
+<p>An additional parameter is the <code>minimal distance</code>, which will be set in milliseconds. It determines the minimal distance between spike events that can prevent the detection of false local maxima within a given time window.</p>
+<p>For information about the concrete implementation, please see the <a href="#spikedetection">code documentation of Spike Detection</a>. </p>
+<h4 id="burst-detection"><a class="header-link" href="#burst-detection"></a>Burst Detection</h4>
+<p>The Feature Burst Detection detects burst events in the processed data. For this, the user selects a <code>minimal amplitude</code> and a <code>minimal base</code> as a threshold. These thresholds have two checkable options:</p>
+<ul class="list">
+<li><code>dynamic threshold</code>: when this option is checked, the thresholds are not constant functions but a weighted moving average of the processed data plus the <code>minimal amplitude</code> (or <code>minimal base</code>) parameter.</li>
+<li><code>relative threshold</code>: when this option is checked, the <code>minimal amplitude</code> will be multiplied with either the standard deviation of the noise (calculated by the <a href="#smoothing">Feature Smoothing</a>) or the processed data; and the <code>minimal base</code> will either be the (arithmetic) mean, the median, or 0. </li>
+</ul>
+<p>An additional parameter is the <code>minimal duration</code>, which will be set in milliseconds. It determines the minimal duration of a burst event.</p>
+<p>For information about the concrete implementation, please see the <a href="#burstdetection">code documentation of Burst Detection</a>. </p>
+<h4 id="event-shape"><a class="header-link" href="#event-shape"></a>Event Shape</h4>
+<p>The Feature Event Shape takes all the detected events of <a href="#spike-detection">Spike Detection</a> or <a href="#burst-detection">Burst Detection</a> and calculates the average shape of it. To determine what events the user wants the Event Shape to average, they can select one of the two available methods:</p>
+<ul class="list">
+<li>Spike Shape</li>
+<li>Burst Shape</li>
+</ul>
+<p>With the <code>interval</code> button, the user can determine the time window around the detected spike / burst peak that should be analysed. </p>
+<p>With the <code>smooth</code> button, the user can smooth the averaged event shape by determining the window size for a weighted moving average. </p>
+<p>For information about the concrete implementation, please see the <a href="#eventshape">code documentation of Event Shape</a>.</p>
+<h4 id="power-spectrum"><a class="header-link" href="#power-spectrum"></a>Power Spectrum</h4>
+<p>The Feature Power Spectrum calculates a discrete Fourier Transform. The parameter <code>smooth</code> determines how much the result will be smoothed by setting the window size for a weighted moving average. If the parameter <code>threshold</code> is set, all values in the result that are below <code>threshold</code> will be set to 0. Please note: the threshold is set before smoothing. With the <code>interval</code> button, the user can set the frequency interval of the visible power spectrum. </p>
+<p>For information about the concrete implementation, please see the <a href="#powerspectrum">code documentation of Power Spectrum</a>.</p>
+<h4 id="spike-cross-correlation"><a class="header-link" href="#spike-cross-correlation"></a>Spike Cross Correlation</h4>
+<p>The Feature Spike Cross Correlation calculates a cross correlation of time points of detected spike events for every pair of objects that have an activated <a href="#list-of-objects">checkbox in the first column of the list of objects</a> and an active <a href="#spike-detection">Feature Spike Detection</a>. Before the correlation is done, the data will be interpolated to the same frequency (the lowest frequency of all objects) and sliced such that only overlapping time points are analysed (for more information, see the <a href="#slicesignals">code documentation of sliceSignals</a>). The parameter <code>binfactor</code> determines the time resolution of the result: it will be multiplied with <code>1÷frequency</code> to represent the size of a bin. In the graph, the area around the center of the cross correlation is displayed. With the parameter <code>maxlag</code>, this area can be resized. </p>
+<p>For information about the concrete implementation, please see the <a href="#spikecrosscorrelation">code documentation of Spike Cross Correlation</a>.</p>
+<h4 id="amplitude-cross-correlation"><a class="header-link" href="#amplitude-cross-correlation"></a>Amplitude Cross Correlation</h4>
+<p>The Feature Amplitude Cross Correlation calculates a cross correlation of the amplitude of the data for every pair of objects that have an activated <a href="#list-of-objects">checkbox in the first column of the list of objects</a>. Before the correlation is done, the data will be interpolated to the same frequency (the lowest frequency of all objects) and sliced such that only overlapping time points are analysed (for more information, see the <a href="#slicesignals">code documentation of sliceSignals</a>). In the graph, the area around the center of the cross correlation is displayed. With the parameter <code>maxlag</code>, this area can be resized. The checkbox <code>use bandpass</code> lets the user select a filter order, a highpass frequency, and a lowpass frequency in Hz. These parameters define a bandpass that will be applied to the data. If the checkbox <code>use bandpass</code> is not checked, bandpass filtering is not done. If the checkbox <code>use instantaneous amplitude</code> is checked, the magnitude of the analytic signal of the data, also referred to as instantaneous amplitude, will be used for correlation, instead of the data. The idea for a cross correlation of instantaneous amplitudes comes from the following publication: <a href="https://doi.org/10.1016/j.jneumeth.2010.06.019">Avishek Adhikari, Torfi Sigurdsson, Mihir A. Topiwala, and Joshua A. Gordon (2010). Cross-correlation of instantaneous amplitudes of field potential oscillations: A straightforward method to estimate the directionality and lag between brain areas. <em>Journal of Neuroscience Methods, 191</em>(2), 191-200</a>.</p>
+<p>For information about the concrete implementation, please see the <a href="#amplitudecrosscorrelation">code documentation of Amplitude Cross Correlation</a>. </p>
+<h3 id="performance-aspects"><a class="header-link" href="#performance-aspects"></a>Performance Aspects</h3>
+<p>NOSA is a program that processes and analyses data. Thus, NOSA has to perform many calculations. When NOSA is performing high demand calculations, it might not respond to user interactions. If the user tries to interact with NOSA anyway, NOSA might crash. To avoid this, the user should <strong>use NOSA thoughtfully and carefully</strong>.</p>
+<p>If the user feels that NOSA takes too long or responds too slowly, they have some options available to increase performance. In general, reducing the data points NOSA has to work with increases the performance. In the following sections, some performance aspects of NOSA will be described.</p>
+<h4 id="cropping"><a class="header-link" href="#cropping"></a>Cropping</h4>
+<p>One way to increase performance is to crop the source. This way, the user can select the time window of interest and data points outside of this window will not be considered for any calculations.</p>
+<h4 id="movement-correction-2"><a class="header-link" href="#movement-correction-2"></a>Movement Correction</h4>
+<p>The calculation of the <a href="#movement-correction-1">Feature Movement Correction</a> requires the most time in NOSA. To avoid calculating the movement correction multiple times, the user can <a href="#save-as-file">save a movement-corrected data as a file</a>. Furthermore, if the user wants to crop and use the movement correction, they should crop first and then use the movement correction. This is because the movement correction only uses the cropped data as input such that cropping triggers the movement correction to be redone. </p>
+<h4 id="adjust-frequency-2"><a class="header-link" href="#adjust-frequency-2"></a>Adjust Frequency</h4>
+<p>When the <a href="#adjust-frequency-1">Feature Adjust Frequency</a> is active, the amount of data points can be reduced. Naturally, when the amount of data points is reduced, performance will increase. However, the process of adjusting the frequency, in concrete an interpolation, takes time. When decreasing the frequency such that fewer data points will be used, accuracy of the data will decrease. Thus, a tradeoff between time and accuracy exists.</p>
+<p>To visualize the performance increase, we performed four different experiments. In each experiment, we calculated the features and measured the time it took. The experiments were as follows:</p>
+<ul class="list">
+<li><code>#1</code>: 300000 frames, 10000 Hz recording frequency, feature: Spike Detection</li>
+<li><code>#2</code>: 300000 frames, 10000 Hz recording frequency, 500 Hz adjusted frequency (leads to 15000 frames), interpolation method: Nearest Neighbour, feature: Spike Detection</li>
+<li><code>#3</code>: 300000 frames, 10000 Hz recording frequency, feature: Burst Detection</li>
+<li><code>#4</code>: 300000 frames, 10000 Hz recording frequency, 500 Hz adjusted frequency (leads to 15000 frames), interpolation method: Nearest Neighbour, feature: Burst Detection</li>
+</ul>
+<p>Each experiment was executed 15 times. The average times are available in the following table:</p>
+<table>
+<thead>
+<tr>
+<th>experiment</th>
+<th>interpolation</th>
+<th>feature</th>
+<th>total</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>#1</code></td>
+<td>0 s</td>
+<td>0.871 s</td>
+<td>0.871 s</td>
+</tr>
+<tr>
+<td><code>#2</code></td>
+<td>0.101 s</td>
+<td>0.049 s</td>
+<td>0.150 s</td>
+</tr>
+<tr>
+<td><code>#3</code></td>
+<td>0 s</td>
+<td>1.248 s</td>
+<td>1.248 s</td>
+</tr>
+<tr>
+<td><code>#4</code></td>
+<td>0.114 s</td>
+<td>0.088 s</td>
+<td>0.202 s</td>
+</tr>
+</tbody>
+</table>
+<p>In the experiments with an adjusted frequency, the interpolation took about 100 ms. The time needed for Spike Detection dropped from over 800 ms to around 50 ms, and the time needed for Burst Detection dropped from around 1.25 s to around 200 ms. In total, time savings in these experiments are about 83-84%. However, the detected Events changed due to the adjusted frequency. Adjusting the frequency from 10000 Hz to 500 Hz</p>
+<ul class="list">
+<li>decreased the amount of detected Spikes by approx. 10%,</li>
+<li>did not change the amount of detected Bursts,</li>
+<li>increased the length of detected Bursts by approx. 14%</li>
+<li>changed the mean amplitude of Spikes by approx. 11%, and</li>
+<li>and changed the mean amplitude of Bursts by approx. 12%. </li>
+</ul>
+<p>However, the characteristics of the shape of the detected events stayed very similar. In the following images, the shapes of detected Spikes and Bursts are displayed, where the green graph belongs to the unadjusted frequency and the red graph to the adjusted frequency:</p>
+<p><img src="images/adjustfrequency-spikeshape-red500-green10000.png" alt="Spike Shapes of events of data with unadjusted (green) and adjusted (red) frequency" title="Spike Shapes of events of data with unadjusted (green) and adjusted (red) frequency">
+<img src="images/adjustfrequency-burstshape-red500-green10000.png" alt="Burst Shapes of events of data with unadjusted (green) and adjusted (red) frequency" title="Burst Shapes of events of data with unadjusted (green) and adjusted (red) frequency"></p>
+<h4 id="roi-ellipse-mode"><a class="header-link" href="#roi-ellipse-mode"></a>ROI Ellipse Mode</h4>
+<p>When working with optical data, the part requiring the most time (apart from the <a href="#movement-correction-2">movement correction</a>) is moving, resizing, and changing the angle of a ROI in the <a href="#cell-selection">cell selection</a>. This is because the border of the ROI does not respect the pixel borders, such that interpolation must be done for the data points at the border of the ROI. To increase performance, the user can deactivate the <a href="#ellipse-mode">ellipse mode</a>, leading to the ROI becoming a rectangle. The rectangle ROI does respect pixel borders and does not need any interpolation.</p>
+<p>To visualize the performance increase, we did four different experiments. In each experiment, we moved the ROI and measured the time it took to retrieve the associated data. The experiments were as follows:</p>
+<ul class="list">
+<li><code>#1</code>: 7500 frames, ROI size: 20x20 pixel</li>
+<li><code>#2</code>: 7500 frames, ROI size: 40.9x35.7 pixel</li>
+<li><code>#3</code>: 2500 frames, ROI size: 20x20 pixel</li>
+<li><code>#4</code>: 2500 frames, ROI size: 40.9x35.7 pixel</li>
+</ul>
+<p>Each experiment was executed 15 times. The average times are available in the following table:</p>
+<table>
+<thead>
+<tr>
+<th>experiment</th>
+<th>ellipse mode</th>
+<th>rectangle mode </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>#1</code></td>
+<td>0.615 s</td>
+<td>&lt; 0.001 s</td>
+</tr>
+<tr>
+<td><code>#2</code></td>
+<td>2.383 s</td>
+<td>&lt; 0.001 s</td>
+</tr>
+<tr>
+<td><code>#3</code></td>
+<td>0.225 s</td>
+<td>&lt; 0.001 s</td>
+</tr>
+<tr>
+<td><code>#4</code></td>
+<td>0.770 s</td>
+<td>&lt; 0.001 s</td>
+</tr>
+</tbody>
+</table>
+<p>It&#39;s obvious to see that the time the ellipse mode needs is quite long, whereas the rectangle mode needed time below the measuring limit. </p>
+<h4 id="order-of-feature-usage"><a class="header-link" href="#order-of-feature-usage"></a>Order of Feature Usage</h4>
+<p>NOSA has a variety of processing and analysis features. The display order of the features in the <a href="#pipeline-manager">Pipeline Manager</a> partially visualizes the order of execution of features. The important thing to note is that the processing features are calculated before the analysing features. In order to improve performance the user should first use the processing features and once these are set, they should start using the analysing features. </p>
+<h4 id="deactivating-objects"><a class="header-link" href="#deactivating-objects"></a>Deactivating Objects</h4>
+<p>In the <a href="#list-of-objects">list of objects</a>, the user can activate and deactivate objects with a checkbox. When an object is deactivated, it will not be displayed when <a href="#compare-objects">comparing objects in a plot</a> and will not be used as input for the <a href="#amplitude-cross-correlation">Amplitude Cross Correlation</a> and <a href="#spike-cross-correlation">Spike Cross Correlation</a>. Thus, when the user does not need the object for these features, the user should deactivate the object to increase performance.</p>
+<h4 id="export-1"><a class="header-link" href="#export-1"></a>Export</h4>
+<p>When <a href="#export">exporting data</a>, the user manually selects what data to export. The less data they select, the faster the export works. Special care must be taken when using data with many data points, e.g. due to a high frequency or a long measurement. Selecting the data options <code>raw data</code>, <code>processed data</code>, <code>Baseline</code>, and <code>Background Subtraction</code> will export as many data points as specified with cropping, where adjusting the frequency does not affect <code>raw data</code>.</p>
+<h3 id="typical-workflow-examples"><a class="header-link" href="#typical-workflow-examples"></a>Typical Workflow Examples</h3>
+<p>In the following sections, three typical workflows are explained. These are typical workflows using the following sources:</p>
+<ol class="list">
+<li><a href="#typical-workflow-with-an-optical-data-source">an optical data source</a></li>
+<li><a href="#typical-workflow-with-multiple-optical-data-sources-that-are-time-lagged">multiple optical data sources that are time-lagged</a></li>
+<li><a href="#typical-workflow-with-an-optical-data-source-and-a-patch-clamp-data-source">an optical data source and a patch clamp data source</a></li>
+</ol>
+<h4 id="typical-workflow-with-an-optical-data-source"><a class="header-link" href="#typical-workflow-with-an-optical-data-source"></a>Typical Workflow with an Optical Data Source</h4>
+<p>In a typical workflow with one optical data source, the following actions may happen:</p>
+<ol class="list">
+<li>import the source</li>
+<li>set the cropping, an adjusted frequency, and an offset </li>
+<li>use the movement correction</li>
+<li>adjust the position, size and angle of the first ROI</li>
+<li>set the processing features for the first ROI</li>
+<li>set the analysing features for the first ROI</li>
+<li>add another ROI (this may happen before 5. or 6., but when done after 5. and 6., the added ROI will have its initial settings copied from the existing ROI)</li>
+<li>adjust the position, size, angle, processing and analysing features for the newly added ROI</li>
+<li>repeat 7. and 8. for every wanted ROI</li>
+<li>export the data of interest </li>
+</ol>
+<h4 id="typical-workflow-with-multiple-optical-data-sources-that-are-time-lagged"><a class="header-link" href="#typical-workflow-with-multiple-optical-data-sources-that-are-time-lagged"></a>Typical Workflow with Multiple Optical Data Sources that are Time-lagged</h4>
+<p>In a typical workflow with multiple optical data sources that have equivalent content at different times, e.g. source 1 represents the time domain 0 s to 60 s, and source 2 represents the time domain 60s to 120s, the following actions may happen:</p>
+<ol class="list">
+<li>import one of the sources</li>
+<li>set the cropping, an adjusted frequency, and an offset for the imported source</li>
+<li>use the movement correction</li>
+<li>adjust the position, size and angle for the first ROI</li>
+<li>set the processing features for the first ROI</li>
+<li>set the analysing features for the first ROI</li>
+<li>add another ROI</li>
+<li>adjust the position, size, angle, processing and analysing features the newly added ROI</li>
+<li>repeat 7. and 8. for every wanted ROI</li>
+<li>select the first ROI created (such that when a source is imported in the next step, the added ROI for that source will be copied from the first ROI)</li>
+<li>import another source</li>
+<li>set the cropping, an adjusted frequency, and an offset for the imported source</li>
+<li>use the movement correction</li>
+<li>adjust the position, size and angle for the newly added ROI because of movement correction (see note below)</li>
+<li>adjust the processing and analysing features for the newly added ROI</li>
+<li>use the add copies button to create copies of all ROIs belonging to the first source, except for the first ROI (that was copied already when importing the source)</li>
+<li>adjust the position, size and angle for the newly added ROIs because of movement correction (see note below)</li>
+<li>adjust the processing and analysing features for the newly added ROIs</li>
+<li>repeat 10.-18. for every source</li>
+<li>export the data of interest</li>
+</ol>
+<p>Please note: the movement correction may need some adjustment when working with multiple sources that temporarily connect gapless, e.g. one source displaying time window 0 s - 10 s and one source displaying the time window 10 s - 20 s. Usually, the last frame of the first source should align with the first frame of the second source. But when the first source is movement corrected, all its frames are corrected in reference to its first frame. This means that the last frame of the first source may not be aligned with the first frame of the second source. Thus, when using movement correction in the above workflow, the positions of the ROIs may have to be adjusted when they are copied from another source.</p>
+<h4 id="typical-workflow-with-an-optical-data-source-and-a-patch-clamp-data-source"><a class="header-link" href="#typical-workflow-with-an-optical-data-source-and-a-patch-clamp-data-source"></a>Typical Workflow with an Optical Data Source and a Patch Clamp Data Source</h4>
+<p>In a typical workflow where a structure was measured both with patch clamp and optical measurements and these measurements should be compared, the following actions may happen:</p>
+<ol class="list">
+<li>import the source</li>
+<li>set the cropping, an adjusted frequency, and an offset </li>
+<li>use the movement correction</li>
+<li>adjust the position, size and angle of the first ROI</li>
+<li>set the processing features for the first ROI</li>
+<li>set the analysing features for the first ROI</li>
+<li>import the patch clamp data source</li>
+<li>adjust the processing and analysing features for the newly added object</li>
+<li>export the data of interest</li>
+</ol>
+<h2 id="nosa-developer-manual"><a class="header-link" href="#nosa-developer-manual"></a>NOSA Developer Manual</h2>
+<p>NOSA does not have a clear architectural pattern. Its software architecture and directory naming has similarities with the Model-View-Controller pattern. The following source code directories exist:</p>
+<ul class="list">
+<li><code>features</code>: the classes representing the processing and analysing features</li>
+<li><code>model</code>: classes defining, filling, and using the model and controlling the software flow</li>
+<li><code>threads</code>: classes for threading</li>
+<li><code>util</code>: configuration files and a file with mathematical functionalities</li>
+<li><code>view</code>: classes for displaying and visualizing data, handling user input, and controlling the software flow</li>
+<li><code>.</code> (root directory): the <code>main.py</code> (starting point for NOSA), <code>main.spec</code> (used for building executables with PyInstaller, see also the README provided), <code>README.md</code> and <code>LICENSE.txt</code></li>
+</ul>
+<p>In addition to the source code, the following directories exist:</p>
+<ul class="list">
+<li><code>doc</code>: documentation files</li>
+<li><code>img</code>: image files</li>
+<li><code>tests</code>: classes for testing</li>
+</ul>
+<p>In the following sections, some of these parts will be explained in more detail:</p>
+<ul class="list">
+<li><a href="#the-main-layout">the main layout</a></li>
+<li><a href="#the-sourcemanager">the SourceManager</a></li>
+<li><a href="#the-objectmanager">the ObjectManager</a></li>
+<li><a href="#the-plotmanager">the PlotManager</a></li>
+<li><a href="#the-pipelinemanager">the PipelineManager</a></li>
+<li><a href="#the-data-model">the data model</a></li>
+<li><a href="#the-datamanager">the DataManager</a></li>
+<li><a href="#the-processing-and-analysing-features">the processing and analysing features</a></li>
+<li><a href="#threads">threads</a></li>
+<li><a href="#movingaverage">the movingAverage function</a></li>
+</ul>
+<h3 id="the-main-layout"><a class="header-link" href="#the-main-layout"></a>The Main Layout</h3>
+<p>The graphical user interface (GUI) of NOSA is made with PyQt5 and PyQtGraph (see also: <a href="#software-nosa-uses-and-their-licenses">Software NOSA uses and their Licenses</a>). The main layout, defined in <code>view.Nosa</code>, is a horizontal <a href="https://doc.qt.io/qt-5/qsplitter.html">QSplitter</a> that consists of three widgets: </p>
+<ul class="list">
+<li>a vertical QSplitter, that consists of three widgets:<ul class="list">
+<li>the SourceManager </li>
+<li>the Object Manager</li>
+<li>the CellSelection</li>
+</ul>
+</li>
+<li>the PlotManager</li>
+<li>the PipelineManager</li>
+</ul>
+<p>All of these widgets contain multiple other widgets, which will be further explained in the following sections.</p>
+<p>Please note that the following is not a complete API documentation. For simplicity, only a reduced number of methods of a corresponding class and parameters of a corresponding method may be named.</p>
+<h3 id="the-sourcemanager"><a class="header-link" href="#the-sourcemanager"></a>The SourceManager</h3>
+<p>The SourceManager (<code>view.SourceManager.SourceManager</code>) lets the user import data into NOSA and handle it as a source (to read about sources, see the <a href="#the-data-model">data model</a>). It is a <a href="https://doc.qt.io/qt-5/qwidget.html">QWidget</a> that has a <a href="https://doc.qt.io/qt-5/qgridlayout.html">QGridLayout</a> in which a <a href="https://doc.qt.io/qt-5/qtablewidget.html">QTableWidget</a> represents the <a href="#list-of-sources">list of sources</a> and some <a href="https://doc.qt.io/qt-5/qpushbutton.html">QPushButtons</a> give the user the ability to manage the sources. The QTableWidget also has a <a href="https://doc.qt.io/qt-5/qwidget.html#customContextMenuRequested">custom context menu</a> that gives the user the ability to <a href="#adjust-frequency">adjust the frequency</a>.</p>
+<p>Clicking the button for adding a source will show a <a href="https://doc.qt.io/qt-5/qfiledialog.html">QFileDialog</a> that asks the user for a file to open. Once that is successfully done, the correct loader class is called: <code>model.TIFLoader.TIFLoader</code> or <code>model.ABFLoader.ABFLoader</code>. These will handle loading the source, insert it into the model, and after that call the corresponding DataManager method <code>finishLoadSource</code>.</p>
+<p>Clicking the button for the movement correction will show a <a href="https://doc.qt.io/qt-5/qdialog.html">QDialog</a>, in concrete the <code>view.MovementCorrectionDialog</code> (see <a href="#movement-correction-1">here</a> for an image). The dialog will handle all user interactions, call the corresponding feature method (see the <a href="#movementcorrection">code documentation of Movement Correction</a>), set the correct data in the model and call the corresponding DataManager method <code>refreshPipeline</code>.</p>
+<p>Clicking the buttons for cropping, setting an offset, or deleting will call different kinds of dialogs for user interaction, and then call the corresponding DataManager methods <code>setSourceAttributes</code> or <code>removeSource</code>.</p>
+<p>Clicking the custom context menu option to adjust the frequency, a dialog will be displayed, in concrete the <code>view.AdjustFrequencyDialog.AdjustFrequencyDialog</code>. This dialog will handle user interaction, but not call any processing methods. The SourceManager will handle the input data when the user confirmed it, call <code>refreshView</code>, and call the corresponding DataManager method <code>refreshPipeline</code>.</p>
+<p>The SourceManager has the method <code>refreshView</code> that refreshes the data displayed in it. It is called by any corresponding DataManager method.</p>
+<h3 id="the-objectmanager"><a class="header-link" href="#the-objectmanager"></a>The ObjectManager</h3>
+<p>The ObjectManager (<code>view.ObjectManager.ObjectManager</code>) lets the user manage objects that belong to sources (to read about objects and sources, see the <a href="#the-data-model">data model</a>). It is a <a href="https://doc.qt.io/qt-5/qwidget.html">QWidget</a> that has a <a href="https://doc.qt.io/qt-5/qgridlayout.html">QGridLayout</a> in which a <a href="https://doc.qt.io/qt-5/qtablewidget.html">QTableWidget</a> represents the <a href="#list-of-objects">list of objects</a> and some <a href="https://doc.qt.io/qt-5/qpushbutton.html">QPushButtons</a> give the user the ability to manage and export the objects. The QTableWidget also has a <a href="https://doc.qt.io/qt-5/qwidget.html#customContextMenuRequested">custom context menu</a> that gives the user the ability to <a href="#invert-all">invert all objects</a>, <a href="#remove-invert-all">remove invert for all objects</a>, and <a href="#delete-multiple">delete multiple objects at once</a>.</p>
+<p>Clicking the active checkbox or the invert checkbox will only call the corresponding DataManager method <code>setObjectAttributes</code>.</p>
+<p>Clicking the button for adding a source will only call the corresponding DataManager method <code>addObject</code>.</p>
+<p>Clicking the buttons for adding copies, renaming an object, or deleting an object will call different kinds of dialogs for user interactions, and then call the corresponding DataManager methods <code>addObject</code> or <code>removeObject</code>. </p>
+<p>Clicking the button for exporting objects will show the <code>view.ExportDialog.ExportDialog</code> (for an image, see <a href="#export">here</a>). This dialog will handle all user interactions. Once the user confirms, the ObjectManager calls the <code>model.export.export</code> method that exports the data.</p>
+<p>Clicking the custom context menu option to invert all or remove the invert of all objects will only call the corresponding DataManager method <code>setObjectAttributes</code>.</p>
+<p>Clicking the custom context menu option to delete multiple objects will show a dialog, in concrete the <code>view.DeleteMultipleDialog.DeleteMultipleDialog</code>. This dialog will handle all user interactions. Once the user confirms, the dialog will call the corresponding DataManager method <code>removeObject</code>.</p>
+<h3 id="the-plotmanager"><a class="header-link" href="#the-plotmanager"></a>The PlotManager</h3>
+<p>The PlotManager (<code>view.PlotManager.PlotManager</code>) is a container for most of the plots displayed in NOSA. It is a vertical <a href="https://doc.qt.io/qt-5/qsplitter.html">QSplitter</a> that consists of:</p>
+<ul class="list">
+<li>the processed plot</li>
+<li>a horizontal QSplitter, that consists of:<ul class="list">
+<li>the spike detection plot</li>
+<li>the burst detection plot</li>
+</ul>
+</li>
+<li>a horizontal QSplitter, that consists of:<ul class="list">
+<li>the event shape plot</li>
+<li>the power spectrum plot</li>
+</ul>
+</li>
+<li>a horizontal QSplitter, that consists of:<ul class="list">
+<li>the spike cross correlation plot</li>
+<li>the amplitude cross correlation plot</li>
+</ul>
+</li>
+</ul>
+<p>All these plots have the type <code>view.Plot.Plot</code>. </p>
+<p>In the PlotManager, there are some methods that handle the presentation of the plots and are called by other classes. These include:</p>
+<ul class="list">
+<li><code>addPlotsForObjectComparison(plot)</code>: Adds the compare data to <code>plot</code> for every active object.</li>
+<li><code>removePlotsForObjectComparison(plot)</code>: Removes the compare data from <code>plot</code> for every active object.</li>
+<li><code>refreshPlotsForObjectComparison(plot, objects)</code>: Refreshes the compare data in <code>plot</code> for every active object in <code>objects</code>.</li>
+<li><code>refreshComparePlots(object_index)</code>: calls <code>refreshPlotsForObjectComparison(plot, object)</code> for every <code>plot</code> that compares data and the <code>object</code> referenced by <code>object_index</code>, or all active objects.</li>
+<li><code>resetComparePlots(plot)</code>: calls <code>removePlotsForObjectComparison(plot)</code>, <code>addPlotsForObjectComparison(plot)</code>, and <code>refreshPlotsForObjectComparison(plot)</code> (for every <code>plot</code> if <code>resetComparePlots(None)</code> is called).</li>
+<li><code>resetCrossCorrelationPlots</code>: Resets (removes and adds) all data in the cross correlation plots. Because the plots for the cross correlation features can not compare data but always show data for pairs of objects, these plots need to be reset in a different way than the other plots.</li>
+<li><code>namePlotYAxis</code>: Renames the y-axes of the plots that are affected by the file type of a source and the active state of the baseline feature.</li>
+<li><code>refreshPlots(feature_index)</code>: Refreshes the size of all the plots, according to what features are active. This way, plots whose features are not active for the currently selected object may be displayed smaller, where the feature at <code>feature_index</code> will be displayed bigger.</li>
+<li><code>refreshROIView(selected_object_index)</code>: refreshes the displayed ROIs in the CellSelection. If <code>selected_object_index</code> is set, the object referenced by that index will be handled as if it was the currently selected object. </li>
+</ul>
+<h3 id="the-pipelinemanager"><a class="header-link" href="#the-pipelinemanager"></a>The PipelineManager</h3>
+<p>The PipelineManager (<code>view.PipelineManager.PipelineManager</code>) lets the user activate and deactivate features and set their parameters. It is a <a href="https://doc.qt.io/qt-5/qwidget.html">QWidget</a> that as a <a href="https://doc.qt.io/qt-5/qvboxlayout.html">QVboxLayout</a> which consists of a <code>view.FeatureButton.FeatureButton</code> for every feature (except for adjust frequency and movement correction) and the <code>feature_view</code>, that is a <a href="https://doc.qt.io/qt-5/qstackedwidget.html">QStackedWidget</a>. It also holds the references to the cross correlation features, namely <code>features.CrossCorrelation.SpikeCrossCorrelation</code> and <code>features.CrossCorrelation.AmplitudeCrossCorrelation</code>.</p>
+<p>Every <code>view.FeatureButton.FeatureButton</code> consists of a <a href="https://doc.qt.io/qt-5/qcheckbox.html">QCheckBox</a> and a <a href="https://doc.qt.io/qt-5/qpushbutton.html">QPushButton</a>. The button has an Icon that is in the <code>img</code> directory. When creating these FeatureButtons in the PipelineManager, every of their checkboxes and buttons is told to show a <a href="https://doc.qt.io/qt-5/qwidget.html#customContextMenuRequested">custom context menu</a> that will display the option to activate/deactivate the feature for multiple objects (checkboxes) or copy the feature settings to multiple other object&#39;s features.</p>
+<p>When clicking a checkbox to activate (the checkbox was not checked before) or deactivate (the checkbox was checked before) a feature, the feature of the pipeline (to read about pipelines and features, see the <a href="#the-data-model">data model</a>) will be set accordingly, the corresponding DataManager method <code>refreshPipeline</code> will be called, and the PipelineManager method <code>refreshFeatureView</code> will be called. If the feature was activated in this step, further actions will happen as if the button for that feature was clicked.</p>
+<p>When clicking a button for a feature that is not active, the correspondig checkbox will be checked and the feature will be activated as if the checkbox would have been clicked by the user. If the feature is active, any displayed feature in the <code>feature_view</code> will be hidden and the feature whose button was clicked will be displayed in the <code>feature_view</code>. </p>
+<p>When right clicking a checkbox, it will be checked if the custom context menu should be displayed. If the context menu is displayed and the option to activate/deactivate the feature for multiple objects is clicked, the <code>view.ActivateMultipleDialog.ActivateMultipleDialog</code> will be displayed. This dialog will handle all user interactions, set the changes, call the corresponding DataManager method <code>refreshPipeline</code>, reset the compare plots for the corresponding plot with the PlotManager method <code>resetComparePlots</code> and finally call the PipelineManager method <code>refreshView</code> if the currently selected object was changed.</p>
+<p>When right clicking a button, it will be checked if the custom context menu should be displayed. If the context menu is displayed and the option to copy the feature settings to multiple other object&#39;s features is clicked, the <code>view.SetMultipleDialog.SetMultipleDialog</code> will be displayed. This dialog will handle all user interactions, set the changes , and call the corresponding DataManager method <code>refreshPipeline</code>.</p>
+<p>The PipelineManager has the two methods <code>refreshPipelineView</code> and <code>refreshView</code> to refresh its views. <code>refreshPipelineView</code> will set the checkboxes according to the pipeline of the currently selected object. <code>refreshView</code> will call <code>refreshPipelineView</code>, and correctly set the <code>feature_view</code>. </p>
+<h3 id="the-data-model"><a class="header-link" href="#the-data-model"></a>The Data Model</h3>
+<p>The data model used in NOSA mainly consists of three classes:</p>
+<ul class="list">
+<li><code>model.Source.Source</code>: Represents a source.</li>
+<li><code>model.Object.Object</code>: Represents an object. Has references to its source and its pipeline.</li>
+<li><code>model.Pipeline.Pipeline</code>: Represents a pipeline.</li>
+</ul>
+<p>In the following UML class diagram, the attributes of these classes and relationships between them are visualized: </p>
+<p class="img-container"><img src="images/nosa-model-classes-overview.jpg" alt="UML Class Diagram of NOSA&#39;s data model" title="UML Class Diagram of NOSA&#39;s data model"></p>
+<p>To see how the features are part of the data model, please see <a href="#the-processing-and-analysing-features">the processing and analysing features</a>.</p>
+<h3 id="the-datamanager"><a class="header-link" href="#the-datamanager"></a>The DataManager</h3>
+<p>The DataManager (<code>model.DataManager.DataManager</code>) is the most central class in NOSA&#39;s architecture. It holds all the references to sources, their movement corrections, objects, to the SourceManager, the ObjectManager, the PlotManager, the PipelineManager, and the CellSelection, and updates the pipelines. In the following UML class diagram, the role of the DataManager in the <a href="#the-data-model">data model</a> is visualized:</p>
+<p class="img-container"><img src="images/nosa-model-classes-with-datamanager.jpg" alt="UML Class Diagram of NOSA&#39;s data model with the DataManager" title="UML Class Diagram of NOSA&#39;s data model with the DataManager"></p>
+<p>The following methods are part of the DataManager and are of great importance for controlling the software flow:</p>
+<ul class="list">
+<li><code>finishLoadSource</code>: Will be called by the loader class (<code>model.TIFLoader.TIFLoader</code> and <code>model.ABFLoader.ABFLoader</code>) to notify that loading a source is finished. Refreshes the SourceManager view and creates an instance of the feature Adjust Frequency and an object for the added source. </li>
+<li><code>selectSource(selection)</code>: Will be called whenever another source will be selected, e.g. when the user clicks on another source in the <a href="#list-of-sources">list of sources</a> or clicks on another object in the <a href="#list-of-objects">list of objects</a> that belongs to another source. Selects the source at index <code>selection</code>, refreshes views, and may selects an appropriate object belonging to the source with <code>selectObject</code>. </li>
+<li><code>removeSource(remove_source_index)</code>: Will be called whenever a source should be deleted, e.g. when the user clicks on the <a href="#delete">source delete button</a> or the last object belonging to a source is deleted. May hide some features, removes the source from the model and all objects belonging to it, and refreshes the SourceManager view.</li>
+<li><code>addObject(source_index, mask_object_index)</code>: Will be called whenever a new object should be created, e.g. when the user clicks the <a href="#add-1">add button</a> or the <a href="#add-copies">add copies button</a>. Creates a new object, using the source at <code>source_index</code> as source and the object at <code>mask_object_index</code> as object to copy initial settings from. Also initializes the pipeline created with the object, calculates the pipeline with <code>refreshPipeline</code>, resets all affected plots and selects the newly created object with <code>selectObject</code>. </li>
+<li><code>selectObject(selection)</code>: Will be called whenever another object will be selected, e.g. when the user clicks on another object in the <a href="#list-of-objects">list of objects</a> or clicks on another source in the <a href="#list-of-sources">list of sources</a>. May hide some features, selects the object at <code>selection</code>, refreshes views, may select the appropriate source with <code>selectSource</code>, refreshes plots, and may refresh the plot sizes.</li>
+<li><code>removeObject(remove_object_index)</code>: Will be called whenever an object should be removed, e.g. when the user clicks on the <a href="#delete-1">delete button</a> or uses the <a href="delete-multiple">delete multiple option</a>. May hide some features, calls <code>removeSource</code> or removes the object at <code>remove_object_index</code> from the data model depending on whether the object is the only object belonging to its source, may reset affected plots, may select an appropriate new object with <code>selectObject</code>, and refreshes views.</li>
+<li><code>setSourceAttributes(source_index, attributes)</code>: Will be called whenever attributes of a source should be set, e.g. when the user <a href="#crop">crops</a> or sets an <a href="#offset">offset</a>. Sets the items in <code>attributes</code> to the source at <code>source_index</code>, may refresh the SourceManager view, and may call <code>setSourceAttributesCallback</code> or the movement correction update, that eventually calls <code>setSourceAttributesCallback</code>, too.</li>
+<li><code>setSourceAttributesCallback</code>: Will be called by <code>setSourceAttributes</code> or the movement correction update. Calculates the pipeline for all objects belonging to the current source, with <code>refreshPipeline</code>. </li>
+<li><code>setObjectAttributes(object_index, attributes)</code>: Will be called whenever attributes of an object should be set, e.g. when the user changes the <a href="#list-of-objects">active state</a> of an object, <a href="#cell-selection">moves the ROI</a>, or changes the state of the <a href="#ellipse-mode">ellipse mode</a> of the object. Sets the items in <code>attributes</code> to the object at <code>object_index</code>, may refresh the ObjectManager view, may reset affected plots and views, and may recalculate the pipeline with <code>refreshPipeline</code>. </li>
+<li><code>refreshPipeline</code>: Will be called whenever the pipeline should be refreshed. Accepts many parameters that give the option to start or end the calculation at a specific point, to determine what objects pipeline should be refreshed and if affected plots should be refreshed. May set input for the CellSelection, iterates over the pipeline and may set input for the features, update them and save the output, and may call <code>refreshPlots</code>.</li>
+<li><code>refreshPlots</code>: Will be called whenever the plots should be refreshed. Accepts the same parameters as <code>refreshPipeline</code> that give the option to indicate what plots should be refreshed. May set raw plot, processed plot, call the PlotManager method <code>namePlotYAxis</code>, and iterate over the pipeline to hide or display plots corresponding to the features.</li>
+<li><code>refreshCellSelectionView(object_index)</code>: Will be called whenever the CellSelection must be refreshed, e.g. when an object is selected, or the last source is removed. Sets the input of the CellSelection accordingly for the object at <code>object_index</code>, calls its <code>inputConfiguration</code> method, sets some views correctly, and may call the PlotManager method <code>refreshROIView</code>.</li>
+</ul>
+<h3 id="the-processing-and-analysing-features"><a class="header-link" href="#the-processing-and-analysing-features"></a>The Processing and Analysing Features</h3>
+<p>The processing and analysing features of NOSA do most of the concrete data calculations. All of them (except for AdjustFrequency) derive from the base class <code>features.Feature.Feature</code>, which extends <a href="https://doc.qt.io/qt-5/qwidget.html">QWidget</a>. </p>
+<p>The following UML class diagram visualizes how the features are part of the <a href="#the-data-model">data model</a>: </p>
+<p class="img-container"><img src="images/nosa-model-with-features-classes-overview.jpg" alt="UML Class Diagram of NOSA&#39;s data model with the DataManager and the features" title="UML Class Diagram of NOSA&#39;s data model with the DataManager and the features"></p>
+<p>Note that:</p>
+<ul class="list">
+<li>there is only one CellSelection in the program, that is being held by the DataManager. The CellSelection is not part of the pipeline because it is handled very differently from all the other features</li>
+<li>the list of MovementCorrections is hold by the DataManager and not part of the pipeline. That is because they are calculated before the CellSelection and also handled very differently from all the other features</li>
+<li>every AdjustFrequency is part of a pipeline, but since it is source-specific, it may be part of multiple pipelines</li>
+<li>AdjustFrequency does not extend the base class <code>features.Feature.Feature</code>. That is because it is handled differently than other features.</li>
+<li>the cross correlation features are unique in the program and are the same in every pipeline</li>
+</ul>
+<p>Amongst others, the following methods are declared in the base class <code>features.Feature.Feature</code>:</p>
+<ul class="list">
+<li><code>initMethodUI</code>: Needs to be called when the feature is initialized. Initializes the <a href="https://doc.qt.io/qt-5/qcombobox.html">QComboBox</a> with that the user can choose what method to use. Implemented in the base class.</li>
+<li><code>initParametersUI</code>: Needs to be called when the feature is initialized. Initializes the graphical objects for parameters for the feature&#39;s methods. Must be implemented in the subclass.</li>
+<li><code>updateParametersUI</code>: Needs to be called whenever another feature method is selected, and when the feature is initialized, after <code>initParametersUI</code>. Displays all the graphical objects belonging to the selected feature method, and hides all other&#39;s. Implemented in the base class.</li>
+<li><code>inputConfiguration</code>: Needs to be called whenever the input for a feature changes. Gives the feature the ability to adjust do a changed input, e.g. by displaying the new input. Must be implemented in the subclass.</li>
+<li><code>addMethod(name, parameters, function)</code>: Needs to be called when the feature methods will be initialized, namely when the feature is initialized, before <code>initMethodUI</code> is called. Adds a method to the feature with the name <code>name</code>, the initial parameters <code>parameters</code>, and the method <code>function</code> to be called when the feature should be updated. Implemented in the base class.</li>
+<li><code>updateLivePlot</code>: Needs to be called when the feature&#39;s data should be plotted. Plots the data or correctly hides the plot, depending on the data state. Must be implemented in the subclass.</li>
+<li><code>undisplayPlots</code>: Needs to be called when the feature&#39;s plots should be reset. Implementation in the base class resets the feature&#39;s compare plots. Should be implemented in the subclass if further plots are used.</li>
+<li><code>update</code>: Needs to be called when the feature should be calculated. The update method for the selected feature method may be called, <code>updateLivePlot</code> may be called and depending features may be updated with the DataManager method <code>refreshPipeline</code>.</li>
+</ul>
+<p>The probably most important method is <code>update</code>, which looks similar to this:</p>
+<pre class="hljs"><code><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">update</span><span class="hljs-params">(updateDependend, plot)</span>:</span>
+    <span class="hljs-keyword">if</span> active:
+        output = selected_method.update(input, parameter)
+        <span class="hljs-keyword">if</span> plot:
+            updateLivePlot()
+        <span class="hljs-keyword">if</span> updateDependend:
+            refreshPipeline()</code></pre><p>Where <code>updateDependend</code> determines if the features that depend on this features output should be updated by the DataManager method <code>refreshPipeline</code>, <code>plot</code> determins where the plots should be updated with <code>updateLivePlot</code>, <code>active</code> determines the active state of the feature, and <code>selected_method</code> is the selected feature method of the Feature.</p>
+<p>In the following sections, all the single features classes (classes in the <code>features</code> directory) will be briefly explained:</p>
+<ol class="list">
+<li><a href="#movementcorrection">MovementCorrection</a></li>
+<li><a href="#cellselection">CellSelection</a></li>
+<li><a href="#backgroundsubtraction">BackgroundSubtraction</a></li>
+<li><a href="#baseline-1">Baseline</a></li>
+<li><a href="#smoothing-1">Smoothing</a></li>
+<li><a href="#adjustfrequency">AdjustFrequency</a></li>
+<li><a href="#spikedetection">EventDetection.SpikeDetection</a></li>
+<li><a href="#burstdetection">EventDetection.BurstDetection</a></li>
+<li><a href="#eventshape">EventShape</a></li>
+<li><a href="#powerspectrum">PowerSpectrum</a></li>
+<li><a href="#crosscorrelation">CrossCorrelation</a><ul class="list">
+<li><a href="#spikecrosscorrelation">CrossCorrelation.SpikeCrossCorrelation</a></li>
+<li><a href="#amplitudecrosscorrelation">CrossCorrelation.AmplitudeCrossCorrelation</a></li>
+</ul>
+</li>
+</ol>
+<h4 id="movementcorrection"><a class="header-link" href="#movementcorrection"></a>MovementCorrection</h4>
+<p>Since the movement correction requires the most time of all features in NOSA and can take up several minutes, its calculations will be done in a thread, such that the program does not crash when the user clicks somewhere. However, since a <a href="https://doc.qt.io/qt-5/qprogressdialog.html">QProgressDialog</a> will be displayed, clicks by the user will not do anything. For information about threads in NOSA, please read <a href="#threads">here</a>.</p>
+<p>The MovementCorrection will hold a list named <code>calculated</code> containing all the calculated corrections. Whenever a correction is calculated, it will be saved there. Whenever something must be calculated, the MovementCorrection will look into the <code>calculated</code> list if it was already calculated, thus avoiding unnecessary calculations. However, this list must be emptied when the <code>view.MovementCorrectionDialog.MovementCorrectionDialog</code> is closed, such that no unnecessary memory is used.</p>
+<p>The Symmetric Diffeomorphic options is calculated using the <a href="#software-nosa-uses-and-their-licenses">DIPY</a> package. The following code is incomplete, but should give a good understanding of how the calculation is done:</p>
+<pre class="hljs"><code>metric = dipy.align.metrics.CCMetric(<span class="hljs-number">2</span>, <span class="hljs-number">3.0</span>, <span class="hljs-number">4</span>)
+sdr = dipy.align.imwarp.SymmetricDiffeomorphicRegistration(metric, [<span class="hljs-number">25</span>])
+corrected[<span class="hljs-number">0</span>] = uncorrected[<span class="hljs-number">0</span>]
+<span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">1</span>, len(uncorrected)):
+    mapping = sdr.optimize(corrected[<span class="hljs-number">0</span>], uncorrected[i])
+    corrected[i] = mapping.transform(uncorrected[i])</code></pre><p>First, a metric and a registration are created. The first image is the reference image. Every other image is transformed with a mapping, that optimizes the metric between the reference image and the other image.</p>
+<p>All other options are calculated using the <a href="#software-nosa-uses-and-their-licenses">pyStackReg</a> package. The following code is incomplete, but should give a good understanding of how the calculation is done:</p>
+<pre class="hljs"><code>sr = pystackreg.StackReg(option)
+corrected = sr.register_transform_stack(uncorrected, reference = <span class="hljs-string">'first'</span>)</code></pre><p>First, an instance of the <code>pystackreg.StackReg</code> class is created, using <code>option</code>, which is one of the following: <code>pystackreg.StackReg.TRANSLATION</code>, <code>pystackreg.StackReg.RIGID_BODY</code>, <code>pystackreg.StackReg.SCALED_ROTATION</code>, <code>pystackreg.StackReg.AFFINE</code>, according to what the user selected. After that, the correction is calculated using the first image as a reference. </p>
+<h4 id="cellselection"><a class="header-link" href="#cellselection"></a>CellSelection</h4>
+<p>The CellSelection has a fairly complex <code>inputConfiguration</code> method, which correctly hides everything if no input is given. Otherwise, a distinction between optical data sources and patch clamp data sources is done and suitable actions are taken, such as displaying or hiding the ROI.</p>
+<p>When the CellSelection is updated, e.g. by moving the ROI, the data defined by the ROI will be extracted from the source using the <a href="#software-nosa-uses-and-their-licenses">PyQtGraph</a> package. The following code is incomplete, but should give a good understanding of how the calculation is done:</p>
+<pre class="hljs"><code><span class="hljs-keyword">if</span> ellipse_mode:
+    cell = ellipse_roi.getArrayRegion(img.view(numpy.ndarray), imv.imageItem, axes=(<span class="hljs-number">1</span>,<span class="hljs-number">2</span>))
+<span class="hljs-keyword">else</span>:
+    pos = rect_roi.pos()
+    size = rect_roi.size()
+    pos = (math.floor(pos[<span class="hljs-number">0</span>]), math.floor(pos[<span class="hljs-number">1</span>]))
+    size = (math.ceil(size[<span class="hljs-number">0</span>]), math.ceil(size[<span class="hljs-number">1</span>]))
+    rect_roi.setPos(pos)
+    rect_roi.setSize(size)
+    _slice = rect_roi.getArraySlice(img.view(numpy.ndarray), imv.imageItem, axes=(<span class="hljs-number">1</span>,<span class="hljs-number">2</span>))
+    cell = img[_slice[<span class="hljs-number">0</span>]]
+cell_mean = cell.mean(axis=(<span class="hljs-number">1</span>,<span class="hljs-number">2</span>))</code></pre><p>If the ROI is in ellipse mode, the <code>pyqtgraph.ROI.getArrayRegion</code> method is called to extract the data from the source. The parameters are: <code>img.view(numpy.ndarray)</code> (a copy of the source data), <code>imv.imageItem</code> (the <code>imageItem</code> of the <code>pyqtgraph.ImageView</code> that is displays the visual data and where the ROI is in), and the axes of the data array the ROI works on.</p>
+<p>If the ROI is in rectangle mode, the position and size of the ROI will be changed to integers instead of floats such that a simple array slice can be used to extract the data from the source. The slice is created using the <code>pyqtgraph.ROI.getArraySlice</code> method with the same parameters as explained above for <code>getArrayRegion</code>. The second return parameter of <code>getArraySlice</code> is a transform that we do not need, that is why the first part of the return value is accessed in the line <code>cell = img[_slice[0]]</code>.</p>
+<p>Finally, the cell mean is calculated using the <code>numpy.ndarray.mean</code> method.</p>
+<h4 id="backgroundsubtraction"><a class="header-link" href="#backgroundsubtraction"></a>BackgroundSubtraction</h4>
+<p>The BackgroundSubtraction is the first feature in every pipeline. It should never be active for objects that belong to a patch clamp data source. It has similarities to the CellSelection and uses the same <code>pyqtgraph.ImageView</code> to display its ROI. At some points in the program, e.g. when another source is selected, the BackgroundSubtraction of the source that was selected before the change must explicitly be hidden if it was active. This is because it has special graphical objects, namely its ROIs, which will not be hidden refreshing plots. This is why at some points in the code, for example in the <code>selectObject</code> method, a similar code to this will be executed before any change happens:</p>
+<pre class="hljs"><code><span class="hljs-keyword">if</span> background_subtraction.active:
+    background_subtraction.undisplayPlots()</code></pre><h5 id="roi-background-subtraction"><a class="header-link" href="#roi-background-subtraction"></a>ROI Background Subtraction</h5>
+<p>The update procedure of the feature method <code>ROI</code> works very similar to the one of the CellSelection. </p>
+<h5 id="perisomatic-background-subtraction"><a class="header-link" href="#perisomatic-background-subtraction"></a>Perisomatic Background Subtraction</h5>
+<p>The update procedure of the feature method <code>Perisomatic</code> also works very similar to the one of the CellSelection, but before the data is extracted from the source, the correct position, size and angle for the perisomatic ROI must be calculated from the CellSelection ROI&#39;s parameters and the user-set radius. The following code is incomplete, but should give a good understanding of how the calculation is done:</p>
+<pre class="hljs"><code>p_angle = angle
+p_size = size[<span class="hljs-number">0</span>] + radius, size[<span class="hljs-number">1</span>] + radius
+angle_of_position = math.radians(angle<span class="hljs-number">-135</span>)
+shift_x = math.sqrt(<span class="hljs-number">2</span>) * math.cos(angle_of_position) * radius / <span class="hljs-number">2</span>
+shift_y = math.sqrt(<span class="hljs-number">2</span>) * math.sin(angle_of_position) * radius / <span class="hljs-number">2</span>
+p_pos = pos[<span class="hljs-number">0</span>] + shift_x, pos[<span class="hljs-number">1</span>] + shift_y</code></pre><p>Where <code>pos</code>, <code>size</code>, and <code>angle</code> are the parameter of the CellSelection ROI, <code>radius</code> is the user-set radius, and <code>p_angle</code>, <code>p_size</code>, and <code>p_pos</code> are the perisomatic ROI attributes. The data extracted with this perisomatic ROI still includes the data of the original ROI because its just a bigger version of it with the same center and angle. This is why the data needs to be corrected by subtracting the original cell data. The following code is incomplete, but should give a good understanding of how the calculation is done:</p>
+<pre class="hljs"><code>p_ring = numpy.sum(p_cell, axis=(<span class="hljs-number">1</span>,<span class="hljs-number">2</span>)) - numpy.sum(cell, axis=(<span class="hljs-number">1</span>,<span class="hljs-number">2</span>))
+_, p1, p2 = p_cell.shape
+_, c1, c2 = cell.shape
+p_ring_size = (p1 * p2) - (c1 * c2)
+background_mean = p_ring / p_ring_size</code></pre><p>Where <code>p_cell</code> is the extracted data for the background ROI and <code>cell</code> is the original cell data. </p>
+<h4 id="baseline-1"><a class="header-link" href="#baseline-1"></a>Baseline</h4>
+<p>The Baseline displays the baseline calculated in the <a href="#raw-plot">raw plot</a> and also needs the parent view of that plot, thats why it holds a <code>liveplot</code> and a <code>liveplot_container</code>. This is also the reason why at some points of the program the <code>undisplayPlots</code> method may be called, just like for the BackgroundSubtraction.</p>
+<p>The Baseline does not only calculate the baseline but also subtracts it from the data (if the object belongs to a patch clamp data source) or calculates a gradient based on the baseline with the following method:</p>
+<pre class="hljs"><code><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">getGradient</span><span class="hljs-params">(y, baseline)</span>:</span>
+    grad = numpy.zeros(len(y), dtype=float)
+    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(len(y)):
+        bli = baseline[i]
+        <span class="hljs-keyword">try</span>:
+            grad[i] = (float(y[i]-bli)/bli)*<span class="hljs-number">100</span>
+        <span class="hljs-keyword">except</span>:
+            <span class="hljs-keyword">pass</span>
+    <span class="hljs-keyword">return</span> grad</code></pre><h5 id="polynomial-fitting-baseline"><a class="header-link" href="#polynomial-fitting-baseline"></a>Polynomial Fitting Baseline</h5>
+<p>For the feature method Polynomial Fitting, the baseline will be a polynomial function fitted to the data using non-linear least squares using the <a href="#">SciPy</a> package, namely the method <code>scipy.optimize.curve_fit</code>. When the ´Use Baseline Marker` option is active, the function will only be fitted to specific data points specified by these markers. The following code is incomplete, but should give a good understanding of how the calculation is done:</p>
+<pre class="hljs"><code><span class="hljs-keyword">if</span> use_marker:
+    baseline = fitting(x, marker, y[marker], intercept, polyorder)
+<span class="hljs-keyword">else</span>:
+    baseline = fitting(x, x, y, intercept, polyorder)
+<span class="hljs-keyword">if</span> optical_data_source:
+    y = getGradient(y, baseline)
+<span class="hljs-keyword">else</span>:
+    y = y - baseline</code></pre><p>Where <code>x</code> is the frame range of the source, <code>y</code> is the data, <code>marker</code> is a list of frame numbers that mark the data point to fit the function, <code>intercept</code> is the user-set intercept, and <code>polyorder</code> is the user-set polynomial order. The <code>fitting</code> method is as follows:</p>
+<pre class="hljs"><code>funcList = [func_lin,func_poly2,func_poly3, func_poly4,func_poly5,func_poly6]
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">fitting</span><span class="hljs-params">(x1, x2, y, intercept=<span class="hljs-number">0</span>, degree=<span class="hljs-number">0</span>)</span>:</span>
+    func = funcList[degree<span class="hljs-number">-1</span>]
+    <span class="hljs-keyword">if</span> degree &gt; <span class="hljs-number">0</span> <span class="hljs-keyword">and</span> degree &lt;= <span class="hljs-number">6</span>:
+        popt, _ = scipy.optimize.curve_fit(func, xdata=x2, ydata=y)
+        fit = func(x1, *popt)
+    <span class="hljs-keyword">else</span>:
+        fit = numpy.repeat(numpy.mean(y),len(x1))
+    <span class="hljs-keyword">return</span> fit+intercept</code></pre><h5 id="asymmetrical-least-squares-baseline"><a class="header-link" href="#asymmetrical-least-squares-baseline"></a>Asymmetrical Least Squares Baseline</h5>
+<p>For the feature method Asymmetrical Least Squares, the baseline is calculated using an algorithm that was originally described in the following publication: <a href="https://zanran_storage.s3.amazonaws.com/www.science.uva.nl/ContentPages/443199618.pdf">Paul H. C. Eilers, and Hans F. M. Boelens (2005). Baseline Correction with Asymmetric Least Squares Smoothing</a>. The python code is adapted from a StackOverflow <a href="https://stackoverflow.com/a/50160920">answer</a> by user <a href="https://stackoverflow.com/users/6126163/jpantina">jpantina</a>:</p>
+<pre class="hljs"><code><span class="hljs-keyword">from</span> scipy <span class="hljs-keyword">import</span> sparse
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">als</span><span class="hljs-params">(y, iterations, smooth, p=<span class="hljs-number">0.001</span>)</span>:</span>
+    smooth=smooth**<span class="hljs-number">3</span>
+    L = len(y)
+    D = sparse.diags([<span class="hljs-number">1</span>,<span class="hljs-number">-2</span>,<span class="hljs-number">1</span>],[<span class="hljs-number">0</span>,<span class="hljs-number">-1</span>,<span class="hljs-number">-2</span>], shape=(L,L<span class="hljs-number">-2</span>))
+    w = numpy.ones(L)
+    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(iterations):
+        W = sparse.spdiags(w, <span class="hljs-number">0</span>, L, L)
+        Z = W + smooth * D.dot(D.transpose())
+        z = sparse.linalg.spsolve(Z, w*y)
+        w = p * (y &gt; z) + (<span class="hljs-number">1</span>-p) * (y &lt; z)
+    <span class="hljs-keyword">return</span> z</code></pre><p>Where <code>iterations</code> and <code>smooth</code> are user-set parameters, and <code>intercept</code> will be added to the baseline after this calculation.</p>
+<h5 id="top-hat-baseline"><a class="header-link" href="#top-hat-baseline"></a>Top Hat Baseline</h5>
+<p>For the feature method Top Hat, the baseline is calculated using the following method that uses the <a href="#software-nosa-uses-and-their-licenses">SciPy</a> method <code>scipy.ndimage.white_tophat</code>:</p>
+<pre class="hljs"><code><span class="hljs-keyword">from</span> scipy <span class="hljs-keyword">import</span> ndimage
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">topHat</span><span class="hljs-params">(y, pntFactor)</span>:</span>
+    struct_pts = int(round(y.size*pntFactor))
+    str_el = numpy.repeat([<span class="hljs-number">1</span>], struct_pts)
+    tFil = ndimage.white_tophat(y, <span class="hljs-keyword">None</span>, str_el)
+    <span class="hljs-keyword">return</span> y-tFil</code></pre><p>Where <code>y</code> is the data and <code>pntFactor</code> is the factor that the user sets. The code was adapted from this <a href="http://machc.blogspot.com/2008/12/tophat-filter.html">blogpost</a>.</p>
+<h5 id="moving-average-baseline"><a class="header-link" href="#moving-average-baseline"></a>Moving Average Baseline</h5>
+<p>For the feature method Moving Average, the baseline is calculated using the <a href="#movingaverage">moving average</a> function.</p>
+<h4 id="smoothing-1"><a class="header-link" href="#smoothing-1"></a>Smoothing</h4>
+<p>The Smoothing is a relatively simple feature that does not even plot, because the processed data plotting is handled differently because many features change the processed data. A notable thing is that whenever the source frequency changes, the maximum highcut frequency for the Butterworth feature method is set. Also, whenever something is smoothed, the standard deviation of the noise is calculated with the <a href="#software-nosa-uses-and-their-licenses">NumPy</a> method <code>numpy.std(noise)</code>, where <code>noise = y - y_smoothed</code>, <code>y</code>is the data, and <code>y_smoothed</code> the smoothed data.</p>
+<h5 id="savitzky-golay-smoothing"><a class="header-link" href="#savitzky-golay-smoothing"></a>Savitzky Golay Smoothing</h5>
+<p>The Savitzky Golay feature method smoothes by using the <a href="#software-nosa-uses-and-their-licenses">SciPy</a> method <code>scipy.signal.savgol_filter</code>.</p>
+<h5 id="moving-average-smoothing"><a class="header-link" href="#moving-average-smoothing"></a>Moving Average Smoothing</h5>
+<p>The Moving Average feature method smoothes by using the <a href="#movingaverage">moving average</a> function.</p>
+<h5 id="butterworth-smoothing"><a class="header-link" href="#butterworth-smoothing"></a>Butterworth Smoothing</h5>
+<p>The Butterworth feature method smoothes by using a butterworth filter. For this, the <a href="#software-nosa-uses-and-their-licenses">SciPy</a> methods <code>scipy.signal.butter</code>, <code>scipy.signal.lfilter_zi</code>, and <code>scipy.signal.lfilter</code> are used:</p>
+<pre class="hljs"><code><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">butter_lowpass_filter</span><span class="hljs-params">(y, freq, highcut, order)</span>:</span>
+    nyq = <span class="hljs-number">0.5</span> * freq
+    high = highcut / nyq
+    b, a = scipy.signal.butter(order, high, btype=<span class="hljs-string">'lowpass'</span>)
+    zi = scipy.signal.lfilter_zi(b, a)
+    z, _ = scipy.signal.lfilter(b, a, y, zi = zi * y[<span class="hljs-number">0</span>])
+    <span class="hljs-keyword">return</span> z</code></pre><p>Where <code>y</code> is the data, <code>freq</code> the frequency of the source, and <code>highcut</code> and <code>order</code> the user-set parameters.</p>
+<h4 id="adjustfrequency"><a class="header-link" href="#adjustfrequency"></a>AdjustFrequency</h4>
+<p>AdjustFrequency is source specific and due to that, handled differently than other features. It is not displayed in the PipelineManager and does not have a <code>liveplot</code>. It is displayed in a separate dialog, namely the <code>view.AdjustFrequencyDialog.AdjustFrequencyDialog</code>. When the user clicks on the <a href="#movement-correction">movement correction button</a>, the AdjustFrequencyDialog is displayed. The AdjustFrequencyDialog has a <a href="https://doc.qt.io/qt-5/qstackedwidget.html">QStackedWidget</a> as view for the features, which will be displayed one feature at a time, or no feature. To change the settings of the feature, the user must activate it. Once activated, the user can change the settings any way he wants, no update of the feature will be executed. Only when the confirm button in the AdjustFrequencyDialog is clicked, some checks will be made: when the adjusted frequency equals the original frequency, the feature is deactivated; when the feature was not active before and is not active after the confirmation, the method returns; when the same method and parameters are selected, the method returns. If the method did not return until this point, the <code>refreshView</code> method of the SourceManager is called and the <code>refreshPipeline</code> method of the DataManager refreshes the pipeline for all affected objects, which will update the feature too.</p>
+<h4 id="spikedetection"><a class="header-link" href="#spikedetection"></a>SpikeDetection</h4>
+<p>The SpikeDetection has a checkbox for the relative threshold that hides or displays other graphical objects in the <code>setThresholdState</code> method. </p>
+<p>When the SpikeDetection is updated, the threshold (minimal amplitude) will be calculated first. If a relative threshold should be used, the user-set minimal amplitude parameter will be multiplied with the standard deviation of the noise of the data, depending on what the user set. The standard deviation of the noise is calculated by the <a href="#smoothing-1">Smoothing</a>. If it is not active, a default noise will be calculated using the <a href="#software-nosa-uses-and-their-licenses">SciPy</a> method <code>scipy.signal.savgol_filter</code> with a window size 5 and a polynomial order 3. After that, a distinction is made whether a dynamic threshold should be used. If so, the <a href="#movingaverage">moving average</a> of the data is calculated and added to the minimal amplitude. Otherwise, the threshold is a constant function represented by a <a href="#software-nosa-uses-and-their-licenses">NumPy</a> array created by the <a href="#software-nosa-uses-and-their-licenses">NumPy</a> method <code>numpy.full</code>. The following code is incomplete, but should give a good understanding of how the threshold is determined:</p>
+<pre class="hljs"><code><span class="hljs-keyword">if</span> noise_std == <span class="hljs-number">0</span>:
+    noise = y - savgol_filter(y, <span class="hljs-number">5</span>, <span class="hljs-number">3</span>)
+    noise_std = np.std(noise)
+
+<span class="hljs-keyword">if</span> relative_threshold:
+    amplitude = amplitude * (noise_std <span class="hljs-keyword">if</span> use_noise_std <span class="hljs-keyword">else</span> data_std)
+
+<span class="hljs-keyword">if</span> dynamic_threshold:
+    threshold = movingAverage(y, smooth) + amplitude
+<span class="hljs-keyword">else</span>:
+    threshold = numpy.full(len(y), amplitude, dtype = float)</code></pre><p>After that, spikes are detected using the following function:</p>
+<pre class="hljs"><code><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">spikeDetection</span><span class="hljs-params">(y, thresh, distance)</span>:</span>
+    spikes = []
+    i = <span class="hljs-number">1</span>
+    n = len(y)
+    <span class="hljs-keyword">while</span> i &lt; n<span class="hljs-number">-1</span>:
+        <span class="hljs-keyword">if</span> y[i]&gt;thresh[i]:
+            <span class="hljs-keyword">if</span> (y[i] &gt;= y[i<span class="hljs-number">-1</span>] <span class="hljs-keyword">and</span> y[i] &gt;= y[i+<span class="hljs-number">1</span>]):
+                spikes.append(i)
+        i+=<span class="hljs-number">1</span>
+    j = <span class="hljs-number">0</span>
+    <span class="hljs-keyword">while</span> j &lt; len(spikes)<span class="hljs-number">-1</span>:
+        <span class="hljs-keyword">if</span> (spikes[j+<span class="hljs-number">1</span>]-spikes[j]) &lt; distance:
+            <span class="hljs-keyword">if</span> y[spikes[j]]&gt;y[spikes[j+<span class="hljs-number">1</span>]]:
+                <span class="hljs-keyword">del</span> spikes[j+<span class="hljs-number">1</span>]
+            <span class="hljs-keyword">else</span>:
+                <span class="hljs-keyword">del</span> spikes[j]
+        <span class="hljs-keyword">else</span>:
+            j+=<span class="hljs-number">1</span>
+    <span class="hljs-keyword">return</span> spikes</code></pre><p>Where <code>y</code> is the data, <code>thresh</code> is the minimal amplitude threshold and <code>distance</code> is the user-set distance. First, all the time points where the data is over the threshold and a local maximum are collected in a list. Second, for all pairs of time points that are not further away than the user-set distance, the time point whose data point is smaller is removed from the list. The resulting list is the list of time points where a spike is detected.</p>
+<p>Finally, after the spikes were detected, some other interesting values, namely the spike frequency, the mean amplitude, the spike train, and the spike amplitudes are collected.</p>
+<h4 id="burstdetection"><a class="header-link" href="#burstdetection"></a>BurstDetection</h4>
+<p>The BurstDetection is very similar to the SpikeDetection. In addition to the minimal amplitude threshold, it also has a minimal base threshold. </p>
+<p>When the BurstDetection is updated, the minimal amplitude threshold will be calculated the same way the <a href="#spikedetection">SpikeDetection</a> calculates it. The minimal base threshold is calculated in a similar way: if relative thresholds should be used, the minimal base will be set to the median, the mean (using the <a href="#software-nosa-uses-and-their-licenses">NumPy</a> methods <code>numpy.median</code> or <code>numpy.mean</code>), or 0. After that, the minimal base threshold is determined the same way the minimal amplitude is determined. The following code is incomplete, but should give a good understanding of how the thresholds are determined:</p>
+<pre class="hljs"><code><span class="hljs-keyword">if</span> noise_std == <span class="hljs-number">0</span>:
+    noise = y - savgol_filter(y, <span class="hljs-number">5</span>, <span class="hljs-number">3</span>)
+    noise_std = np.std(noise)
+
+<span class="hljs-keyword">if</span> relative_threshold:
+    amplitude = amplitude * (noise_std <span class="hljs-keyword">if</span> use_noise_std <span class="hljs-keyword">else</span> data_std)
+    <span class="hljs-keyword">if</span> use_median_base:
+        base = numpy.median(y)
+    <span class="hljs-keyword">elif</span> use_mean_base:
+        base = numpy.mean(y)
+    <span class="hljs-keyword">else</span>:
+        base = <span class="hljs-number">0</span>
+
+<span class="hljs-keyword">if</span> dynamic_threshold:
+    amplitude_threshold = movingAverage(y, smooth) + amplitude
+    base_threshold = movingAverage(y, smooth) + base
+<span class="hljs-keyword">else</span>:
+    amplitude_threshold = numpy.full(len(y), amplitude, dtype = float)
+    base_threshold = numpy.full(len(y), base, dtype = float)</code></pre><p>After that, the bursts are detected using the following function:</p>
+<pre class="hljs"><code><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">burstDetection</span><span class="hljs-params">(y, amplitude, base, duration)</span>:</span>
+    <span class="hljs-string">"""
+    y: signal
+    amplitude: upper threshold to decide whether there is a burst or not
+    base: lower threshold to determine the start and end of the burst
+    duration: amount of frames that a burst's length must be at minimum
+
+    returns tuple of arrays: start frames and end frames of the bursts
+
+    definition of burst: one point must be at least the upper threshold (amplitude). 
+    the start of the burst is the intersection of the signal (y) with the
+    lower threshold (base) on the left of the point above the upper threshold.
+    the end of the burst is the intersection of the signal (y) with the 
+    lower threshold (base) on the right of the point above the upper threshold.
+    the burst only counts if it is at least duration long.
+    """</span>
+    bursts = ([],[])
+    n = len(y)
+    i = <span class="hljs-number">1</span>
+    <span class="hljs-keyword">while</span> (i &lt; n<span class="hljs-number">-2</span>):
+        <span class="hljs-keyword">if</span> y[i] &gt; amplitude[i]:
+            start, end, error = burstBorderDetection(y, base, i, <span class="hljs-number">0</span> <span class="hljs-keyword">if</span> len(bursts[<span class="hljs-number">0</span>]) == <span class="hljs-number">0</span> <span class="hljs-keyword">else</span> bursts[<span class="hljs-number">1</span>][<span class="hljs-number">-1</span>]+<span class="hljs-number">1</span>)
+            <span class="hljs-keyword">if</span> end-start &gt; duration <span class="hljs-keyword">and</span> <span class="hljs-keyword">not</span> error:
+                bursts[<span class="hljs-number">0</span>].append(start)
+                bursts[<span class="hljs-number">1</span>].append(end)
+            i = end + <span class="hljs-number">2</span>
+        <span class="hljs-keyword">else</span>:
+            i += <span class="hljs-number">1</span>
+    <span class="hljs-keyword">return</span> bursts</code></pre><p>Where <code>y</code> is the data, <code>amplitude</code> the minimal amplitude threshold, <code>base</code> the minimal base threshold, <code>duration</code> the user-set duration, and <code>burstBorderDetection</code> the following method:</p>
+<pre class="hljs"><code><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">burstBorderDetection</span><span class="hljs-params">(y, base, i, leftborder)</span>:</span>
+    <span class="hljs-string">"""
+    y: signal
+    base: lower threshold to determine start and end of burst
+    i: frame of the point above the upper threshold
+    leftborder: the most-left border the burst can start at
+
+    returns the intersections of the signal with the base on both sides
+    of the point above the upper threshold, and an error-boolean. this 
+    is True when start/end are not below the base, but we stopped because
+    of the borders.
+    """</span>
+    n = len(y) - <span class="hljs-number">1</span>
+    start = i - <span class="hljs-number">1</span>
+    <span class="hljs-keyword">while</span> (start &gt; leftborder <span class="hljs-keyword">and</span> y[start] &gt;= base[start]):
+        start -= <span class="hljs-number">1</span>
+    end = i + <span class="hljs-number">1</span>
+    <span class="hljs-keyword">while</span> (end &lt; n <span class="hljs-keyword">and</span> y[end] &gt;= base[end]):
+        end += <span class="hljs-number">1</span>
+    error = y[start] &gt;= base[start] <span class="hljs-keyword">or</span> y[end] &gt;= base[end]
+    <span class="hljs-keyword">return</span> (start, end, error)</code></pre><p>In the <code>burstDetection</code> method, time points where the signal is higher than the minimal amplitude threshold are searched. For every found time point, a start and end time point are searched with the <code>burstBorderDetection</code> method. If these start and end time points are far enough away, a burst is detected with these start and end points and the search for another burst continues. The <code>burstBorderDetection</code> method searches for points that lie below the <code>base</code> value, while not crossing specific borders (a burst should not start with or before the signal, or exactly where another burst ends, and a burst should not end with or after the signal).</p>
+<p>Finally, after the bursts were detected, some other interesting values, namely the peak amplitude time points, the amplitudes, the durations, the burst train, the burst frequency, the mean amplitude, and the mean duration are collected.</p>
+<h4 id="eventshape"><a class="header-link" href="#eventshape"></a>EventShape</h4>
+<p>The EventShape feature does have two different feature methods, but they do exactly the same except they have a different input. The Spike Shape method uses the time points of the detected spikes as input, and the Burst Shape method uses the time points of the maximum amplitudes of the detected bursts as input.</p>
+<p>Both methods have the same parameters, which include an interval. This interval can be set with a button and determines how far away from the input time point the shape should be analysed.</p>
+<p>When the feature is updated, the shapes are extracted from the data and averaged with the <a href="#software-nosa-uses-and-their-licenses">NumPy</a> method <code>numpy.ndarray.mean</code>. A smoothed version of this averaged shape is calculated using the <a href="#movingaverage">moving average</a> with the window being the smooth parameter the user set.</p>
+<h4 id="powerspectrum"><a class="header-link" href="#powerspectrum"></a>PowerSpectrum</h4>
+<p>The PowerSpectrum feature is a fairly simple feature. When it is updated, an the <a href="#software-nosa-uses-and-their-licenses">NumPy</a> module <code>numpy.fft</code> is used to obtain a power spectrum. The following code is incomplete, but should give a good understanding of how the thresholds are determined:</p>
+<pre class="hljs"><code>y_detrended = y - numpy.mean(y)
+
+fft = numpy.fft.fft(y_detrended)
+fft = fft / len(fft)
+psd = numpy.abs(fft)**<span class="hljs-number">2</span>
+freqs = numpy.fft.fftfreq(len(y_detrended), <span class="hljs-number">1</span> / frequency)</code></pre><p>Where <code>y</code> is the data, and <code>frequency</code> is the frequency of the source. As explained in the <a href="https://docs.scipy.org/doc/numpy/reference/routines.fft.html">module description</a>, the power spectrum is obtained using <code>numpy.abs</code> of <code>numpy.fft.fft</code>, where <code>y_detrended</code> is the data normalized around zero by subtracting the mean. The power spectrum is normalized by dividing by the length of the spectrum. The frequencies are obtained using the <code>numpy.fft.fftfreq</code> method. After that, the frequencies the user is interested are extracted, and thresholding and smoothing are done:</p>
+<pre class="hljs"><code>left_closest_index = numpy.argmin(numpy.abs(freqs - interval[<span class="hljs-number">0</span>]))
+right_closest_index = numpy.argmin(numpy.abs(freqs - interval[<span class="hljs-number">1</span>]))
+
+freqs = freqs[left_closest_index:right_closest_index+<span class="hljs-number">1</span>]
+psd = psd[left_closest_index:right_closest_index+<span class="hljs-number">1</span>]
+
+psd[psd &lt; threshold] = <span class="hljs-number">0</span>
+psd = movingAverage(psd, window = smooth)</code></pre><p>Where <code>interval</code> is the tupel the user set for the interval, <code>smooth</code> is the parameter the user set for smoothing, and <code>movingAverage</code> is the <a href="#movingaverage">movingAverage</a> method.</p>
+<h4 id="crosscorrelation"><a class="header-link" href="#crosscorrelation"></a>CrossCorrelation</h4>
+<p>Both features SpikeCrossCorrelation and AmplitudeCrossCorrelation extend the base class <code>features.CrossCorrelation.CrossCorrelation</code>. This base class provides some functionality, that include two methods: <code>adjustFrequencies</code> and <code>sliceSignals</code>. These are of great importance for the correct cross correlation and will be explained here.</p>
+<h5 id="adjustfrequencies"><a class="header-link" href="#adjustfrequencies"></a>adjustFrequencies</h5>
+<p>The <code>adjustFrequencies</code> method adjusts all signals towards the same frequency, in concrete the lowest frequency given. The method uses the <a href="#software-nosa-uses-and-their-licenses">NumPy</a> method <code>numpy.interp</code> (amongst others) to interpolate the data and looks as follows:</p>
+<pre class="hljs"><code><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">adjustFrequencies</span><span class="hljs-params">(signals, freqs)</span>:</span>
+    min_freq = min(freqs)
+    <span class="hljs-keyword">for</span> signal_index, freq <span class="hljs-keyword">in</span> zip(range(len(signals)), freqs):
+        <span class="hljs-keyword">if</span> freq != min_freq:
+            signal_len = len(signals[signal_index])
+            new_signal_len = math.ceil(signal_len * min_freq / freq)
+            signals[signal_index] = numpy.interp(numpy.linspace(<span class="hljs-number">0</span>, signal_len<span class="hljs-number">-1</span>, num = new_signal_len), numpy.arange(signal_len), signals[signal_index])
+    <span class="hljs-keyword">return</span> signals, min_freq</code></pre><p>This function accepts two lists of same length and returns a list with the adjusted signals and the frequency these adjusted signals have. If the frequencies are all the same, e.g. when they come from the same source, nothing will be adjusted here.</p>
+<h5 id="slicesignals"><a class="header-link" href="#slicesignals"></a>sliceSignals</h5>
+<p>The <code>sliceSignals</code> method determines the time points in the common time domain in which both signals are well defined. This is affected by the length of the signal, cropping, and the offset. For example, if signal one is 800 frames long and has an offset of 100 frames, and signal two is 600 frames long and does not have an offset, in the common time domain signal one is defined from frame 100 to frame 900, and signal two is defined from frame 0 to frame 600. In the following image, signal one is represented by the red graph, and signal two is represented by the green graph. The frequency in this example is set to 100 Hz.</p>
+<p class="img-container"><img src="images/screen-for-slice-signals-1.png" alt="Two signals of different length and offset" title="Two signals of different length and offset"></p>
+<p>This makes the time points where both signals are well defined the frames 100 to 600, which leads to slicing the signal one from frame 0 to frame 500, and signal two from frame 100 to frame 600. After slicing, the signals look like this:</p>
+<p class="img-container"><img src="images/screen-for-slice-signals-2.png" alt="Two signals of different length and offset, sliced to a common defined time domain" title="Two signals of different length and offset, sliced to a common defined time domain"></p>
+<p>The method looks as follows:</p>
+<pre class="hljs"><code><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">sliceSignals</span><span class="hljs-params">(len1, len2, offset1, offset2)</span>:</span>
+    start = max(offset1, offset2)
+    end = min(offset1 + len1, offset2 + len2)
+    <span class="hljs-keyword">return</span> slice(start-offset1, end-offset1), slice(start-offset2, end-offset2)</code></pre><p>Where <code>len1</code> and <code>len2</code> are the lengths of the signals in frames, and <code>offset1</code> and <code>offset2</code> are the offsets of the signals in frames. </p>
+<h5 id="spikecrosscorrelation"><a class="header-link" href="#spikecrosscorrelation"></a>SpikeCrossCorrelation</h5>
+<p>The SpikeCrossCorrelation calculates a pairwise cross correlation between spike trains. When the feature is updated, the following things, amongst others, may happen:</p>
+<ul class="list">
+<li>all the spike train data arrays are adjusted with <a href="#adjustfrequency"><code>adjustFrequency</code></a></li>
+<li>the x-values (bins) are determined using the period duration, the user-set <code>maxlag</code>, and the user-set <code>binfactor</code> (that will be divided by the frequency to give the size of bins)</li>
+<li>for every pair of spike trains:<ul class="list">
+<li>the train is sliced using <a href="#slicesignals"><code>sliceSignals</code></a></li>
+<li>the linear correlation is done and the result is normalized (see <a href="#amplitudecrosscorrelation">AmplitudeCrossCorrelation</a>)</li>
+<li>according to the <code>binfactor</code>, adjacent values in the result are added</li>
+<li>if more values should be displayed (due to a bigger maxlag) than are available with the correlation result, zeros are appended</li>
+<li>the correlation coefficient and the main lag are calculated (see below)</li>
+</ul>
+</li>
+</ul>
+<p>The correlation coefficient and the main lag and the correlation coefficient at the main lag are calculated using the <a href="#software-nosa-uses-and-their-licenses">NumPy</a> methods <code>numpy.argmax</code> and <code>numpy.abs</code> methods. The following code is incomplete, but should give a good understanding of how the thresholds are determined:</p>
+<pre class="hljs"><code>argmax = numpy.argmax(numpy.abs(scc))
+delay[i,j] = bins[argmax] + <span class="hljs-number">0.5</span> * binsize
+coef[i,j] = np.corrcoef(data1, data2)[<span class="hljs-number">0</span>,<span class="hljs-number">1</span>]</code></pre><p>Where <code>scc</code> is the correlation result, <code>bins</code> are the x-values (bins), and <code>binsize</code> is the width of a bin. This way, the center of the bin represents the main lag.</p>
+<h5 id="amplitudecrosscorrelation"><a class="header-link" href="#amplitudecrosscorrelation"></a>AmplitudeCrossCorrelation</h5>
+<p>The AmplitudeCrossCorrelation calculates a pairwise cross correlation between the processed data of active objects. When the feature is updated, the following things, amongst others, may happen:</p>
+<ul class="list">
+<li>all the processed data arrays are adjusted with <a href="#adjustfrequency"><code>adjustFrequency</code></a></li>
+<li>if the <code>use bandpass</code> parameter is set, the frequencies set by the user are checked for validity</li>
+<li>the x-values are determined using the period duration and the user-set <code>maxlag</code></li>
+<li>for every pair of active objects:<ul class="list">
+<li>the data is sliced using <a href="#slicesignals"><code>sliceSignals</code></a></li>
+<li>if a bandpass filter should be used, it is applied (see below)</li>
+<li>if the instantaneous amplitude should be used, it is applied (see below)</li>
+<li>the data is normalized by subtracting the mean</li>
+<li>the linear correlation is done and the result is normalized (see below)</li>
+<li>if more values should be displayed (due to a bigger maxlag) than are available with the correlation result, zeros are appended</li>
+<li>the correlation coefficient, the main lag and the correlation coefficient at the main lag are calculated (see below)</li>
+</ul>
+</li>
+</ul>
+<p>The bandpass is applied using the <a href="#software-nosa-uses-and-their-licenses">SciPy</a> module <code>scipy.signal</code> as follows:</p>
+<pre class="hljs"><code><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">bandpass</span><span class="hljs-params">(signal, order, freq, highpass_freq, lowpass_freq)</span>:</span>
+    filter_ = scipy.signal.firwin(order, [highpass_freq, lowpass_freq], fs = freq, pass_zero = <span class="hljs-keyword">False</span>)
+    zi = scipy.signal.lfilter_zi(filter_, <span class="hljs-number">1.0</span>)
+    <span class="hljs-keyword">return</span> scipy.signal.lfilter(filter_, <span class="hljs-number">1.0</span>, signal, zi = zi * signal[<span class="hljs-number">0</span>])[<span class="hljs-number">0</span>]</code></pre><p>Where <code>signal</code> is the data, and <code>order</code>, <code>highpass_freq</code>, and <code>lowpass_freq</code> are the user-set filter parameters.</p>
+<p>The instantaneous amplitude is applied using the <a href="#software-nosa-uses-and-their-licenses">SciPy</a> method <code>scipy.signal.hilbert</code>, and the <a href="#software-nosa-uses-and-their-licenses">NumPy</a> method <code>numpy.abs</code> as follows:</p>
+<pre class="hljs"><code><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">instantaneous_amplitude</span><span class="hljs-params">(signal)</span>:</span>
+    hilbert_ = scipy.signal.hilbert(signal)
+    <span class="hljs-keyword">return</span> numpy.abs(hilbert_)</code></pre><p>Where <code>signal</code> is the data.</p>
+<p>The linear correlation is done using the <a href="#software-nosa-uses-and-their-licenses">SciPy</a> method <code>scipy.signal.correlate</code>, and the normalization is done using the <a href="#software-nosa-uses-and-their-licenses">SciPy</a> method <code>scipy.signal.correlate</code> and the <a href="#software-nosa-uses-and-their-licenses">NumPy</a> methods <code>numpy.ones</code> and <code>numpy.std</code> as follows:</p>
+<pre class="hljs"><code>norm_ones = numpy.ones(len(data1))
+norm = scipy.signal.correlate(norm_ones, norm_ones, mode=<span class="hljs-string">'same'</span>)
+acc = scipy.signal.correlate(data1, data2, mode=<span class="hljs-string">'same'</span>) / (numpy.std(data1) * numpy.std(data2) * norm)</code></pre><p>Where <code>data1</code> and <code>data2</code> are the data of the object pair. Dividing by the product of the standard deviations normalizes the cross correlation in combination with dividing by the number of bins. The <code>same</code> mode is used to prevent bad results at the border of the data.</p>
+<p>Finally, the correlation coefficient, the main lag and the correlation coefficient at the main lag are calculated using the <a href="#software-nosa-uses-and-their-licenses">NumPy</a> methods <code>numpy.argmax</code>, <code>numpy.abs</code>, and <code>numpy.corrcoeff</code>, and the <code>sliceSignals</code> method. The following code is incomplete, but should give a good understanding of how the thresholds are determined:</p>
+<pre class="hljs"><code>argmax = numpy.argmax(numpy.abs(acc))
+delay = xrange_[argmax]
+coef = numpy.corrcoef(data1, data2)[<span class="hljs-number">0</span>,<span class="hljs-number">1</span>]
+offset_in_frames = argmax - int(len(xrange_) / <span class="hljs-number">2</span>)
+slice1, slice2 = sliceSignals(len(data1), len(data2), <span class="hljs-number">0</span>, offset_in_frames)
+data1 = data1[slice1]
+data2 = data2[slice2]
+delay_coefficient[i,j] = numpy.corrcoef(data1, data2)[<span class="hljs-number">0</span>,<span class="hljs-number">1</span>]</code></pre><p>Where <code>acc</code> is the correlation result, <code>xrange_</code> are the x-values, and <code>data1</code> and <code>data2</code> are the data of the object pair. This piece of code calculates the main delay and the correlation coefficient in the first three lines, then shifts the data accordingly to the calculated main delay, slices the data again, and finally calculates the correlation coefficient of the adjusted data.</p>
+<h3 id="threads"><a class="header-link" href="#threads"></a>Threads</h3>
+<p>At some points in NOSA, threads are used. These points are:</p>
+<ul class="list">
+<li>loading sources with the <code>model.TIFLoader.TIFLoader</code> or <code>model.ABFLoader.ABFLoader</code></li>
+<li>calculating the movement correction</li>
+<li>exporting data</li>
+</ul>
+<p>For these occasions, the classes in the <code>threads</code> directory are used. There is the <code>threads.Worker.Worker</code> class and the <code>threads.WorkerSignals.WorkerSignals</code> class. The <code>threads.Worker.Worker</code> class extends <a href="https://doc.qt.io/qt-5/qrunnable.html">QRunnable</a> and can be initialized with some parameters that control what the thread does, how progress can be visualized and how the result will be finished. The <code>threads.WorkerSignals.WorkerSignals</code> class is only used by the <code>threads.Worker.Worker</code> and may not be used at any other place. It only extends <a href="https://doc.qt.io/qt-5/qobject.html">QObject</a> to hold three instances of <code>QtCore.pyqtSignal</code> to realize the signaling done in <code>threads.Worker.Worker</code>.</p>
+<h3 id="movingaverage"><a class="header-link" href="#movingaverage"></a>movingAverage</h3>
+<p>The <code>movingAverage</code> function is part of the <code>util.functions</code> file and calculates a moving average of the given data. For this, a window is used. The following code is incomplete, but should give a good understanding of how the calculation is done:</p>
+<pre class="hljs"><code><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">movingAverage</span><span class="hljs-params">(y, window)</span>:</span>
+    s = numpy.pad(y, int(window/<span class="hljs-number">2</span>), mode=<span class="hljs-string">'reflect'</span>)
+    w = numpy.hanning(window)
+    z = numpy.convolve(w / numpy.sum(w), s, mode=<span class="hljs-string">'valid'</span>)
+    <span class="hljs-keyword">return</span> z</code></pre><p>Where <code>y</code> is the data and <code>window</code> is the window length. First, the method pads the original data by half the window size by reflecting the values using the <a href="#software-nosa-uses-and-their-licenses">NumPy</a> method <code>numpy.pad</code>. This will increase the overall size by <code>2*(int(window/2))</code>. After that, a hanning window is obtained using the <a href="#software-nosa-uses-and-their-licenses">NumPy</a> method <code>numpy.hanning</code>. Finally, the normalized hanning window and the padded data will be convolved using the <a href="#software-nosa-uses-and-their-licenses">NumPy</a> method <code>numpy.convolve</code>.</p>
+    </article>
+  </body>
+</html>
