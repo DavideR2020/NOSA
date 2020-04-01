@@ -2,7 +2,7 @@
 
 Neuro-Optical Signal Analysis
 
-NOSA is an analytical toolbox designed specifically for the analysis and interpretation of multicellular optical electrophysiology. NOSA features baseline fitting and filtering algorithms to extract electrical patterns from high speed recordings with low signal-to-noise ratios. NOSA also includes features for spike- and burst detection, movement artefact compensation, and the ability to analyze simultaneously performed optical and electrical recordings. Moreover, NOSA provides analytical tools to identify temporal relations in multicellular electrical patterns via cross correlation analysis.  For more information, see the documentation. 
+NOSA is an analytical toolbox designed specifically for the analysis and interpretation of voltage imaging data. NOSA features baseline fitting and filtering algorithms to extract electrical patterns from high speed recordings with low signal-to-noise ratios. NOSA also includes features for spike- and burst detection, movement artefact compensation, and the ability to analyze simultaneously performed optical and electrical recordings. Moreover, NOSA provides analytical tools to identify temporal relations in multicellular electrical patterns via cross correlation analysis.  For more information, see the documentation. 
 
 ## Running NOSA from source code
 
