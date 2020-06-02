@@ -2,6 +2,7 @@ from PyQt5 import QtCore, QtWidgets
 import numpy as np
 import xlsxwriter
 import time
+import traceback
 
 from threads.Worker import Worker
 
@@ -12,7 +13,8 @@ def writeLoop(worksheet, row, col, values):
         return
     for value in values:
         row += 1
-        worksheet.write(row, col, round(value, 4))
+        if not np.isnan(value):
+            worksheet.write(row, col, round(value, 4))
 
 def writeFeature(worksheet, wrap, col, objects_names, data, label, x_axis = False, x_axis_label = None, x_axis_values = None):
     prev_x_axis_value = None
@@ -271,11 +273,12 @@ def export_work(data_manager, objects, data, file_info, export_time, cc_only_ins
                     ('noise_std', 'Standard Deviation of Noise'),
                     ('time', 'Time of Peak (s)'),
                     ('amplitude', 'Amplitude of Peak'),
-                    ('mean amplitude', 'Mean Amplitude'),
                     ('duration', 'Duration (s)'),
-                    ('mean duration', 'Mean Duration (s)'),
                     ('max power frequency', 'Frequency of Max PSD Value (Hz)'),
                     ('max power', 'Max PSD Value'),
+                    ('tPeak', 'Time until peak ("tPeak") (s)'),
+                    ('aMax', 'Peak amplitude minus base ("aMax")'),
+                    ('τDecay', 'Decay time constant ("τDecay")'),
                     ('spike frequency', 'Spike Frequency (#Spikes / second)'),
                     ('burst frequency', 'Burst Frequency (#Bursts / second)')
                 ]:
@@ -283,7 +286,7 @@ def export_work(data_manager, objects, data, file_info, export_time, cc_only_ins
                         objects_indices_ = [object_index for object_index in range(len(objects_indices)) if active_states[object_index][feature_index] and outputs[object_index][feature_index][output_key] is not None]
                         objects_names = [names[object_index] for object_index in objects_indices_]
                         data_ = [outputs[object_index][feature_index][output_key] for object_index in objects_indices_]
-                        if output_key in ['time', 'mean duration', 'duration']:
+                        if output_key in ['time', 'duration', 'tPeak']:
                             freqs = [frequencies[object_index] for object_index in objects_indices_]
                             data_ = [d / freqs[idx] for idx,d in enumerate(data_)]
                         col = writeFeature(worksheet, wrap, col, objects_names, data_, label, x_axis=False)
@@ -356,6 +359,7 @@ def export_work(data_manager, objects, data, file_info, export_time, cc_only_ins
         raise
     except:
         result = False
+        traceback.print_exc()
 
     return result
 

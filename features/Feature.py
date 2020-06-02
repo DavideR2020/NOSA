@@ -248,6 +248,14 @@ class FeatureMethod(QtWidgets.QWidget):
                     pos, size, _ = value
                     gui_elem.setPos(pos)
                     gui_elem.setSize(size)
+                elif type(gui_elem) is QtWidgets.QWidget:
+                    _layout = gui_elem.layout()
+                    if type(_layout) is QtWidgets.QHBoxLayout and _layout.count() == 2 and type(_layout.itemAt(1)) is QtWidgets.QComboBox:
+                        comboBox = gui_elem.itemAt(1)
+                        for i in range(comboBox.count()):
+                            if (comboBox.itemText(i) == value):
+                                comboBox.setCurrentIndex(i)
+                                break
             # set the data parameter
             if key in self.parameters.keys():
                 self.parameters[key] = value
@@ -348,6 +356,28 @@ class FeatureMethod(QtWidgets.QWidget):
         buttonGroup.buttonClicked.connect(updateFunc)
         self.param_gui[param_name] = buttons
 
+    def initComboBox(self, param_name, options, updateFunc=None, label=None):
+        """Add ComboBox with options for a given parameter"""
+        initial_checked_index = 0
+        if param_name in self.parameters.keys():
+            param_value = self.parameters[param_name]
+            if param_value in options:
+                initial_checked_index = options.index(param_value)
+        widget = QtWidgets.QWidget(self)
+        comboBox = QtWidgets.QComboBox(widget)
+        comboBox.addItems(options)
+        comboBox.setCurrentIndex(initial_checked_index)
+        comboBox.currentIndexChanged.connect(updateFunc)
+        layout = QtWidgets.QHBoxLayout(widget)
+        if label is None:
+            lbl = QtWidgets.QLabel(param_name)
+        else:
+            lbl = QtWidgets.QLabel(label)
+        layout.addWidget(lbl)
+        layout.addWidget(comboBox)
+        widget.setLayout(layout)
+        self.layout.addWidget(widget)
+        self.param_gui[param_name] = widget
 
 class Slider(QtWidgets.QWidget):
 

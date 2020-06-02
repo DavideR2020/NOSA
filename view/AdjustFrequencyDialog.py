@@ -1,6 +1,7 @@
-from PyQt5 import QtWidgets, QtCore
+from PyQt5 import QtWidgets, QtCore, QtGui
 from scipy.interpolate import interp1d
 from copy import deepcopy
+import numpy as np
 
 class AdjustFrequencyDialog(QtWidgets.QDialog):
 
@@ -43,6 +44,9 @@ class AdjustFrequencyDialog(QtWidgets.QDialog):
         cancel_button = QtWidgets.QPushButton('Cancel')
         cancel_button.clicked.connect(self.cancel)
         button_layout.addWidget(cancel_button)
+        suggestion_button = QtWidgets.QPushButton('Suggest minimum frequency')
+        suggestion_button.clicked.connect(self.suggest)
+        button_layout.addWidget(suggestion_button)
     
     def connectActiveStateCheckbox(self):
         self.active_checkbox.stateChanged.connect(self.activeStateChanged)
@@ -131,3 +135,63 @@ class AdjustFrequencyDialog(QtWidgets.QDialog):
         self.initial_active_state = self.af.active
         self.initial_parameters = {name: deepcopy(method.parameters) for name, method in self.af.methods.items()}
         self.initial_method = self.af.method_combo.currentText()
+
+    def suggest(self):
+
+        spike_detections = []
+        burst_detections = []
+
+        for _object in self.data_manager.objects:
+            if _object.source is self.data_manager.sources[self.data_manager.source_selection]:
+                if _object.pipeline._spike_detection.active:
+                    spike_detections.append(_object.pipeline._spike_detection)
+                if _object.pipeline._burst_detection.active:
+                    burst_detections.append(_object.pipeline._burst_detection)
+
+        if len(spike_detections) == 0 and len(burst_detections) == 0:
+            suggestion = 'A minimum frequency suggestion for this source based on Event Detection is not possible, because no Event Detection features are active for any object of this source.'
+        else:
+            suggestion = ''
+            frequency = self.data_manager.sources[self.data_manager.source_selection].getFrequency()
+            if len(spike_detections) > 0:
+                min_spike_distance = min([self.getMinimumSpikeDistance(spike_detection) for spike_detection in spike_detections])
+                if (min_spike_distance is not np.nan):
+                    suggestion += 'Based on the smallest interval between detected spikes (t = ' + str(round(min_spike_distance/frequency, 4)) + ' ms) the user should not resample below ' + str(round(2/(min_spike_distance/frequency), 4)) + ' Hz (y=2*1/t).\n\n'
+                else:
+                    suggestion += 'A minimum frequency suggestion based on Spike Detection is not possible, because no spikes are detected.\n\n'
+            else:
+                suggestion += 'A minimum frequency suggestion based on Spike Detection is not possible, because no spikes are detected.\n\n'
+            if len(burst_detections) > 0:
+                min_burst_duration = min([self.getMinimumBurstDuration(burst_detection) for burst_detection in burst_detections])
+                if (min_burst_duration is not np.nan):
+                    suggestion += 'For resolving single events the user should not resample below ' + str(round(10/(min_burst_duration/frequency), 4)) + ' Hz. This suggestion is based on the smallest duration of detected bursts (t = ' + str(round(min_burst_duration/frequency, 4)) + ' ms, y=5*2*1/t).'
+                else:
+                    suggestion += 'A minimum frequency suggestion based on Burst Detection is not possible, because no bursts are detected.'
+            else:
+                suggestion += 'A minimum frequency suggestion based on Burst Detection is not possible, because no bursts are detected.'
+
+        QtGui.QMessageBox.information(self, 'Minimum frequency suggestion', suggestion)
+
+    def getMinimumSpikeDistance(self, spike_detection):
+
+        times = spike_detection.output['time']
+
+        if times is None or len(times) < 2:
+            return np.nan
+        
+        _min = None
+        for i in range(len(times)-1):
+            diff = times[i+1] - times[i]
+            if _min is None or _min > diff:
+                _min = diff
+        
+        return _min
+
+    def getMinimumBurstDuration(self, burst_detection):
+
+        durations = burst_detection.output['duration']
+
+        if durations is None or len(durations) == 0:
+            return np.nan
+        
+        return min(durations)

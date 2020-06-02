@@ -420,7 +420,7 @@ Feature | Type | Methods | Description
 [Background Subtraction](#background-subtraction) | processing | ROI, Perisomatic | Subtraction of a background ROI mean
 [Baseline](#baseline) | processing | Polynomial Fitting, Asymmetric Least Squares, Top Hat, Moving Average | Subtraction of a baseline and calculation of gradient
 [Adjust Frequency](#adjust-frequency-1) | processing | Nearest Neighbour, Linear, Cubic | Interpolation of data to work with a special frequency
-[Smoothing](#smoothing) | processing | Savitzky Golay, Moving Average, Butterworth | Smoothing / low pass filter
+[Smoothing](#smoothing) | processing | Savitzky Golay, Moving Average, Butterworth, Scaled Window Convolution | Smoothing / low pass filter
 [Spike Detection](#spike-detection) | analysis | | semi automatic spike detection
 [Burst Detection](#burst-detection) | analysis | | semi automatic burst detection
 [Event Shape](#event-shape) | analysis | Spike Shape, Burst Shape | Mean of spike or burst shape
@@ -567,6 +567,8 @@ In the following image, the given interpolation methods are illustrated. The ima
 
 The adjusted frequency may require frames at time points where no frames exist. These frames will be interpolated with the given interpolation method. The adjusted frequency may also ignore frames at time points where frames exist. This means that interpolated data points may be used and real data points may not be used anymore. 
 
+This feature offers a minimum frequency suggestion. It is based on the smallest interval between detected spikes, the smallest duration of detected bursts, and the Nyquist-Shannon sampling theorem. 
+
 For information about the concrete implementation, please see the [code documentation of Adjust Frequency](#AdjustFrequency).
 
 #### Smoothing
@@ -576,10 +578,11 @@ The Smoothing Feature smoothes the data. The user can choose of three different 
 1. [Savitzky Golay](#savitzky-golay)
 2. [Moving Average](#moving-average-1)
 3. [Butterworth](#butterworth)
+4. [Scaled Window Convolution](#scaled-window-convolution)
 
 If the Smoothing Feature is activated, it calculates the standard deviation of the noise. This may be used later in [Spike Detection](#spike-detection) and [Burst Detection](#burst-detection).
 
-In the following image, the three methods of the Smoothing Feature are used and compared with the unsmoothed data:
+In the following image, three methods of the Smoothing Feature are used and compared with the unsmoothed data:
 
 1. green graph: unsmoothed (note: recording frequency in this example is 250 Hz, the Feature Adjust Frequency is not used)
 2. red graph: [Savitzky Golay](#savitzky-golay), `window`: 11, `polyorder`: 3
@@ -608,6 +611,12 @@ The Butterworth Method uses a butterworth filter to smooth the data. The butterw
 
 For information about the concrete implementation, please see the [code documentation of Butterworth Smoothing](#butterworth-smoothing). 
 
+##### Scaled Window Convolution
+
+The Scaled Window Convolution Method convolves the data with a scaled window. The user can choose between the different scaled window types by changing the parameter `window type`. Possible values are `hanning`, `hamming`, `barlett` and `blackman`. The user can also choose the length of the window in frames by changing the `window lenght` parameter.
+
+For information about the concrete implementation, please see the [code documentation of Scaled Window Convolution Smoothing](#scaled-window-convolution-smoothing). 
+
 #### Spike Detection
 
 The Feature Spike Detection detects spike events in the processed data. For this, the user selects a `minimal amplitude` as a threshold. This threshold has two checkable options:
@@ -615,7 +624,9 @@ The Feature Spike Detection detects spike events in the processed data. For this
 * `dynamic threshold`: when this option is checked, the threshold is not a constant function but a weighted moving average of the processed data plus the `minimal amplitude` parameter.
 * `relative threshold`: when this option is checked, the `minimal amplitude` will be multiplied with either the standard deviation of the noise (calculated by the [Feature Smoothing](#smoothing)) or the processed data. 
 
-An additional parameter is the `minimal distance`, which will be set in milliseconds. It determines the minimal distance between spike events that can prevent the detection of false local maxima within a given time window.
+An additional parameter is the `minimal interval`, which will be set in milliseconds. It determines the minimal interval between spike events that can prevent the detection of false local maxima within a given time window.
+
+In the Feature View of the Spike Detection, there is a button named `Show quantities`. When this button is clicked, the mean amplitude, spike frequency (number of spikes per second), and mean τDecay (the exponential time constant of the decay) are displayed in a dialog.
 
 For information about the concrete implementation, please see the [code documentation of Spike Detection](#spikedetection). 
 
@@ -627,6 +638,10 @@ The Feature Burst Detection detects burst events in the processed data. For this
 * `relative threshold`: when this option is checked, the `minimal amplitude` will be multiplied with either the standard deviation of the noise (calculated by the [Feature Smoothing](#smoothing)) or the processed data; and the `minimal base` will either be the (arithmetic) mean, the median, or 0. 
 
 An additional parameter is the `minimal duration`, which will be set in milliseconds. It determines the minimal duration of a burst event.
+
+Furthermore, there is a parameter called `phase`. This parameter is either `depolarization` or `hyperpolarization`. When switching between these two, the threshold parameters will be inverted. By choosing `depolarization`, bursts that lie above the thresholds are detected. By choosing `hyperpolarization`, bursts that lie below the thresholds are detected.
+
+In the Feature View of the Burst Detection, there is a button named `Show quantities`. When this button is clicked, the mean amplitude, mean duration, spike frequency (number of spikes per second), mean tPeak (the time between the start of the burst and the maximum amplitude), mean aMax (the difference between maximum amplitude and base), and mean τDecay (the exponential time constant of the decay) are displayed in a dialog.
 
 For information about the concrete implementation, please see the [code documentation of Burst Detection](#burstdetection). 
 
@@ -1222,6 +1237,28 @@ def butter_lowpass_filter(y, freq, highcut, order):
 
 Where `y` is the data, `freq` the frequency of the source, and `highcut` and `order` the user-set parameters.
 
+##### Scaled Window Convolution Smoothing
+
+The Sacled Window Convolution feature method smoothes by convolving the data with a scaled window. For this, the the [NumPy](#software-nosa-uses-and-their-licenes) methods `numpy.r_`, `numpy.hamming`, `numpy.hanning`, `numpy.bartlett`, `numpy.blackman`, and `numpy.convolve` are used:
+
+```python
+if window_len % 2 == 0:
+	window_len += 1
+s=numpy.r_[y[window_len-1:0:-1],y,y[-2:-window_len-1:-1]]
+if (window == 'hamming'):
+	w = numpy.hamming(window_len)
+elif (window == 'bartlett'):
+	w = numpy.bartlett(window_len)
+elif (window == 'blackman'):
+	w = numpy.blackman(window_len)
+else:
+	w = numpy.hanning(window_len)
+swc = numpy.convolve(w/w.sum(), s, mode='valid')
+swc = swc[(int(window_len/2)-1):-int(window_len/2)-1]
+```
+
+Where `window_len` is the window length in frames, `y` is the data, `window` the window type, and `swc` the smoothed result that will be returned.
+
 #### AdjustFrequency
 
 AdjustFrequency is source specific and due to that, handled differently than other features. It is not displayed in the PipelineManager and does not have a `liveplot`. It is displayed in a separate dialog, namely the `view.AdjustFrequencyDialog.AdjustFrequencyDialog`. When the user clicks on the [movement correction button](#movement-correction), the AdjustFrequencyDialog is displayed. The AdjustFrequencyDialog has a [QStackedWidget](https://doc.qt.io/qt-5/qstackedwidget.html) as view for the features, which will be displayed one feature at a time, or no feature. To change the settings of the feature, the user must activate it. Once activated, the user can change the settings any way he wants, no update of the feature will be executed. Only when the confirm button in the AdjustFrequencyDialog is clicked, some checks will be made: when the adjusted frequency equals the original frequency, the feature is deactivated; when the feature was not active before and is not active after the confirmation, the method returns; when the same method and parameters are selected, the method returns. If the method did not return until this point, the `refreshView` method of the SourceManager is called and the `refreshPipeline` method of the DataManager refreshes the pipeline for all affected objects, which will update the feature too.
@@ -1249,7 +1286,7 @@ else:
 After that, spikes are detected using the following function:
 
 ```python
-def spikeDetection(y, thresh, distance):
+def spikeDetection(y, thresh, interval):
 	spikes = []
 	i = 1
 	n = len(y)
@@ -1260,7 +1297,7 @@ def spikeDetection(y, thresh, distance):
 		i+=1
 	j = 0
 	while j < len(spikes)-1:
-		if (spikes[j+1]-spikes[j]) < distance:
+		if (spikes[j+1]-spikes[j]) < interval:
 			if y[spikes[j]]>y[spikes[j+1]]:
 				del spikes[j+1]
 			else:
@@ -1270,9 +1307,9 @@ def spikeDetection(y, thresh, distance):
 	return spikes
 ```
 
-Where `y` is the data, `thresh` is the minimal amplitude threshold and `distance` is the user-set distance. First, all the time points where the data is over the threshold and a local maximum are collected in a list. Second, for all pairs of time points that are not further away than the user-set distance, the time point whose data point is smaller is removed from the list. The resulting list is the list of time points where a spike is detected.
+Where `y` is the data, `thresh` is the minimal amplitude threshold and `interval` is the user-set interval. First, all the time points where the data is over the threshold and a local maximum are collected in a list. Second, for all pairs of time points that are not further away than the user-set interval, the time point whose data point is smaller is removed from the list. The resulting list is the list of time points where a spike is detected.
 
-Finally, after the spikes were detected, some other interesting values, namely the spike frequency, the mean amplitude, the spike train, and the spike amplitudes are collected.
+Finally, after the spikes were detected, some other interesting values, namely the spike frequency, the mean amplitude, the spike train, and the spike amplitudes are collected. To calculate τDecay, the [SciPy](#software-nosa-uses-and-their-licenes) method `scipy.optimize.curve_fit` is used to fit an exponential function to a part of the data. This part begins at the peak of the spike, its duration is half of the parameter `minimum interval` that is set by the user. Then, τDecay is the time constant of the exponential function.
 
 #### BurstDetection
 
@@ -1305,12 +1342,14 @@ else:
 After that, the bursts are detected using the following function:
 
 ```python
-def burstDetection(y, amplitude, base, duration):
+def burstDetection(y, amplitude, base, duration, isDepolarization):
 	"""
 	y: signal
 	amplitude: upper threshold to decide whether there is a burst or not
 	base: lower threshold to determine the start and end of the burst
 	duration: amount of frames that a burst's length must be at minimum
+	isDepolarization: defines if depolarization or hyperpolarization 
+			should be detected
 
 	returns tuple of arrays: start frames and end frames of the bursts
 
@@ -1325,8 +1364,8 @@ def burstDetection(y, amplitude, base, duration):
 	n = len(y)
 	i = 1
 	while (i < n-2):
-		if y[i] > amplitude[i]:
-			start, end, error = burstBorderDetection(y, base, i, 0 if len(bursts[0]) == 0 else bursts[1][-1]+1)
+		if (isDepolarization and y[i] > amplitude[i]) or (not isDepolarization and y[i] < amplitude[i]):
+			start, end, error = burstBorderDetection(y, base, i, 0 if len(bursts[0]) == 0 else bursts[1][-1]+1, isDepolarization)
 			if end-start > duration and not error:
 				bursts[0].append(start)
 				bursts[1].append(end)
@@ -1336,15 +1375,17 @@ def burstDetection(y, amplitude, base, duration):
 	return bursts
 ```
 
-Where `y` is the data, `amplitude` the minimal amplitude threshold, `base` the minimal base threshold, `duration` the user-set duration, and `burstBorderDetection` the following method:
+Where `y` is the data, `amplitude` the minimal amplitude threshold, `base` the minimal base threshold, `duration` the user-set duration, 'isDepolarization' is a boolean set to true when detecting depolarization and set to false when detecting hyperpolarization, and `burstBorderDetection` the following method:
 
 ```python
-def burstBorderDetection(y, base, i, leftborder):
+def burstBorderDetection(y, base, i, leftborder, isDepolarization):
 	"""
 	y: signal
 	base: lower threshold to determine start and end of burst
 	i: frame of the point above the upper threshold
 	leftborder: the most-left border the burst can start at
+	isDepolarization: defines if depolarization or hyperpolarization 
+			should be detected
 
 	returns the intersections of the signal with the base on both sides
 	of the point above the upper threshold, and an error-boolean. this 
@@ -1353,18 +1394,18 @@ def burstBorderDetection(y, base, i, leftborder):
 	"""
 	n = len(y) - 1
 	start = i - 1
-	while (start > leftborder and y[start] >= base[start]):
+	while (start > leftborder and ((isDepolarization and y[start] >= base[start]) or (not isDepolarization and y[start] <= base[start]))):
 		start -= 1
 	end = i + 1
-	while (end < n and y[end] >= base[end]):
+	while (end < n and ((isDepolarization and y[end] >= base[end]) or (not isDepolarization and y[end] <= base[end]))):
 		end += 1
-	error = y[start] >= base[start] or y[end] >= base[end]
+	error = (isDepolarization and (y[start] >= base[start] or y[end] >= base[end])) or (not isDepolarization and (y[start] <= base[start] or y[end] <= base[end]))
 	return (start, end, error)
 ```
 
-In the `burstDetection` method, time points where the signal is higher than the minimal amplitude threshold are searched. For every found time point, a start and end time point are searched with the `burstBorderDetection` method. If these start and end time points are far enough away, a burst is detected with these start and end points and the search for another burst continues. The `burstBorderDetection` method searches for points that lie below the `base` value, while not crossing specific borders (a burst should not start with or before the signal, or exactly where another burst ends, and a burst should not end with or after the signal).
+In the `burstDetection` method, time points where the signal is higher (or lower, according to the selected phase) than the minimal amplitude threshold are searched. For every found time point, a start and end time point are searched with the `burstBorderDetection` method. If these start and end time points are far enough away, a burst is detected with these start and end points and the search for another burst continues. The `burstBorderDetection` method searches for points that lie below (or above, according to the selected phase) the `base` value, while not crossing specific borders (a burst should not start with or before the signal, or exactly where another burst ends, and a burst should not end with or after the signal).
 
-Finally, after the bursts were detected, some other interesting values, namely the peak amplitude time points, the amplitudes, the durations, the burst train, the burst frequency, the mean amplitude, and the mean duration are collected.
+Finally, after the bursts were detected, some other interesting values, namely the peak amplitude time points, the amplitudes, the durations, the burst train, the burst frequency, the mean amplitude, and the mean duration are collected. To calculate τDecay, the [SciPy](#software-nosa-uses-and-their-licenes) method `scipy.optimize.curve_fit` is used to fit an exponential function to a part of the data. This part begins at the peak of the burst, and ends with the burst. Then, τDecay is the time constant of the exponential function.
 
 #### EventShape
 

@@ -21,6 +21,7 @@ sg_active = False
 sg_savitzky_golay_params = {'window':3, 'polyorder':3}
 sg_moving_average_params = {'window':3}
 sg_butterworth_params = {'highcut':100.0, 'order':3}
+sg_scaled_window_convolution_params = {'window_len':11, 'window':'hanning'}
 
 # Burst Detection
 bd_active = False
@@ -33,7 +34,8 @@ bd_params = {
     'relative_amplitude': 1,
     'absolute_base': 0,
     'relative_base': 'minimal base: median',
-    'duration': 50}
+    'duration': 50,
+    'phase': 'depolarization'}
 
 # Spike Detection
 sd_active = False
@@ -44,7 +46,7 @@ sd_params = {
     'absolute_amplitude':1,
     'relative_amplitude_type': 'use std of noise',
     'relative_amplitude':1,
-    'distance':50}
+    'interval':50}
 
 # Frequency Spectrum
 fs_active = False

@@ -106,14 +106,14 @@
 <td>quantities</td>
 <td>0.12.3</td>
 <td><a href="https://python-quantities.readthedocs.io/en/latest/user/license.html">BSD</a></td>
-<td>Copyright (c) 2012, Darren Dale <a href="mailto:&#x64;&#115;&#x64;&#x61;&#x6c;&#101;&#50;&#x34;&#64;&#x67;&#x6d;&#x61;&#105;&#108;&#46;&#x63;&#111;&#x6d;">&#x64;&#115;&#x64;&#x61;&#x6c;&#101;&#50;&#x34;&#64;&#x67;&#x6d;&#x61;&#105;&#108;&#46;&#x63;&#111;&#x6d;</a> All rights reserved.</td>
+<td>Copyright (c) 2012, Darren Dale <a href="mailto:&#100;&#x73;&#100;&#x61;&#x6c;&#101;&#x32;&#52;&#64;&#103;&#x6d;&#x61;&#x69;&#x6c;&#x2e;&#99;&#x6f;&#109;">&#100;&#x73;&#100;&#x61;&#x6c;&#101;&#x32;&#52;&#64;&#103;&#x6d;&#x61;&#x69;&#x6c;&#x2e;&#99;&#x6f;&#109;</a> All rights reserved.</td>
 <td><a href="http://python-quantities.readthedocs.io/">http://python-quantities.readthedocs.io/</a></td>
 </tr>
 <tr>
 <td>XlsxWriter</td>
 <td>1.1.5</td>
 <td><a href="https://xlsxwriter.readthedocs.io/license.html">BSD</a></td>
-<td>Copyright (c) 2013, John McNamara <a href="mailto:&#106;&#109;&#99;&#110;&#97;&#109;&#97;&#x72;&#97;&#x40;&#x63;&#x70;&#97;&#x6e;&#x2e;&#x6f;&#x72;&#103;">&#106;&#109;&#99;&#110;&#97;&#109;&#97;&#x72;&#97;&#x40;&#x63;&#x70;&#97;&#x6e;&#x2e;&#x6f;&#x72;&#103;</a> All rights reserved.</td>
+<td>Copyright (c) 2013, John McNamara <a href="mailto:&#x6a;&#109;&#x63;&#x6e;&#97;&#x6d;&#97;&#x72;&#x61;&#64;&#x63;&#112;&#97;&#110;&#46;&#111;&#x72;&#103;">&#x6a;&#109;&#x63;&#x6e;&#97;&#x6d;&#97;&#x72;&#x61;&#64;&#x63;&#112;&#97;&#110;&#46;&#111;&#x72;&#103;</a> All rights reserved.</td>
 <td><a href="https://github.com/jmcnamara/XlsxWriter">https://github.com/jmcnamara/XlsxWriter</a></td>
 </tr>
 <tr>
@@ -430,7 +430,7 @@ If there is at least one source in the program, there will always be exactly one
 <tr>
 <td><a href="#smoothing">Smoothing</a></td>
 <td>processing</td>
-<td>Savitzky Golay, Moving Average, Butterworth</td>
+<td>Savitzky Golay, Moving Average, Butterworth, Scaled Window Convolution</td>
 <td>Smoothing / low pass filter</td>
 </tr>
 <tr>
@@ -563,6 +563,7 @@ If there is at least one source in the program, there will always be exactly one
 <p>In the following image, the given interpolation methods are illustrated. The image is licensed under the <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.en">Creative Commons Attribution-Share Alike 4.0 International license</a> and originally created by <a href="https://commons.wikimedia.org/wiki/User:Cmglee">CMG Lee</a>.</p>
 <p class="img-container"><img src="images/comparison_of_interpolation_methods.png" alt="Comparison of Interpolation Methods" title="Comparison of Interpolation Methods"></p>
 <p>The adjusted frequency may require frames at time points where no frames exist. These frames will be interpolated with the given interpolation method. The adjusted frequency may also ignore frames at time points where frames exist. This means that interpolated data points may be used and real data points may not be used anymore. </p>
+<p>This feature offers a minimum frequency suggestion. It is based on the smallest interval between detected spikes, the smallest duration of detected bursts, and the Nyquist-Shannon sampling theorem. </p>
 <p>For information about the concrete implementation, please see the <a href="#AdjustFrequency">code documentation of Adjust Frequency</a>.</p>
 <h4 id="smoothing"><a class="header-link" href="#smoothing"></a>Smoothing</h4>
 <p>The Smoothing Feature smoothes the data. The user can choose of three different smoothing methods, all of which are described in the following sections:</p>
@@ -570,9 +571,10 @@ If there is at least one source in the program, there will always be exactly one
 <li><a href="#savitzky-golay">Savitzky Golay</a></li>
 <li><a href="#moving-average-1">Moving Average</a></li>
 <li><a href="#butterworth">Butterworth</a></li>
+<li><a href="#scaled-window-convolution">Scaled Window Convolution</a></li>
 </ol>
 <p>If the Smoothing Feature is activated, it calculates the standard deviation of the noise. This may be used later in <a href="#spike-detection">Spike Detection</a> and <a href="#burst-detection">Burst Detection</a>.</p>
-<p>In the following image, the three methods of the Smoothing Feature are used and compared with the unsmoothed data:</p>
+<p>In the following image, three methods of the Smoothing Feature are used and compared with the unsmoothed data:</p>
 <ol class="list">
 <li>green graph: unsmoothed (note: recording frequency in this example is 250 Hz, the Feature Adjust Frequency is not used)</li>
 <li>red graph: <a href="#savitzky-golay">Savitzky Golay</a>, <code>window</code>: 11, <code>polyorder</code>: 3</li>
@@ -590,13 +592,17 @@ If there is at least one source in the program, there will always be exactly one
 <h5 id="butterworth"><a class="header-link" href="#butterworth"></a>Butterworth</h5>
 <p>The Butterworth Method uses a butterworth filter to smooth the data. The butterworth filter is a continuous frequency filter and used here as a low-pass filter. The parameter <code>highcut</code> determines what frequency (in Hz) is used as the low-pass cutoff frequency. Please note that the following must hold: <code>highcut &lt;= floor(frequency÷2)</code> (<code>floor(x)</code> rounds <code>x</code> down, <code>frequency</code> is the adjusted frequency if one is set, otherwise the recording frequency). If it does not hold, the program might crash. The butterworth filter was originally described in the following publication: Stephen Butterworth (1930). On the Theory of Filter Amplifiers. <em>Wireless Engineer, 7</em>, 536-541.</p>
 <p>For information about the concrete implementation, please see the <a href="#butterworth-smoothing">code documentation of Butterworth Smoothing</a>. </p>
+<h5 id="scaled-window-convolution"><a class="header-link" href="#scaled-window-convolution"></a>Scaled Window Convolution</h5>
+<p>The Scaled Window Convolution Method convolves the data with a scaled window. The user can choose between the different scaled window types by changing the parameter <code>window type</code>. Possible values are <code>hanning</code>, <code>hamming</code>, <code>barlett</code> and <code>blackman</code>. The user can also choose the length of the window in frames by changing the <code>window lenght</code> parameter.</p>
+<p>For information about the concrete implementation, please see the <a href="#scaled-window-convolution-smoothing">code documentation of Scaled Window Convolution Smoothing</a>. </p>
 <h4 id="spike-detection"><a class="header-link" href="#spike-detection"></a>Spike Detection</h4>
 <p>The Feature Spike Detection detects spike events in the processed data. For this, the user selects a <code>minimal amplitude</code> as a threshold. This threshold has two checkable options:</p>
 <ul class="list">
 <li><code>dynamic threshold</code>: when this option is checked, the threshold is not a constant function but a weighted moving average of the processed data plus the <code>minimal amplitude</code> parameter.</li>
 <li><code>relative threshold</code>: when this option is checked, the <code>minimal amplitude</code> will be multiplied with either the standard deviation of the noise (calculated by the <a href="#smoothing">Feature Smoothing</a>) or the processed data. </li>
 </ul>
-<p>An additional parameter is the <code>minimal distance</code>, which will be set in milliseconds. It determines the minimal distance between spike events that can prevent the detection of false local maxima within a given time window.</p>
+<p>An additional parameter is the <code>minimal interval</code>, which will be set in milliseconds. It determines the minimal interval between spike events that can prevent the detection of false local maxima within a given time window.</p>
+<p>In the Feature View of the Spike Detection, there is a button named <code>Show quantities</code>. When this button is clicked, the mean amplitude, spike frequency (number of spikes per second), and mean τDecay (the exponential time constant of the decay) are displayed in a dialog.</p>
 <p>For information about the concrete implementation, please see the <a href="#spikedetection">code documentation of Spike Detection</a>. </p>
 <h4 id="burst-detection"><a class="header-link" href="#burst-detection"></a>Burst Detection</h4>
 <p>The Feature Burst Detection detects burst events in the processed data. For this, the user selects a <code>minimal amplitude</code> and a <code>minimal base</code> as a threshold. These thresholds have two checkable options:</p>
@@ -605,6 +611,8 @@ If there is at least one source in the program, there will always be exactly one
 <li><code>relative threshold</code>: when this option is checked, the <code>minimal amplitude</code> will be multiplied with either the standard deviation of the noise (calculated by the <a href="#smoothing">Feature Smoothing</a>) or the processed data; and the <code>minimal base</code> will either be the (arithmetic) mean, the median, or 0. </li>
 </ul>
 <p>An additional parameter is the <code>minimal duration</code>, which will be set in milliseconds. It determines the minimal duration of a burst event.</p>
+<p>Furthermore, there is a parameter called <code>phase</code>. This parameter is either <code>depolarization</code> or <code>hyperpolarization</code>. When switching between these two, the threshold parameters will be inverted. By choosing <code>depolarization</code>, bursts that lie above the thresholds are detected. By choosing <code>hyperpolarization</code>, bursts that lie below the thresholds are detected.</p>
+<p>In the Feature View of the Burst Detection, there is a button named <code>Show quantities</code>. When this button is clicked, the mean amplitude, mean duration, spike frequency (number of spikes per second), mean tPeak (the time between the start of the burst and the maximum amplitude), mean aMax (the difference between maximum amplitude and base), and mean τDecay (the exponential time constant of the decay) are displayed in a dialog.</p>
 <p>For information about the concrete implementation, please see the <a href="#burstdetection">code documentation of Burst Detection</a>. </p>
 <h4 id="event-shape"><a class="header-link" href="#event-shape"></a>Event Shape</h4>
 <p>The Feature Event Shape takes all the detected events of <a href="#spike-detection">Spike Detection</a> or <a href="#burst-detection">Burst Detection</a> and calculates the average shape of it. To determine what events the user wants the Event Shape to average, they can select one of the two available methods:</p>
@@ -1088,6 +1096,21 @@ background_mean = p_ring / p_ring_size</code></pre><p>Where <code>p_cell</code> 
     zi = scipy.signal.lfilter_zi(b, a)
     z, _ = scipy.signal.lfilter(b, a, y, zi = zi * y[<span class="hljs-number">0</span>])
     <span class="hljs-keyword">return</span> z</code></pre><p>Where <code>y</code> is the data, <code>freq</code> the frequency of the source, and <code>highcut</code> and <code>order</code> the user-set parameters.</p>
+<h5 id="scaled-window-convolution-smoothing"><a class="header-link" href="#scaled-window-convolution-smoothing"></a>Scaled Window Convolution Smoothing</h5>
+<p>The Sacled Window Convolution feature method smoothes by convolving the data with a scaled window. For this, the the <a href="#software-nosa-uses-and-their-licenes">NumPy</a> methods <code>numpy.r_</code>, <code>numpy.hamming</code>, <code>numpy.hanning</code>, <code>numpy.bartlett</code>, <code>numpy.blackman</code>, and <code>numpy.convolve</code> are used:</p>
+<pre class="hljs"><code><span class="hljs-keyword">if</span> window_len % <span class="hljs-number">2</span> == <span class="hljs-number">0</span>:
+    window_len += <span class="hljs-number">1</span>
+s=numpy.r_[y[window_len<span class="hljs-number">-1</span>:<span class="hljs-number">0</span>:<span class="hljs-number">-1</span>],y,y[<span class="hljs-number">-2</span>:-window_len<span class="hljs-number">-1</span>:<span class="hljs-number">-1</span>]]
+<span class="hljs-keyword">if</span> (window == <span class="hljs-string">'hamming'</span>):
+    w = numpy.hamming(window_len)
+<span class="hljs-keyword">elif</span> (window == <span class="hljs-string">'bartlett'</span>):
+    w = numpy.bartlett(window_len)
+<span class="hljs-keyword">elif</span> (window == <span class="hljs-string">'blackman'</span>):
+    w = numpy.blackman(window_len)
+<span class="hljs-keyword">else</span>:
+    w = numpy.hanning(window_len)
+swc = numpy.convolve(w/w.sum(), s, mode=<span class="hljs-string">'valid'</span>)
+swc = swc[(int(window_len/<span class="hljs-number">2</span>)<span class="hljs-number">-1</span>):-int(window_len/<span class="hljs-number">2</span>)<span class="hljs-number">-1</span>]</code></pre><p>Where <code>window_len</code> is the window length in frames, <code>y</code> is the data, <code>window</code> the window type, and <code>swc</code> the smoothed result that will be returned.</p>
 <h4 id="adjustfrequency"><a class="header-link" href="#adjustfrequency"></a>AdjustFrequency</h4>
 <p>AdjustFrequency is source specific and due to that, handled differently than other features. It is not displayed in the PipelineManager and does not have a <code>liveplot</code>. It is displayed in a separate dialog, namely the <code>view.AdjustFrequencyDialog.AdjustFrequencyDialog</code>. When the user clicks on the <a href="#movement-correction">movement correction button</a>, the AdjustFrequencyDialog is displayed. The AdjustFrequencyDialog has a <a href="https://doc.qt.io/qt-5/qstackedwidget.html">QStackedWidget</a> as view for the features, which will be displayed one feature at a time, or no feature. To change the settings of the feature, the user must activate it. Once activated, the user can change the settings any way he wants, no update of the feature will be executed. Only when the confirm button in the AdjustFrequencyDialog is clicked, some checks will be made: when the adjusted frequency equals the original frequency, the feature is deactivated; when the feature was not active before and is not active after the confirmation, the method returns; when the same method and parameters are selected, the method returns. If the method did not return until this point, the <code>refreshView</code> method of the SourceManager is called and the <code>refreshPipeline</code> method of the DataManager refreshes the pipeline for all affected objects, which will update the feature too.</p>
 <h4 id="spikedetection"><a class="header-link" href="#spikedetection"></a>SpikeDetection</h4>
@@ -1104,7 +1127,7 @@ background_mean = p_ring / p_ring_size</code></pre><p>Where <code>p_cell</code> 
     threshold = movingAverage(y, smooth) + amplitude
 <span class="hljs-keyword">else</span>:
     threshold = numpy.full(len(y), amplitude, dtype = float)</code></pre><p>After that, spikes are detected using the following function:</p>
-<pre class="hljs"><code><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">spikeDetection</span><span class="hljs-params">(y, thresh, distance)</span>:</span>
+<pre class="hljs"><code><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">spikeDetection</span><span class="hljs-params">(y, thresh, interval)</span>:</span>
     spikes = []
     i = <span class="hljs-number">1</span>
     n = len(y)
@@ -1115,15 +1138,15 @@ background_mean = p_ring / p_ring_size</code></pre><p>Where <code>p_cell</code> 
         i+=<span class="hljs-number">1</span>
     j = <span class="hljs-number">0</span>
     <span class="hljs-keyword">while</span> j &lt; len(spikes)<span class="hljs-number">-1</span>:
-        <span class="hljs-keyword">if</span> (spikes[j+<span class="hljs-number">1</span>]-spikes[j]) &lt; distance:
+        <span class="hljs-keyword">if</span> (spikes[j+<span class="hljs-number">1</span>]-spikes[j]) &lt; interval:
             <span class="hljs-keyword">if</span> y[spikes[j]]&gt;y[spikes[j+<span class="hljs-number">1</span>]]:
                 <span class="hljs-keyword">del</span> spikes[j+<span class="hljs-number">1</span>]
             <span class="hljs-keyword">else</span>:
                 <span class="hljs-keyword">del</span> spikes[j]
         <span class="hljs-keyword">else</span>:
             j+=<span class="hljs-number">1</span>
-    <span class="hljs-keyword">return</span> spikes</code></pre><p>Where <code>y</code> is the data, <code>thresh</code> is the minimal amplitude threshold and <code>distance</code> is the user-set distance. First, all the time points where the data is over the threshold and a local maximum are collected in a list. Second, for all pairs of time points that are not further away than the user-set distance, the time point whose data point is smaller is removed from the list. The resulting list is the list of time points where a spike is detected.</p>
-<p>Finally, after the spikes were detected, some other interesting values, namely the spike frequency, the mean amplitude, the spike train, and the spike amplitudes are collected.</p>
+    <span class="hljs-keyword">return</span> spikes</code></pre><p>Where <code>y</code> is the data, <code>thresh</code> is the minimal amplitude threshold and <code>interval</code> is the user-set interval. First, all the time points where the data is over the threshold and a local maximum are collected in a list. Second, for all pairs of time points that are not further away than the user-set interval, the time point whose data point is smaller is removed from the list. The resulting list is the list of time points where a spike is detected.</p>
+<p>Finally, after the spikes were detected, some other interesting values, namely the spike frequency, the mean amplitude, the spike train, and the spike amplitudes are collected. To calculate τDecay, the <a href="#software-nosa-uses-and-their-licenes">SciPy</a> method <code>scipy.optimize.curve_fit</code> is used to fit an exponential function to a part of the data. This part begins at the peak of the spike, its duration is half of the parameter <code>minimum interval</code> that is set by the user. Then, τDecay is the time constant of the exponential function.</p>
 <h4 id="burstdetection"><a class="header-link" href="#burstdetection"></a>BurstDetection</h4>
 <p>The BurstDetection is very similar to the SpikeDetection. In addition to the minimal amplitude threshold, it also has a minimal base threshold. </p>
 <p>When the BurstDetection is updated, the minimal amplitude threshold will be calculated the same way the <a href="#spikedetection">SpikeDetection</a> calculates it. The minimal base threshold is calculated in a similar way: if relative thresholds should be used, the minimal base will be set to the median, the mean (using the <a href="#software-nosa-uses-and-their-licenses">NumPy</a> methods <code>numpy.median</code> or <code>numpy.mean</code>), or 0. After that, the minimal base threshold is determined the same way the minimal amplitude is determined. The following code is incomplete, but should give a good understanding of how the thresholds are determined:</p>
@@ -1146,12 +1169,14 @@ background_mean = p_ring / p_ring_size</code></pre><p>Where <code>p_cell</code> 
 <span class="hljs-keyword">else</span>:
     amplitude_threshold = numpy.full(len(y), amplitude, dtype = float)
     base_threshold = numpy.full(len(y), base, dtype = float)</code></pre><p>After that, the bursts are detected using the following function:</p>
-<pre class="hljs"><code><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">burstDetection</span><span class="hljs-params">(y, amplitude, base, duration)</span>:</span>
+<pre class="hljs"><code><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">burstDetection</span><span class="hljs-params">(y, amplitude, base, duration, isDepolarization)</span>:</span>
     <span class="hljs-string">"""
     y: signal
     amplitude: upper threshold to decide whether there is a burst or not
     base: lower threshold to determine the start and end of the burst
     duration: amount of frames that a burst's length must be at minimum
+    isDepolarization: defines if depolarization or hyperpolarization 
+            should be detected
 
     returns tuple of arrays: start frames and end frames of the bursts
 
@@ -1166,21 +1191,23 @@ background_mean = p_ring / p_ring_size</code></pre><p>Where <code>p_cell</code> 
     n = len(y)
     i = <span class="hljs-number">1</span>
     <span class="hljs-keyword">while</span> (i &lt; n<span class="hljs-number">-2</span>):
-        <span class="hljs-keyword">if</span> y[i] &gt; amplitude[i]:
-            start, end, error = burstBorderDetection(y, base, i, <span class="hljs-number">0</span> <span class="hljs-keyword">if</span> len(bursts[<span class="hljs-number">0</span>]) == <span class="hljs-number">0</span> <span class="hljs-keyword">else</span> bursts[<span class="hljs-number">1</span>][<span class="hljs-number">-1</span>]+<span class="hljs-number">1</span>)
+        <span class="hljs-keyword">if</span> (isDepolarization <span class="hljs-keyword">and</span> y[i] &gt; amplitude[i]) <span class="hljs-keyword">or</span> (<span class="hljs-keyword">not</span> isDepolarization <span class="hljs-keyword">and</span> y[i] &lt; amplitude[i]):
+            start, end, error = burstBorderDetection(y, base, i, <span class="hljs-number">0</span> <span class="hljs-keyword">if</span> len(bursts[<span class="hljs-number">0</span>]) == <span class="hljs-number">0</span> <span class="hljs-keyword">else</span> bursts[<span class="hljs-number">1</span>][<span class="hljs-number">-1</span>]+<span class="hljs-number">1</span>, isDepolarization)
             <span class="hljs-keyword">if</span> end-start &gt; duration <span class="hljs-keyword">and</span> <span class="hljs-keyword">not</span> error:
                 bursts[<span class="hljs-number">0</span>].append(start)
                 bursts[<span class="hljs-number">1</span>].append(end)
             i = end + <span class="hljs-number">2</span>
         <span class="hljs-keyword">else</span>:
             i += <span class="hljs-number">1</span>
-    <span class="hljs-keyword">return</span> bursts</code></pre><p>Where <code>y</code> is the data, <code>amplitude</code> the minimal amplitude threshold, <code>base</code> the minimal base threshold, <code>duration</code> the user-set duration, and <code>burstBorderDetection</code> the following method:</p>
-<pre class="hljs"><code><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">burstBorderDetection</span><span class="hljs-params">(y, base, i, leftborder)</span>:</span>
+    <span class="hljs-keyword">return</span> bursts</code></pre><p>Where <code>y</code> is the data, <code>amplitude</code> the minimal amplitude threshold, <code>base</code> the minimal base threshold, <code>duration</code> the user-set duration, &#39;isDepolarization&#39; is a boolean set to true when detecting depolarization and set to false when detecting hyperpolarization, and <code>burstBorderDetection</code> the following method:</p>
+<pre class="hljs"><code><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">burstBorderDetection</span><span class="hljs-params">(y, base, i, leftborder, isDepolarization)</span>:</span>
     <span class="hljs-string">"""
     y: signal
     base: lower threshold to determine start and end of burst
     i: frame of the point above the upper threshold
     leftborder: the most-left border the burst can start at
+    isDepolarization: defines if depolarization or hyperpolarization 
+            should be detected
 
     returns the intersections of the signal with the base on both sides
     of the point above the upper threshold, and an error-boolean. this 
@@ -1189,14 +1216,14 @@ background_mean = p_ring / p_ring_size</code></pre><p>Where <code>p_cell</code> 
     """</span>
     n = len(y) - <span class="hljs-number">1</span>
     start = i - <span class="hljs-number">1</span>
-    <span class="hljs-keyword">while</span> (start &gt; leftborder <span class="hljs-keyword">and</span> y[start] &gt;= base[start]):
+    <span class="hljs-keyword">while</span> (start &gt; leftborder <span class="hljs-keyword">and</span> ((isDepolarization <span class="hljs-keyword">and</span> y[start] &gt;= base[start]) <span class="hljs-keyword">or</span> (<span class="hljs-keyword">not</span> isDepolarization <span class="hljs-keyword">and</span> y[start] &lt;= base[start]))):
         start -= <span class="hljs-number">1</span>
     end = i + <span class="hljs-number">1</span>
-    <span class="hljs-keyword">while</span> (end &lt; n <span class="hljs-keyword">and</span> y[end] &gt;= base[end]):
+    <span class="hljs-keyword">while</span> (end &lt; n <span class="hljs-keyword">and</span> ((isDepolarization <span class="hljs-keyword">and</span> y[end] &gt;= base[end]) <span class="hljs-keyword">or</span> (<span class="hljs-keyword">not</span> isDepolarization <span class="hljs-keyword">and</span> y[end] &lt;= base[end]))):
         end += <span class="hljs-number">1</span>
-    error = y[start] &gt;= base[start] <span class="hljs-keyword">or</span> y[end] &gt;= base[end]
-    <span class="hljs-keyword">return</span> (start, end, error)</code></pre><p>In the <code>burstDetection</code> method, time points where the signal is higher than the minimal amplitude threshold are searched. For every found time point, a start and end time point are searched with the <code>burstBorderDetection</code> method. If these start and end time points are far enough away, a burst is detected with these start and end points and the search for another burst continues. The <code>burstBorderDetection</code> method searches for points that lie below the <code>base</code> value, while not crossing specific borders (a burst should not start with or before the signal, or exactly where another burst ends, and a burst should not end with or after the signal).</p>
-<p>Finally, after the bursts were detected, some other interesting values, namely the peak amplitude time points, the amplitudes, the durations, the burst train, the burst frequency, the mean amplitude, and the mean duration are collected.</p>
+    error = (isDepolarization <span class="hljs-keyword">and</span> (y[start] &gt;= base[start] <span class="hljs-keyword">or</span> y[end] &gt;= base[end])) <span class="hljs-keyword">or</span> (<span class="hljs-keyword">not</span> isDepolarization <span class="hljs-keyword">and</span> (y[start] &lt;= base[start] <span class="hljs-keyword">or</span> y[end] &lt;= base[end]))
+    <span class="hljs-keyword">return</span> (start, end, error)</code></pre><p>In the <code>burstDetection</code> method, time points where the signal is higher (or lower, according to the selected phase) than the minimal amplitude threshold are searched. For every found time point, a start and end time point are searched with the <code>burstBorderDetection</code> method. If these start and end time points are far enough away, a burst is detected with these start and end points and the search for another burst continues. The <code>burstBorderDetection</code> method searches for points that lie below (or above, according to the selected phase) the <code>base</code> value, while not crossing specific borders (a burst should not start with or before the signal, or exactly where another burst ends, and a burst should not end with or after the signal).</p>
+<p>Finally, after the bursts were detected, some other interesting values, namely the peak amplitude time points, the amplitudes, the durations, the burst train, the burst frequency, the mean amplitude, and the mean duration are collected. To calculate τDecay, the <a href="#software-nosa-uses-and-their-licenes">SciPy</a> method <code>scipy.optimize.curve_fit</code> is used to fit an exponential function to a part of the data. This part begins at the peak of the burst, and ends with the burst. Then, τDecay is the time constant of the exponential function.</p>
 <h4 id="eventshape"><a class="header-link" href="#eventshape"></a>EventShape</h4>
 <p>The EventShape feature does have two different feature methods, but they do exactly the same except they have a different input. The Spike Shape method uses the time points of the detected spikes as input, and the Burst Shape method uses the time points of the maximum amplitudes of the detected bursts as input.</p>
 <p>Both methods have the same parameters, which include an interval. This interval can be set with a button and determines how far away from the input time point the shape should be analysed.</p>

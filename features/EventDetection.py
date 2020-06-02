@@ -3,9 +3,10 @@ import pyqtgraph as pg
 import numpy as np
 from copy import deepcopy
 from scipy.signal import savgol_filter
+from scipy.optimize import curve_fit
 
 from util.conf import sd_params, bd_params
-from util.functions import movingAverage
+from util.functions import movingAverage, func_exp
 from features.Feature import Feature
 
 
@@ -22,7 +23,29 @@ class BurstDetection(Feature):
 
          # data
         self.input = {'y':None, 'object_source_frequency': None, 'object_noise_std': None}
-        self.output = {'start':None, 'end':None, 'time':None, 'amplitude':None, 'duration':None, 'train':None, 'burst frequency':None, 'mean amplitude':None, 'mean duration':None}
+        self.output = {'start':None, 'end':None, 'time':None, 'amplitude':None, 'duration':None, 'train':None, 'burst frequency':None, 'mean amplitude':None, 'mean duration':None, 'tPeak': None, 'aMax': None, 'τDecay': None, 'mean tPeak': None, 'mean aMax': None, 'mean τDecay': None}
+
+        # dialog for averages
+        self.showBtn = QtWidgets.QPushButton('Show quantities')
+        self.showBtn.clicked.connect(self.showQuantities)
+        self.layout.addWidget(self.showBtn)
+        self.dialog = QtWidgets.QDialog(self, flags = QtCore.Qt.WindowTitleHint | QtCore.Qt.WindowCloseButtonHint)
+        self.dialog.setWindowTitle(self.name + ' -- Quantities')
+        self.dialog_table = QtWidgets.QTableWidget(self.dialog)
+        self.dialog_table.horizontalHeader().hide()
+        self.dialog_table.verticalHeader().hide()
+        self.dialog_table.horizontalHeader().setSectionResizeMode(QtWidgets.QHeaderView.ResizeToContents)
+        self.dialog_table.setRowCount(6)
+        self.dialog_table.setColumnCount(2)
+        self.dialog_table.setItem(0, 0, QtWidgets.QTableWidgetItem('mean amplitude'))
+        self.dialog_table.setItem(1, 0, QtWidgets.QTableWidgetItem('mean duration (s)'))
+        self.dialog_table.setItem(2, 0, QtWidgets.QTableWidgetItem('burst frequency (#bursts / s)'))
+        self.dialog_table.setItem(3, 0, QtWidgets.QTableWidgetItem('mean tPeak (s)'))
+        self.dialog_table.setItem(4, 0, QtWidgets.QTableWidgetItem('mean aMax'))
+        self.dialog_table.setItem(5, 0, QtWidgets.QTableWidgetItem('mean τDecay'))
+        self.dialog_layout = QtWidgets.QGridLayout(self.dialog)
+        self.dialog.setLayout(self.dialog_layout)
+        self.dialog.layout().addWidget(self.dialog_table)
 
         ## METHODS ##
         self.addMethod('Threshold', bd_params, self.burstUpdate)
@@ -30,6 +53,18 @@ class BurstDetection(Feature):
         self.initMethodUI()
         self.initParametersUI()
 
+    def showQuantities(self):
+        if (self.output['mean amplitude'] is None or self.output['mean duration'] is None or self.output['burst frequency'] is None or self.output['mean tPeak'] is None or self.output['mean aMax'] is None or self.output['mean τDecay'] is None or self.input['object_source_frequency'] is None):
+            return
+        
+        self.dialog_table.setItem(0, 1, QtWidgets.QTableWidgetItem(str(round(self.output['mean amplitude'], 4))))
+        self.dialog_table.setItem(1, 1, QtWidgets.QTableWidgetItem(str(round(self.output['mean duration'] / self.input['object_source_frequency'], 4))))
+        self.dialog_table.setItem(2, 1, QtWidgets.QTableWidgetItem(str(round(self.output['burst frequency'], 4))))
+        self.dialog_table.setItem(3, 1, QtWidgets.QTableWidgetItem(str(round(self.output['mean tPeak'] / self.input['object_source_frequency'], 4))))
+        self.dialog_table.setItem(4, 1, QtWidgets.QTableWidgetItem(str(round(self.output['mean aMax'], 4))))
+        self.dialog_table.setItem(5, 1, QtWidgets.QTableWidgetItem(str(round(self.output['mean τDecay'], 4))))
+
+        self.dialog.exec()
 
 ##########################################################################################
 
@@ -41,16 +76,35 @@ class BurstDetection(Feature):
         bd.initCheckbox('dynamic_threshold', updateFunc=threshold_lambda, label='dynamic threshold')
         bd.initCheckbox('relative_threshold', updateFunc=threshold_lambda, label='relative threshold')
         bd.initSlider('dynamic_smooth', slider_params=(3,600,10,1), updateFunc=self.update, label='smooth')
-        bd.initSlider('absolute_amplitude', slider_params=(0,500,1,0.01), updateFunc=self.update, label='minimal amplitude')
+        bd.initSlider('absolute_amplitude', slider_params=(-500,500,1,0.01), updateFunc=self.update, label='minimal amplitude')
         bd.initRadioButtons('relative_amplitude_type', ['use std of noise', 'use std of data'], updateFunc=threshold_lambda)
-        bd.initSlider('relative_amplitude', slider_params=(0,50,1,0.1), updateFunc=self.update, label='relative amplitude (factor for std)')
+        bd.initSlider('relative_amplitude', slider_params=(-50,50,1,0.1), updateFunc=self.update, label='relative amplitude (factor for std)')
         bd.initSlider('absolute_base', slider_params=(-100,100,1,0.01), updateFunc=self.update, label='minimal base')
         bd.initRadioButtons('relative_base', ['minimal base: median', 'minimal base: mean', 'minimal base: 0'], updateFunc=threshold_lambda)
         bd.initSlider('duration', slider_params=(10,400,1,1), updateFunc=self.update, label='minimal duration (ms)')
+        bd.initComboBox('phase', ['depolarization', 'hyperpolarization'], updateFunc=self.phase_changed, label='Phase')
 
         self.setThresholdState(update = False)
 
         self.updateParametersUI()
+
+    def phase_changed(self):
+        bd = self.methods['Threshold']
+        phase = bd.getParametersGUI('phase').layout().itemAt(1).widget().currentText()
+        phase_before = bd.getParameters()['phase']
+        # if different phase as before: multiply threshold parameters by -1
+        if phase_before != phase:
+            prevent_update_before = bd.prevent_update
+            bd.prevent_update = True
+            absolute_amplitude = bd.getParameters()['absolute_amplitude']
+            bd.getParametersGUI('absolute_amplitude').setValue(-1 * absolute_amplitude)
+            relative_amplitude = bd.getParameters()['relative_amplitude']
+            bd.getParametersGUI('relative_amplitude').setValue(-1 * relative_amplitude)
+            absolute_base = bd.getParameters()['absolute_base']
+            bd.getParametersGUI('absolute_base').setValue(-1 * absolute_base)
+            bd.prevent_update = prevent_update_before
+        bd.setParameters({'phase': phase})
+        self.update()
 
     def updateLivePlot(self):
 
@@ -79,11 +133,10 @@ class BurstDetection(Feature):
         
         start = self.output['start']
         end = self.output['end']
-        if start is not None and end is not None and len(start) == len(end):
-            starts_and_ends = [(start[i], end[i]) for i in range(len(start))]
-            max_amplitude = [max(y[start:end]) for (start,end) in starts_and_ends]
-            self.liveplot.setData('train start symbols', [seconds_range[t] for t in self.output['start']], max_amplitude)
-            self.liveplot.setData('train end symbols', [seconds_range[t] for t in self.output['end']], max_amplitude)
+        amplitude = self.output['amplitude']
+        if start is not None and end is not None and amplitude is not None and len(start) == len(end) == len(amplitude):
+            self.liveplot.setData('train start symbols', [seconds_range[t] for t in self.output['start']], amplitude)
+            self.liveplot.setData('train end symbols', [seconds_range[t] for t in self.output['end']], amplitude)
         else:
             self.liveplot.setData('train start symbols', [], [])
             self.liveplot.setData('train end symbols', [], [])
@@ -145,9 +198,11 @@ class BurstDetection(Feature):
         if update:
             self.update()
 
-    def burstUpdate(self, y, object_source_frequency, object_noise_std, dynamic_threshold, relative_threshold, dynamic_smooth, absolute_amplitude, relative_amplitude_type, relative_amplitude, absolute_base, relative_base, duration):
+    def burstUpdate(self, y, object_source_frequency, object_noise_std, dynamic_threshold, relative_threshold, dynamic_smooth, absolute_amplitude, relative_amplitude_type, relative_amplitude, absolute_base, relative_base, duration, phase):
 
         x = np.arange(len(y))
+
+        isDepolarization = phase == 'depolarization'
 
         # if there is no noise std, we calculate a default noise and its std
         if object_noise_std == 0:
@@ -178,7 +233,7 @@ class BurstDetection(Feature):
         duration = object_source_frequency * duration / 1000.0 
 
         # get bursts (starts,ends) as frame index
-        bursts = self.burstDetection(y, self.th1, self.th2, duration)
+        bursts = self.burstDetection(y, self.th1, self.th2, duration, isDepolarization)
 
         # get meta data
         if len(bursts[0]) is not 0:
@@ -188,9 +243,26 @@ class BurstDetection(Feature):
             n = len(start)
             burstStart = np.array(x[start])
             burstEnd = np.array(x[end])
-            peak = [s+np.argmax(y[s:e]) for s,e in np.nditer([start,end])]
+            peak = [s+(np.argmax(y[s:e]) if isDepolarization else np.argmin(y[s:e])) for s,e in np.nditer([start,end])]
             amplitude = y[peak]
             duration = burstEnd-burstStart
+            tPeak = np.zeros(len(peak), dtype=np.int32)
+            np.subtract(peak, start, out = tPeak)
+            aMax = amplitude - self.th2[peak]
+            tDecay = np.zeros_like(aMax)
+            i = 0
+            for decay_start,decay_end in np.nditer([peak, burstEnd]):
+                decay_data = y[decay_start:decay_end]
+                if len(decay_data) < 3:
+                    tDecay[i] = np.nan
+                else:
+                    try:
+                        x_data = np.linspace(0, (decay_end-decay_start)/object_source_frequency, decay_end-decay_start)
+                        popt, _ = curve_fit(func_exp, xdata=x_data, ydata=decay_data, p0=[2.5, 15])
+                        tDecay[i] = 1/popt[1]
+                    except:
+                        tDecay[i] = np.nan
+                i += 1
 
             return {
                 'start': burstStart,
@@ -201,7 +273,13 @@ class BurstDetection(Feature):
                 'train': self.getBurstTrain(bursts, len(y)),
                 'burst frequency': n*object_source_frequency/x[-1],
                 'mean amplitude': amplitude.mean(),
-                'mean duration': duration.mean()
+                'mean duration': duration.mean(),
+                'tPeak': tPeak,
+                'aMax': aMax,
+                'τDecay': tDecay,
+                'mean tPeak': tPeak.mean(),
+                'mean aMax': aMax.mean(),
+                'mean τDecay': tDecay[~np.isnan(tDecay)].mean()
             }
         else:
             return {
@@ -213,19 +291,27 @@ class BurstDetection(Feature):
                 'train': np.zeros(len(y)-1),
                 'burst frequency': 0,
                 'mean amplitude': np.nan,
-                'mean duration': np.nan
+                'mean duration': np.nan,
+                'tPeak': np.array([]),
+                'aMax': np.array([]),
+                'τDecay': np.array([]),
+                'mean tPeak': np.nan,
+                'mean aMax': np.nan,
+                'mean τDecay': np.nan
             }
 
 #--------------------------------------------------------#
 #   Functional
 #--------------------------------------------------------#
 
-    def burstDetection(self, y, amplitude, base, duration):
+    def burstDetection(self, y, amplitude, base, duration, isDepolarization):
         """
         y: signal
         amplitude: upper threshold to decide whether there is a burst or not
         base: lower threshold to determine the start and end of the burst
         duration: amount of frames that a burst's length must be at minimum
+        isDepolarization: defines if depolarization or hyperpolarization 
+                should be detected
 
         returns tuple of arrays: start frames and end frames of the bursts
 
@@ -240,8 +326,8 @@ class BurstDetection(Feature):
         n = len(y)
         i = 1
         while (i < n-2):
-            if y[i] > amplitude[i]:
-                start, end, error = self.burstBorderDetection(y, base, i, 0 if len(bursts[0]) == 0 else bursts[1][-1]+1)
+            if (isDepolarization and y[i] > amplitude[i]) or (not isDepolarization and y[i] < amplitude[i]):
+                start, end, error = self.burstBorderDetection(y, base, i, 0 if len(bursts[0]) == 0 else bursts[1][-1]+1, isDepolarization)
                 if end-start > duration and not error:
                     bursts[0].append(start)
                     bursts[1].append(end)
@@ -250,12 +336,14 @@ class BurstDetection(Feature):
                 i += 1
         return bursts
 
-    def burstBorderDetection(self, y, base, i, leftborder):
+    def burstBorderDetection(self, y, base, i, leftborder, isDepolarization):
         """
         y: signal
         base: lower threshold to determine start and end of burst
         i: frame of the point above the upper threshold
         leftborder: the most-left border the burst can start at
+        isDepolarization: defines if depolarization or hyperpolarization 
+                should be detected
 
         returns the intersections of the signal with the base on both sides
         of the point above the upper threshold, and an error-boolean. this 
@@ -264,12 +352,12 @@ class BurstDetection(Feature):
         """
         n = len(y) - 1
         start = i - 1
-        while (start > leftborder and y[start] >= base[start]):
+        while (start > leftborder and ((isDepolarization and y[start] >= base[start]) or (not isDepolarization and y[start] <= base[start]))):
             start -= 1
         end = i + 1
-        while (end < n and y[end] >= base[end]):
+        while (end < n and ((isDepolarization and y[end] >= base[end]) or (not isDepolarization and y[end] <= base[end]))):
             end += 1
-        error = y[start] >= base[start] or y[end] >= base[end]
+        error = (isDepolarization and (y[start] >= base[start] or y[end] >= base[end])) or (not isDepolarization and (y[start] <= base[start] or y[end] <= base[end]))
         return (start, end, error)
 
     def getBurstTrain(self, bursts, n):
@@ -293,13 +381,41 @@ class SpikeDetection(Feature):
 
          # data
         self.input = {'y':None, 'object_source_frequency': None, 'object_noise_std': None}
-        self.output = {'time':None, 'amplitude':None, 'train':None, 'spike frequency':None, 'mean amplitude':None}
+        self.output = {'time':None, 'amplitude':None, 'train':None, 'spike frequency':None, 'mean amplitude':None, 'τDecay': None, 'mean τDecay': None}
 
+        # dialog for averages
+        self.showBtn = QtWidgets.QPushButton('Show quantities')
+        self.showBtn.clicked.connect(self.showQuantities)
+        self.layout.addWidget(self.showBtn)
+        self.dialog = QtWidgets.QDialog(self, flags = QtCore.Qt.WindowTitleHint | QtCore.Qt.WindowCloseButtonHint)
+        self.dialog.setWindowTitle(self.name + ' -- Quantities')
+        self.dialog_table = QtWidgets.QTableWidget(self.dialog)
+        self.dialog_table.horizontalHeader().hide()
+        self.dialog_table.verticalHeader().hide()
+        self.dialog_table.horizontalHeader().setSectionResizeMode(QtWidgets.QHeaderView.ResizeToContents)
+        self.dialog_table.setRowCount(3)
+        self.dialog_table.setColumnCount(2)
+        self.dialog_table.setItem(0, 0, QtWidgets.QTableWidgetItem('mean amplitude'))
+        self.dialog_table.setItem(1, 0, QtWidgets.QTableWidgetItem('spike frequency (#spikes / s)'))
+        self.dialog_table.setItem(2, 0, QtWidgets.QTableWidgetItem('mean τDecay'))
+        self.dialog_layout = QtWidgets.QGridLayout(self.dialog)
+        self.dialog.setLayout(self.dialog_layout)
+        self.dialog.layout().addWidget(self.dialog_table)
         ## METHODS ##
         self.addMethod('Threshold', sd_params, self.spikeUpdate)
 
         self.initMethodUI()
         self.initParametersUI()
+
+    def showQuantities(self):
+        if self.output['mean amplitude'] is None or self.output['spike frequency'] is None or self.output['mean τDecay'] is None:
+            return
+        
+        self.dialog_table.setItem(0, 1, QtWidgets.QTableWidgetItem(str(round(self.output['mean amplitude'], 4))))
+        self.dialog_table.setItem(1, 1, QtWidgets.QTableWidgetItem(str(round(self.output['spike frequency'], 4))))
+        self.dialog_table.setItem(2, 1, QtWidgets.QTableWidgetItem(str(round(self.output['mean τDecay'], 4))))
+
+        self.dialog.exec()
 
 ##########################################################################################
 
@@ -314,7 +430,7 @@ class SpikeDetection(Feature):
         sd.initSlider('absolute_amplitude', slider_params=(0,500,1,0.01), updateFunc=self.update, label='minimal amplitude')
         sd.initRadioButtons('relative_amplitude_type', ['use std of noise', 'use std of data'], updateFunc=threshold_lambda)
         sd.initSlider('relative_amplitude', slider_params=(0,50,1,0.1), updateFunc=self.update, label='minimal amplitude (factor for std)')
-        sd.initSlider('distance', slider_params=(0,400,1,1), updateFunc=self.update, label='minimal distance (ms)')
+        sd.initSlider('interval', slider_params=(0,400,1,1), updateFunc=self.update, label='minimal interval (ms)')
 
         self.setThresholdState(update = False)
 
@@ -393,7 +509,7 @@ class SpikeDetection(Feature):
         if update:
             self.update()
 
-    def spikeUpdate(self, y, object_source_frequency, object_noise_std, dynamic_threshold, relative_threshold, dynamic_smooth, absolute_amplitude, relative_amplitude_type, relative_amplitude, distance):
+    def spikeUpdate(self, y, object_source_frequency, object_noise_std, dynamic_threshold, relative_threshold, dynamic_smooth, absolute_amplitude, relative_amplitude_type, relative_amplitude, interval):
         
         x = np.arange(len(y))
 
@@ -412,22 +528,41 @@ class SpikeDetection(Feature):
         else:
             self.th = np.full(len(y), amplitude, dtype = float)
 
-        # change distance from ms to frames
-        distance = object_source_frequency * distance / 1000.0
+        # change interval from ms to frames
+        interval = object_source_frequency * interval / 1000.0
 
         # get spike positions as frame numbers
-        spikes = self.spikeDetection(y, self.th, distance)
+        spikes = self.spikeDetection(y, self.th, interval)
 
         n = len(spikes)
         if n is not 0:
             time = x[spikes]
             amplitude = y[spikes]
+
+            decay = np.zeros_like(amplitude)
+            i = 0
+            for decay_start in time:
+                if interval < 3:
+                    decay[i] = np.nan
+                else:
+                    decay_interval = round(interval/2)
+                    decay_data = y[decay_start:decay_start+decay_interval]
+                    try:
+                        x_data = np.linspace(0, decay_interval/object_source_frequency, decay_interval)
+                        popt, _ = curve_fit(func_exp, xdata=x_data, ydata=decay_data, p0=[2.5, 15])
+                        decay[i] = 1/popt[1]
+                    except:
+                        decay[i] = np.nan
+                i += 1
+
             return {
                 'spike frequency': n*object_source_frequency/x[-1],
                 'mean amplitude': np.mean(amplitude),
                 'train': self.getSpikeTrain(spikes, len(y)),
                 'time': time,
-                'amplitude': amplitude
+                'amplitude': amplitude,
+                'τDecay': decay,
+                'mean τDecay': decay[~np.isnan(decay)].mean()
             }
         else:
             return {
@@ -435,16 +570,18 @@ class SpikeDetection(Feature):
                 'mean amplitude': None,
                 'train': None,
                 'time': None,
-                'amplitude': None
+                'amplitude': None,
+                'τDecay': None,
+                'mean τDecay': None
             }
 
 #--------------------------------------------------------#
 #   Functional
 #--------------------------------------------------------#
 
-    def spikeDetection(self, y, thresh, distance):
+    def spikeDetection(self, y, thresh, interval):
         """
-        distance in frames
+        interval in frames
         """
         spikes = []
         i = 1
@@ -457,7 +594,7 @@ class SpikeDetection(Feature):
             i+=1
         j = 0
         while j < len(spikes)-1:
-            if (spikes[j+1]-spikes[j]) < distance:
+            if (spikes[j+1]-spikes[j]) < interval:
                 if y[spikes[j]]>y[spikes[j+1]]:
                     del spikes[j+1]
                 else:

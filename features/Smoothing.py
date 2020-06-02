@@ -3,7 +3,7 @@ import pyqtgraph as pg
 import numpy as np
 from scipy import signal
 
-from util.conf import sg_savitzky_golay_params, sg_moving_average_params, sg_butterworth_params
+from util.conf import sg_savitzky_golay_params, sg_moving_average_params, sg_butterworth_params, sg_scaled_window_convolution_params
 from util.functions import movingAverage, butter_lowpass_filter
 from features.Feature import Feature
 
@@ -25,6 +25,8 @@ class Smoothing(Feature):
         self.addMethod('Moving Average', sg_moving_average_params, self.movingAverageWrapper)
         # 3 Butterworth
         self.addMethod('Butterworth', sg_butterworth_params, self.butter_lowpass_filter_wrapper)
+        # 4 Scaled Window Convolution
+        self.addMethod('Scaled Window Convolution', sg_scaled_window_convolution_params, self.scaled_window_convolution)
 
         self.initMethodUI()
         self.initParametersUI()
@@ -40,6 +42,9 @@ class Smoothing(Feature):
         self.methods['Butterworth'].initSlider('highcut', slider_params=(1,125,1,1), updateFunc=updateFunc)
         self.setButterworthMaxHighcut()
         self.methods['Butterworth'].initSlider('order', slider_params=(2,6,1,1), updateFunc=updateFunc)
+        # scaled window convolution
+        self.methods['Scaled Window Convolution'].initSlider('window_len', slider_params=(3,101,2,1), updateFunc=updateFunc, label='window length')
+        self.methods['Scaled Window Convolution'].initComboBox('window', ['hanning', 'hamming', 'bartlett', 'blackman'], updateFunc=self.swcWindowChanged, label='window type')
         # update GUI
         self.updateParametersUI()
 
@@ -87,6 +92,37 @@ class Smoothing(Feature):
         noise = y - sg
 
         return {'y': sg, 'noise_std': np.std(noise)}
+        
+    def scaled_window_convolution(self, y, object_source_frequency, window_len, window):
+        """
+        scaled window smoothing.
+        code adapted from https://scipy-cookbook.readthedocs.io/items/SignalSmooth.html
+        """
+        
+        if window_len % 2 == 0:
+            window_len += 1
+        s=np.r_[y[window_len-1:0:-1],y,y[-2:-window_len-1:-1]]
+        if (window == 'hamming'):
+            w = np.hamming(window_len)
+        elif (window == 'bartlett'):
+            w = np.bartlett(window_len)
+        elif (window == 'blackman'):
+            w = np.blackman(window_len)
+        else:
+            w = np.hanning(window_len)
+        
+        swc = np.convolve(w/w.sum(), s, mode='valid')
+        swc = swc[(int(window_len/2)-1):-int(window_len/2)-1]
+
+        noise = y - swc
+
+        return {'y': swc, 'noise_std': np.std(noise)}
+
+    def swcWindowChanged(self):
+        swc = self.methods['Scaled Window Convolution']
+        window = swc.getParametersGUI('window').layout().itemAt(1).widget().currentText()
+        swc.setParameters({'window': window})
+        self.update()
 
     def updateLivePlot(self):
         pass

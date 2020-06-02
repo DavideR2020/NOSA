@@ -11,8 +11,8 @@ from scipy.signal import butter, lfilter, lfilter_zi
 
 ## LEAST SQUARES FITTING ##
 
-def func_exp(x, a, b, c):
-    return a * np.exp(-b * x) + c
+def func_exp(x, a, b):
+    return a * np.exp(-b * x)
 
 def func_lin(x, a, b):
     return a*x + b
