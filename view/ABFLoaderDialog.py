@@ -4,7 +4,7 @@ import numpy as np
 
 class ABFLoaderDialog(QtWidgets.QDialog):
 
-    def __init__(self, parent, blocks):
+    def __init__(self, parent, abf):
 
         QtWidgets.QDialog.__init__(self, parent, flags = QtCore.Qt.WindowTitleHint | QtCore.Qt.WindowCloseButtonHint)
 
@@ -36,62 +36,47 @@ class ABFLoaderDialog(QtWidgets.QDialog):
 
         self.connected_data = []
         self.unconnected_data = []
-        connected_counter = 0
         unconnected_counter = 0
 
-        for block in blocks:
-            for channel_index in block.channel_indexes:
-                unit = channel_index.analogsignals[0].units
-                if not all([unit == analogsignal.units for analogsignal in channel_index.analogsignals]):
-                    continue
-                unit = unit.dimensionality.string
-
-                for analogsignal in channel_index.analogsignals:
-
-                    unconnected_counter += 1
-
-                    self.unconnected_data.append(
-                        {
-                            'tabledata':
-                                [
-                                    unconnected_counter,
-                                    '{} ({})'.format(str(channel_index.name), str(unconnected_counter)),
-                                    np.mean(analogsignal.magnitude),
-                                    analogsignal.magnitude[0][0],
-                                    analogsignal.magnitude[-1][0],
-                                    unit,
-                                    len(analogsignal.magnitude),
-                                    analogsignal.description
-                                ],
-                            'data': analogsignal.magnitude.flatten()
-                        }
-                    )
-
-                if not all([channel_index.analogsignals[i].t_stop == channel_index.analogsignals[i+1].t_start
-                    for i in range(len(channel_index.analogsignals)-1)]):
-                        continue
-                    
-                data = np.concatenate([as_.magnitude for as_ in channel_index.analogsignals])
-
-                connected_counter += 1
-
-                self.connected_data.append(
+        for channel_index in abf.channelList:
+            connected_data = np.array([], dtype = np.float32)
+            for sweep in abf.sweepList:
+                abf.setSweep(sweepNumber = sweep, channel = channel_index)
+                unconnected_counter += 1
+                self.unconnected_data.append(
                     {
                         'tabledata':
-                            [
-                                connected_counter,
-                                channel_index.name,
-                                np.mean(data),
-                                data[0][0],
-                                data[-1][0],
-                                unit,
-                                len(data),
-                                channel_index.description
-                            ],
-                        'data': data.flatten()
+                        [
+                            unconnected_counter,
+                            '{} (sweep {})'.format(abf.adcNames[channel_index], str(sweep)),
+                            np.mean(abf.sweepY),
+                            abf.sweepY[0],
+                            abf.sweepY[-1],
+                            abf.adcUnits[channel_index],
+                            abf.sweepPointCount,
+                            None
+                        ],
+                        'data': abf.sweepY
                     }
                 )
-
+                connected_data = np.concatenate((connected_data, abf.sweepY))
+            
+            self.connected_data.append(
+                {
+                    'tabledata':
+                    [
+                        channel_index+1,
+                        abf.adcNames[channel_index],
+                        np.mean(connected_data),
+                        connected_data[0],
+                        connected_data[-1],
+                        abf.adcUnits[channel_index],
+                        len(connected_data),
+                        None
+                    ],
+                    'data': connected_data
+                }
+            )
         button_widget = QtWidgets.QWidget()
         layout.addWidget(button_widget)
 

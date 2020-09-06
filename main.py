@@ -2,8 +2,6 @@ from PyQt5 import QtGui, QtWidgets, QtCore
 import pyqtgraph as pg
 import qdarkstyle
 import sys
-# import needed for with pyinstaller exported neo to work
-import numpy.lib.recfunctions
 
 from view.Nosa import Nosa
 from model.TIFLoader import TIFLoader

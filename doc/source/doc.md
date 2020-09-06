@@ -36,7 +36,7 @@ Matplotlib | 3.0.3 | [PSF-based](https://matplotlib.org/users/license.html) | ©
 pyStackReg | 0.2.1 | [custom](https://bitbucket.org/glichtner/pystackreg/src/master/LICENSE.txt) | C++ Port of the TurboReg ImageJ Plugin<br><br>Original code by Philippe Thevenaz (see the file `package_licenses/custom_license_for_pyStackReg.txt`)<br><br>Porting by Gregor Lichtner | https://bitbucket.org/glichtner/pystackreg
 DIPY | 0.15.0 | [revised BSD-2-Clause](http://nipy.org/nipy/license.html) | Copyright (c) 2008-2019, dipy developers<br>All rights reserved. | http://dipy.org
 QDarkStyle | 2.5.4 | [MIT](https://github.com/ColinDuquesnoy/QDarkStyleSheet/blob/master/LICENSE.md) | Copyright (c) 2013-2018 Colin Duquesnoy | https://github.com/ColinDuquesnoy/QDarkStyleSheet
-neo | 0.7.1 | [BSD-3-Clause](https://github.com/NeuralEnsemble/python-neo/blob/master/LICENSE.txt) | Copyright (c) 2010-2018, Neo authors and contributors | http://neuralensemble.org/neo
+pyABF | 2.2.8 | [MIT](https://github.com/swharden/pyABF/blob/master/LICENSE) | Copyright (c) 2018 Scott W Harden | https://swharden.com/pyabf/
 quantities | 0.12.3 | [BSD](https://python-quantities.readthedocs.io/en/latest/user/license.html) | Copyright (c) 2012, Darren Dale <dsdale24@gmail.com> All rights reserved. | http://python-quantities.readthedocs.io/
 XlsxWriter | 1.1.5 | [BSD](https://xlsxwriter.readthedocs.io/license.html) | Copyright (c) 2013, John McNamara <jmcnamara@cpan.org> All rights reserved. | https://github.com/jmcnamara/XlsxWriter
 tifffile | 2019.3.8 | [BSD](https://www.lfd.uci.edu/~gohlke/) | Copyright (c) 1994-2019, Christoph Gohlke<br>All rights reserved. | https://www.lfd.uci.edu/~gohlke/

@@ -1,7 +1,7 @@
-from neo.io import AxonIO
 from PyQt5 import QtCore, QtWidgets
 import quantities as pq
 import numpy as np
+import pyabf
 
 from threads.Worker import Worker
 from view.ABFLoaderDialog import ABFLoaderDialog
@@ -23,9 +23,8 @@ class ABFLoader():
             """
             Reads the blocks and the sampling rate.
             """
-            abf_reader = AxonIO(filepath)
-            blocks = abf_reader.read()
-            return {'blocks': blocks, 'frequency': abf_reader._sampling_rate, 'filepath': filepath}
+            abf = pyabf.ABF(filepath)
+            return {'abf': abf,  'filepath': filepath}
         
         def initialWorkCallback(result_dict):
             """
@@ -36,11 +35,11 @@ class ABFLoader():
             Creates the data objects if there are signals chosen.
             """
             result = result_dict['result']
-            blocks = result['blocks']
+            abf = result['abf']
             data_manager.progress_dialog.setMaximum(1)
             data_manager.progress_dialog.setValue(1)
 
-            abf_loader_dialog = ABFLoaderDialog(data_manager.source_manager, blocks)
+            abf_loader_dialog = ABFLoaderDialog(data_manager.source_manager, abf)
             ok = abf_loader_dialog.exec()
 
             if ok != QtWidgets.QDialog.Accepted:
@@ -54,7 +53,7 @@ class ABFLoader():
 
             filepath = result['filepath']
             name = filepath.split('/')[-1].split('.')[0]
-            freq = result['frequency']
+            freq = abf.dataRate
             for  d in data:
                 data_ = d['data']
 
