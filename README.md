@@ -18,7 +18,7 @@ matplotlib>=3.0.3
 pystackreg>=0.2.1
 dipy>=0.15.0
 qdarkstyle==2.5.4
-neo>=0.7.1
+pyabf>=2.2.8
 quantities>=0.12.3
 xlsxwriter>=1.1.5
 tifffile>=2019.3.8
