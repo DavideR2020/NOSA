@@ -9,22 +9,20 @@ NOSA is an analytical toolbox designed specifically for the analysis and interpr
 To run NOSA from source code, the following prerequisites are needed:
 
 ```
-python>=3.7.1
-numpy>=1.16.2
-scipy>=1.2.1
-pyqt5==5.11.3
-pyqtgraph>=0.10.0
-matplotlib>=3.0.3
-pystackreg>=0.2.1
-dipy>=0.15.0
-qdarkstyle==2.5.4
-pyabf>=2.2.8
-quantities>=0.12.3
-xlsxwriter>=1.1.5
-tifffile>=2019.3.8
+python 3.7.1
+numpy 1.16.2
+scipy 1.2.1
+pyqt5 5.11.3
+pyqtgraph 0.10.0
+matplotlib 3.0.3
+pystackreg 0.2.1
+dipy 0.15.0
+qdarkstyle 2.5.4
+pyabf 2.2.8
+quantities 0.12.3
+xlsxwriter 1.1.5
+tifffile 2019.3.8
 ```
-
-Please note the exact version of `PyQt5` and `qdarkstyle`. If a newer version of these packages is used, NOSA may be displayed messy. However, all functionalities should work.
 
 When the prerequisites are met, run NOSA with `python main.py`.
 

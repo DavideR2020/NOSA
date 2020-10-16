@@ -271,7 +271,7 @@ class PlotManager(QtWidgets.QSplitter):
         n = len(indices)
         names = [self.data_manager.objects[i].name for i in indices]
 
-        colorTable = colors.colorMap.getLookupTable(nPts = (n-1)*(n)/2, alpha = False, mode = 'byte')
+        colorTable = colors.colorMap.getLookupTable(nPts = int((n-1)*(n)/2), alpha = False, mode = 'byte')
         clr_counter = 0
 
         name = []

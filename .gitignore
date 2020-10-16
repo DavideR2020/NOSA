@@ -111,3 +111,7 @@ bin/*
 
 # ignore excel files
 *.xlsx
+
+# tiff files
+*.tif
+*.tiff

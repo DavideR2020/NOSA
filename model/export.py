@@ -6,17 +6,17 @@ import traceback
 
 from threads.Worker import Worker
 
-def writeLoop(worksheet, row, col, values):
+def writeLoop(worksheet, row, col, values, rounding = 4):
     if not isinstance(values, np.ndarray):
         row += 1
-        worksheet.write(row, col, round(values, 4))
+        worksheet.write(row, col, round(values, rounding))
         return
     for value in values:
         row += 1
         if not np.isnan(value):
-            worksheet.write(row, col, round(value, 4))
+            worksheet.write(row, col, round(value, rounding))
 
-def writeFeature(worksheet, wrap, col, objects_names, data, label, x_axis = False, x_axis_label = None, x_axis_values = None):
+def writeFeature(worksheet, wrap, col, objects_names, data, label, x_axis = False, x_axis_label = None, x_axis_values = None, rounding = 4):
     prev_x_axis_value = None
 
     for index, object_name in enumerate(objects_names):
@@ -28,14 +28,14 @@ def writeFeature(worksheet, wrap, col, objects_names, data, label, x_axis = Fals
                     col += 2
                 row = 0
                 worksheet.write(row, col, x_axis_label, wrap)
-                writeLoop(worksheet, row, col, x_axis_value)
+                writeLoop(worksheet, row, col, x_axis_value, rounding)
                 col += 1
                 prev_x_axis_value = x_axis_value
 
         row = 0
         title = object_name + ' ' + label
         worksheet.write(row, col, title, wrap)
-        writeLoop(worksheet, row, col, data[index])
+        writeLoop(worksheet, row, col, data[index], rounding)
         col += 1
 
     return col
@@ -264,7 +264,7 @@ def export_work(data_manager, objects, data, file_info, export_time, cc_only_ins
                     objects_names = [names[object_index] for object_index in objects_indices_]
                     data_ = [outputs[object_index][feature_index]['psd'] for object_index in objects_indices_]
                     x_axis_values = [outputs[object_index][feature_index]['frequencies'] for object_index in objects_indices_]
-                    col = writeFeature(worksheet, wrap, col, objects_names, data_, 'PSD', x_axis=True, x_axis_label='Frequency (Hz)', x_axis_values=x_axis_values)
+                    col = writeFeature(worksheet, wrap, col, objects_names, data_, 'PSD', x_axis=True, x_axis_label='Frequency (Hz)', x_axis_values=x_axis_values, rounding=8)
 
                 if col != 0:
                     col += 2
