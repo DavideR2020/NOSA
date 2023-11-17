@@ -162,7 +162,10 @@ class CellSelection(Feature):
         source = self.input['source']
         if source is not None:
             if source.filetype == 'tif':
-                if not np.array_equal(self.imv.image, source.getData()):
+                if source.merged_tif_active:
+                    self.imv.setImage(source.getMergedData(), xvals=1)
+                    self.imv.showPlot()
+                elif not np.array_equal(self.imv.image, source.getData()) :
                     self.imv.setImage(source.getData(), xvals = source.frameRange())
                     self.imv.showPlot()
                     if not (source.start <= self.imv.timeLine.value() <= source.end):
@@ -192,10 +195,16 @@ class CellSelection(Feature):
             self.getUserROI().hide()
 
     def updateROIAll(self):
-        self.updateROI(only_processed = False)
+        if self.input['source'].merged_tif_active:
+            self.updateROI(only_processed=False, prevent_calculation=True)
+        else:
+            self.updateROI(only_processed = False)
 
     def updateROIOnlyProcessed(self):
-        self.updateROI(only_processed = True)
+        if self.input['source'].merged_tif_active:
+            self.updateROI(only_processed=True, prevent_calculation=True)
+        else:
+            self.updateROI(only_processed=True)
     
     def updateROI(self, only_processed = False, prevent_calculation = False):
         if self.ellipse_mode:

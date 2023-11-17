@@ -3,6 +3,7 @@ from copy import deepcopy
 import numpy as np
 
 from features.BackgroundSubtraction import BackgroundSubtraction
+from features.MergedTif import MergedTif
 from features.Baseline import Baseline
 from features.Smoothing import Smoothing
 from features.AdjustFrequency import AdjustFrequency
@@ -10,10 +11,10 @@ from features.EventDetection import SpikeDetection, BurstDetection
 from features.EventShape import EventShape
 from features.PowerSpectrum import PowerSpectrum
 from features.CrossCorrelation import SpikeCrossCorrelation, AmplitudeCrossCorrelation
-
 @dataclass
 class Pipeline():
     _background_subtraction: BackgroundSubtraction = None
+    _merged_tif: MergedTif = None
     _baseline: Baseline = None
     _smoothing: Smoothing = None
     _adjust_frequency = None
@@ -26,6 +27,7 @@ class Pipeline():
 
     def initPipeline(self, data_manager, source_is_tif, parent = None):
         self._background_subtraction = BackgroundSubtraction(data_manager, parent=parent, liveplot=data_manager.plot_manager.background_subtraction)
+        self._merged_tif = MergedTif(data_manager, parent=parent, liveplot=data_manager.plot_manager.merged_tif)
         baseline_liveplot = (data_manager.plot_manager.cell_selection.ui.roiPlot, data_manager.plot_manager.baseline)
         self._baseline = Baseline(data_manager, parent=parent, liveplot=baseline_liveplot)
         self._baseline.active = source_is_tif
@@ -41,6 +43,7 @@ class Pipeline():
     def getPipeline(self):
         return [
             self._background_subtraction,
+            self._merged_tif,
             self._baseline,
             self._smoothing,
             self._spike_detection,
@@ -54,6 +57,7 @@ class Pipeline():
     def getCalculatingPipeline(self):
         return [
             self._background_subtraction,
+            self._merged_tif,
             self._baseline,
             self._adjust_frequency,
             self._smoothing,
@@ -79,8 +83,8 @@ class Pipeline():
             # set parameters
             for key,method in step.methods.items():
                 method.setParameters(deepcopy(conf_p[index].methods[key].parameters), prevent_update = True)
-            # never activate BSR for non-tif-sources
-            if isinstance(step, BackgroundSubtraction) and filetype != 'tif':
+            # never activate BSR or mergedTif for non-tif-sources
+            if (isinstance(step, BackgroundSubtraction) or isinstance(step, MergedTif)) and filetype != 'tif':
                 step.active = False
             else:
                 step.active = conf_p[index].active
@@ -103,6 +107,7 @@ class Pipeline():
     def getProcessingFeatures(self):
         return [
             self._background_subtraction,
+            self._merged_tif,
             self._baseline,
             self._adjust_frequency,
             self._smoothing

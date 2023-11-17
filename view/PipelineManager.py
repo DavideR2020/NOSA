@@ -8,6 +8,7 @@ from view.ActivateMultipleDialog import ActivateMultipleDialog
 from view.SetMultipleDialog import SetMultipleDialog
 
 from features.BackgroundSubtraction import BackgroundSubtraction
+from features.MergedTif import MergedTif
 from features.CrossCorrelation import SpikeCrossCorrelation, AmplitudeCrossCorrelation
 from features.Baseline import Baseline
 
@@ -170,6 +171,9 @@ class PipelineManager(QtGui.QWidget):
             feature.setActive(False)
             self.showNoFeature()
             self.data_manager.plot_manager.refreshPlots()
+        # changes checkable states of other features
+        if isinstance(feature, MergedTif):
+            self.refreshPipelineView()
         self.data_manager.refreshPipeline(start_with_feature = feature)
 
     def refreshPipelineView(self):
@@ -182,10 +186,16 @@ class PipelineManager(QtGui.QWidget):
         pipeline = pipeline.getPipeline()
         non_tif_source = (self.data_manager.source_selection is not None
             and self.data_manager.sources[self.data_manager.source_selection].filetype != 'tif')
+        merged_tif_active = (self.data_manager.source_selection is not None
+            and pipeline[1].active)
         for index,step in enumerate(pipeline):
-            # never activate BSR for non-tif-sources
+            # never activate BSR and MergedTif for non-tif-sources
             # never activate any features for default pipeline
-            if default_pipeline or (isinstance(pipeline[index], BackgroundSubtraction) and non_tif_source):
+            # if MergedTif is active other features are not activated
+            if default_pipeline or ((isinstance(pipeline[index], BackgroundSubtraction)  or
+                                     (isinstance(pipeline[index], MergedTif)))  and non_tif_source):
+                self.pipeline_steps[index].cb.setCheckable(False)
+            elif merged_tif_active and not isinstance(pipeline[index], MergedTif):
                 self.pipeline_steps[index].cb.setCheckable(False)
             else:
                 self.pipeline_steps[index].cb.setCheckable(True)
