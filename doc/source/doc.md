@@ -233,7 +233,7 @@ With a right click, the user can delete multiple objects at once.
 
 #### Cell Selection and Raw Plot
 
-For optical data, the cell selection gives the user the ability to select a ROI, and displays all ROIs belonging to the currently selected source. For patch clamp data, the cell selection is not used. The raw plot displays the [raw data](#data-notations) or the output of the [Background Subtraction](#background-subtraction), if it is active.
+For optical data, the cell selection gives the user the ability to select a ROI, and displays all ROIs belonging to the currently selected source. For patch clamp data, the cell selection is not used. The raw plot displays the [raw data](#data-notations) or, if one of the two features is activated, the output of the [Background Subtraction](#background-subtraction) or the [Merge Tif](#merge-tif).
 
 In the following images, specific areas are highlighted describing the components of the cell selection and raw plot. All components will be described in the following sections.
 
@@ -358,7 +358,7 @@ In the following images, specific areas are highlighted describing the component
 
 With these checkboxes, the user can activate or deactivate single features. When a feature is activated, this feature is automatically [selected](#select-feature). When a feature is deactivated, this feature is automatically [deselected](#select-feature). Whenever one of these checkboxes is changed, automatic [plot resizing](#plots) may happen.
 
-Clicking the checkbox for the [Background Subtraction](#background-subtraction) when the currently selected object belongs to a patch clamp data source will not have any effect.
+Clicking the checkbox for the [Background Subtraction](#background-subtraction) or [Merge Tif](#merge-tif) when the currently selected object belongs to a patch clamp data source will not have any effect.
 
 ##### Select Feature
 
@@ -418,6 +418,7 @@ Feature | Type | Methods | Description
  --- | --- | --- | ---
 [Movement Correction](#movement-correction-1) | processing | Symmetric Diffeomorphic, Translation, Rigid Body, Scaled Rotation, Affine | Movement correction for optical data
 [Background Subtraction](#background-subtraction) | processing | ROI, Perisomatic | Subtraction of a background ROI mean
+[Merge Tif](#merge-tif) | processing |  | Show mean of *.tif timeline for ROI selection
 [Baseline](#baseline) | processing | Polynomial Fitting, Asymmetric Least Squares, Top Hat, Moving Average | Subtraction of a baseline and calculation of gradient
 [Adjust Frequency](#adjust-frequency-1) | processing | Nearest Neighbour, Linear, Cubic | Interpolation of data to work with a special frequency
 [Smoothing](#smoothing) | processing | Savitzky Golay, Moving Average, Butterworth, Scaled Window Convolution | Smoothing / low pass filter
@@ -510,6 +511,15 @@ With the ROI method, the user manually selects a background ROI in the [Cell Sel
 ##### Perisomatic
 
 With the Perisomatic method, the user selects a radius. This radius determines a Background ROI that lies like a ring with the given radius around the ROI. 
+
+#### Merge Tif
+
+The Merge Tif feature is available for optical data source that has a timeline. 
+The mean value of the entire image series is determined for each pixel of a layer 
+and the reduced image is displayed to make it easier to select the ROI.
+
+While the feature is selected, every other feature is deselected to prevent calculation.
+The reactivation and recalculation of the other selected features is carried out by deactivating Merge Tif.
 
 #### Baseline
 
@@ -1121,6 +1131,12 @@ background_mean = p_ring / p_ring_size
 ```
 
 Where `p_cell` is the extracted data for the background ROI and `cell` is the original cell data. 
+
+#### Merge Tif
+
+The MergeTif is the second feature in every pipeline. It should never be active for objects that belong to a patch clamp data source. It uses the same `pyqtgraph.ImageView` as well as the ROI selection from CellSelection, but prevents the recalculation of the selected ROI as the resulting image has no timeline. 
+
+The selected ROI and all other selected features are recalculated as soon as the feature is deactivated.
 
 #### Baseline
 
