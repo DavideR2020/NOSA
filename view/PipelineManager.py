@@ -173,7 +173,8 @@ class PipelineManager(QtGui.QWidget):
             self.data_manager.plot_manager.refreshPlots()
         # changes checkable states of other features
         if isinstance(feature, MergedTif):
-            self.refreshPipelineView()
+            self.refreshView()
+            self.data_manager.plot_manager.refreshPlots()
         self.data_manager.refreshPipeline(start_with_feature = feature)
 
     def refreshPipelineView(self):

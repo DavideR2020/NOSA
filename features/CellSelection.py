@@ -162,10 +162,7 @@ class CellSelection(Feature):
         source = self.input['source']
         if source is not None:
             if source.filetype == 'tif':
-                if source.merged_tif_active:
-                    self.imv.setImage(source.getMergedData(), xvals=1)
-                    self.imv.showPlot()
-                elif not np.array_equal(self.imv.image, source.getData()) :
+                if not np.array_equal(self.imv.image, source.getData()) :
                     self.imv.setImage(source.getData(), xvals = source.frameRange())
                     self.imv.showPlot()
                     if not (source.start <= self.imv.timeLine.value() <= source.end):

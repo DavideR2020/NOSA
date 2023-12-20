@@ -11,7 +11,7 @@ class MergedTif(Feature):
 
         # data
         self.input = {'object_source': None}
-        self.output = {'source': None}
+        self.output = {'source': None, 'merged_tif': None}
 
         self.imv = self.liveplot
         self.activateFunc = self.setState
@@ -29,8 +29,8 @@ class MergedTif(Feature):
         source = self.input['object_source']
         if source is None:
             return
-        # if we just unchecked featurebox
-        if not self.active and source.merged_tif_active:
+        # if we just deactivated feature update ROI cell selection
+        elif not self.active and source.merged_tif_active:
             source.merged_tif_active = self.active
             self.data.cell_selection.inputConfiguration()
             self.data.cell_selection.updateROIAll()
@@ -39,11 +39,15 @@ class MergedTif(Feature):
     def mergeTif(self, object_source, merge):
         if self.active and object_source._data_merged is None:
             img = object_source.getData()
-            merged = img.mean(axis = 0)
-            object_source.setMergedData(merged)
-
-        return{'source': object_source}
+            merge = img.mean(axis = 0)
+            object_source.setMergedData(merge)
+        merge = object_source._data_merged
+        return{'source': object_source, 'merged_tif': merge}
 
     def updateLivePlot(self):
-        if self.imv.image is not None:
-            self.imv.showPlot()
+        merged_tif = self.output['merged_tif']
+        if merged_tif is None:
+            return
+        else:
+            self.data.getCurrentPipeline()._background_subtraction.undisplayPlots()
+            self.liveplot.setImage(merged_tif, xvals=1)
