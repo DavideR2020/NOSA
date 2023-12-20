@@ -11,11 +11,13 @@ class Source():
     adjust_frequency_active: bool = False
     adjust_frequency_method: int = 0
     original_frequency: float = 250.0
+    merged_tif_active: bool = False
     start: int = None
     end: int = None
     offset: float = None
     _data: np.ndarray = None
     _data_corrected: np.ndarray = None
+    _data_merged: np.ndarray = None
     unit: str = ''
     # for naming purposes
     object_number: int = 1
@@ -56,3 +58,9 @@ class Source():
 
     def setCorrectedData(self, corrected_data):
         self._data_corrected = corrected_data
+
+    def getMergedData(self):
+        return self._data_merged
+
+    def setMergedData(self, merged_data):
+        self._data_merged = merged_data
