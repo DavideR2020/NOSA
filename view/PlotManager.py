@@ -21,6 +21,7 @@ class PlotManager(QtWidgets.QSplitter):
 
         self.cell_selection = cell_selection_imv
         self.background_subtraction = cell_selection_imv
+        self.merged_tif = cell_selection_imv
         self.baseline = pg.PlotCurveItem(name='Baseline', pen=pg.mkPen(color=colors.alternative, width=2))
         self.background_subtraction_plotitem = pg.PlotCurveItem(name='Background Mean', pen=pg.mkPen(color=colors.white))
         self.cell_selection.ui.roiPlot.addItem(self.baseline)
@@ -326,13 +327,13 @@ class PlotManager(QtWidgets.QSplitter):
         v_index = -1
         h_index = -1
         if feature_index != None:
-            # the first feature, BackgroundSubtraction, does not have a plot
-            feature_index -= 1
+            # the first two features, BackgroundSubtraction and MergedTif, do not have a plot
+            feature_index -= 2
             # get the indices for the object we want to change the size of
             v_index, h_index = self._plots_to_splitter_contents_indices[feature_index]
 
-        # get the active states of all features, ignoring the first (BackgroundSubtraction)
-        actives = self.data_manager.getCurrentPipeline().getActiveStates()[1:]
+        # get the active states of all features, ignoring the first two (BackgroundSubtraction and MergedTif)
+        actives = self.data_manager.getCurrentPipeline().getActiveStates()[2:]
 
         # if the feature at feature_index is not active, we ignore that and just set all plots normal
         if feature_index != None and not actives[feature_index]:

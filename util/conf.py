@@ -9,6 +9,9 @@ bs_active = False
 bs_roi_params = {'background_roi':((20,20),(20,20),0)}
 bs_perisomatic_params = {'radius':4}
 
+# Merged Tif
+mt_params = {'merge': None}
+
 # Baseline
 bl_active = False
 bl_polynomial_fitting_params = {'polyorder':1, 'intercept':0, 'use_marker': False, 'marker':[]}

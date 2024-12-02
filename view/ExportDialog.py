@@ -67,10 +67,13 @@ class ExportDialog(QtWidgets.QDialog):
         data_groupbox_layout.addWidget(self.data_processed)
         self.data_checkboxes = []
         for feature in data_manager.getCurrentPipeline().getCalculatingPipeline():
-            checkbox = QtWidgets.QCheckBox(feature.name)
-            checkbox.setChecked(True)
-            data_groupbox_layout.addWidget(checkbox)
-            self.data_checkboxes.append(checkbox)
+            if feature.name == 'Merge Tif':
+                continue
+            else:
+                checkbox = QtWidgets.QCheckBox(feature.name)
+                checkbox.setChecked(True)
+                data_groupbox_layout.addWidget(checkbox)
+                self.data_checkboxes.append(checkbox)
 
         # the settings groupbox
         settings_groupbox = QtWidgets.QGroupBox('Settings')

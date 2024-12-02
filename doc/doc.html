@@ -38,8 +38,7 @@
 <th>Website</th>
 </tr>
 </thead>
-<tbody>
-<tr>
+<tbody><tr>
 <td>NumPy</td>
 <td>1.16.2</td>
 <td><a href="https://www.numpy.org/license.html#license">BSD</a></td>
@@ -106,14 +105,14 @@
 <td>quantities</td>
 <td>0.12.3</td>
 <td><a href="https://python-quantities.readthedocs.io/en/latest/user/license.html">BSD</a></td>
-<td>Copyright (c) 2012, Darren Dale <a href="mailto:&#x64;&#115;&#x64;&#97;&#108;&#101;&#50;&#x34;&#x40;&#103;&#x6d;&#x61;&#105;&#x6c;&#x2e;&#99;&#111;&#109;">&#x64;&#115;&#x64;&#97;&#108;&#101;&#50;&#x34;&#x40;&#103;&#x6d;&#x61;&#105;&#x6c;&#x2e;&#99;&#111;&#109;</a> All rights reserved.</td>
+<td>Copyright (c) 2012, Darren Dale <a href="mailto:&#x64;&#x73;&#100;&#97;&#x6c;&#101;&#50;&#x34;&#64;&#x67;&#109;&#x61;&#x69;&#108;&#46;&#99;&#x6f;&#x6d;">&#x64;&#x73;&#100;&#97;&#x6c;&#101;&#50;&#x34;&#64;&#x67;&#109;&#x61;&#x69;&#108;&#46;&#99;&#x6f;&#x6d;</a> All rights reserved.</td>
 <td><a href="http://python-quantities.readthedocs.io/">http://python-quantities.readthedocs.io/</a></td>
 </tr>
 <tr>
 <td>XlsxWriter</td>
 <td>1.1.5</td>
 <td><a href="https://xlsxwriter.readthedocs.io/license.html">BSD</a></td>
-<td>Copyright (c) 2013, John McNamara <a href="mailto:&#106;&#x6d;&#x63;&#x6e;&#97;&#x6d;&#x61;&#x72;&#x61;&#64;&#x63;&#x70;&#97;&#x6e;&#x2e;&#x6f;&#x72;&#x67;">&#106;&#x6d;&#x63;&#x6e;&#97;&#x6d;&#x61;&#x72;&#x61;&#64;&#x63;&#x70;&#97;&#x6e;&#x2e;&#x6f;&#x72;&#x67;</a> All rights reserved.</td>
+<td>Copyright (c) 2013, John McNamara <a href="mailto:&#x6a;&#109;&#99;&#110;&#97;&#x6d;&#x61;&#x72;&#x61;&#x40;&#99;&#x70;&#97;&#x6e;&#x2e;&#x6f;&#114;&#x67;">&#x6a;&#109;&#99;&#110;&#97;&#x6d;&#x61;&#x72;&#x61;&#x40;&#99;&#x70;&#97;&#x6e;&#x2e;&#x6f;&#114;&#x67;</a> All rights reserved.</td>
 <td><a href="https://github.com/jmcnamara/XlsxWriter">https://github.com/jmcnamara/XlsxWriter</a></td>
 </tr>
 <tr>
@@ -144,8 +143,7 @@
 <td>none provided -- created by GitHub user <a href="https://github.com/mixu">mixu (Mikito Takada)</a></td>
 <td><a href="https://github.com/mixu/markdown-styles">https://github.com/mixu/markdown-styles</a></td>
 </tr>
-</tbody>
-</table>
+</tbody></table>
 <p>Since NOSA uses the PyQt5 package as stated above, it should be noted that the <a href="https://www.qt.io/">Qt</a> package is used with the <a href="https://doc.qt.io/qt-5/lgpl.html">LGPL v3</a> license.</p>
 <p>The software PyInstaller is used for building the application. See also the README file provided with NOSA.</p>
 <p>The software Markdown and markdown-styles are used for this documentation. It is written in the Markdown language and to convert the <code>.md</code> file to a <code>.html</code> file, the markdown-styles software is used. Please note that there is no explicit copyright notice provided for the markdown-styles software, and there is no license text. This is why in the <code>packages_licenses</code> directory, there is a default BSD-3-Clause license named <code>default-BSD-3-Clause_license_for_markdown-styles.txt</code>. </p>
@@ -243,7 +241,7 @@ If there is at least one source in the program, there will always be exactly one
 <p>In the first column, every object has a checkbox. This checkbox determines whether this object is displayed in the <a href="#cell-selection">Cell Selection</a> (if it belongs to an optical source), in the <a href="#compare-objects">comparing plots</a> and in the Features <a href="#amplitude-cross-correlation">Amplitude Cross Correlation</a> and <a href="#spike-cross-correlation">Spike Cross Correlation</a>.</p>
 <p>In the second column, the name of every object is displayed. The default name is &quot;ROI x - y&quot; for optical data with x and y as generic numbers. For example, the default name &quot;ROI 3 - 2&quot; is the second added ROI for the third-imported source. Objects that belong to patch clamp data sources are default named &quot;Z x - 1&quot;, where x is again a generic number and Z is the file type. For example, &quot;ABF 2 - 1&quot; is the object that belongs to the second-imported source, which is of the type ABF. The name of every object can be changed by either double clicking on that object or using the <a href="#button-name">name button</a>. </p>
 <p>The third column references the source the object belongs to. </p>
-<p>In the fourth column, every object has a checkbox. This checkbox determines whether the <a href="#data-notations] of this object should be inverted (multiplied by -1">processed data</a>. This can also be done for multiple objects at once by using the <a href="#invert-all">option with right click: invert all</a> and the <a href="#remove-invert-all">option with right click: remove invert all</a>. </p>
+<p>In the fourth column, every object has a checkbox. This checkbox determines whether the [processed data](#data-notations] of this object should be inverted (multiplied by -1). This can also be done for multiple objects at once by using the <a href="#invert-all">option with right click: invert all</a> and the <a href="#remove-invert-all">option with right click: remove invert all</a>. </p>
 <h5 id="add-1"><a class="header-link" href="#add-1"></a>Add</h5>
 <p>With this button, the user can add a new object. Initially, the newly added object will have the same settings as the selected object, except for the position, size, and angle. Here, the default parameters will be used. After the new object is added, it is automatically the selected object. </p>
 <h5 id="add-copies"><a class="header-link" href="#add-copies"></a>Add Copies</h5>
@@ -271,7 +269,7 @@ If there is at least one source in the program, there will always be exactly one
 <h5 id="delete-multiple"><a class="header-link" href="#delete-multiple"></a>Delete multiple</h5>
 <p>With a right click, the user can delete multiple objects at once. </p>
 <h4 id="cell-selection-and-raw-plot"><a class="header-link" href="#cell-selection-and-raw-plot"></a>Cell Selection and Raw Plot</h4>
-<p>For optical data, the cell selection gives the user the ability to select a ROI, and displays all ROIs belonging to the currently selected source. For patch clamp data, the cell selection is not used. The raw plot displays the <a href="#data-notations">raw data</a> or the output of the <a href="#background-subtraction">Background Subtraction</a>, if it is active.</p>
+<p>For optical data, the cell selection gives the user the ability to select a ROI, and displays all ROIs belonging to the currently selected source. For patch clamp data, the cell selection is not used. The raw plot displays the <a href="#data-notations">raw data</a> or, if one of the two features is activated, the output of the <a href="#background-subtraction">Background Subtraction</a> or the <a href="#merge-tif">Merge Tif</a>.</p>
 <p>In the following images, specific areas are highlighted describing the components of the cell selection and raw plot. All components will be described in the following sections.</p>
 <ol class="list">
 <li><a href="#cell-selection">Cell Selection</a></li>
@@ -362,7 +360,7 @@ If there is at least one source in the program, there will always be exactly one
 <img src="images/screen-pipelinemanager-rightclick2-marked.png" alt="Pipeline Manager button right click with marked areas" title="Pipeline Manager button right click with marked areas"></p>
 <h5 id="activate-or-deactivate-feature"><a class="header-link" href="#activate-or-deactivate-feature"></a>Activate or Deactivate Feature</h5>
 <p>With these checkboxes, the user can activate or deactivate single features. When a feature is activated, this feature is automatically <a href="#select-feature">selected</a>. When a feature is deactivated, this feature is automatically <a href="#select-feature">deselected</a>. Whenever one of these checkboxes is changed, automatic <a href="#plots">plot resizing</a> may happen.</p>
-<p>Clicking the checkbox for the <a href="#background-subtraction">Background Subtraction</a> when the currently selected object belongs to a patch clamp data source will not have any effect.</p>
+<p>Clicking the checkbox for the <a href="#background-subtraction">Background Subtraction</a> or <a href="#merge-tif">Merge Tif</a> when the currently selected object belongs to a patch clamp data source will not have any effect.</p>
 <h5 id="select-feature"><a class="header-link" href="#select-feature"></a>Select Feature</h5>
 <p>With these buttons, the user selects a feature that will be displayed in the <a href="#feature-view">Feature View</a>. When the checkbox for a specific feature is not checked, a click on its button will check the checkbox. </p>
 <h5 id="activate-or-deactivate-for-multiple-objects"><a class="header-link" href="#activate-or-deactivate-for-multiple-objects"></a>Activate or Deactivate for Multiple Objects</h5>
@@ -402,8 +400,7 @@ If there is at least one source in the program, there will always be exactly one
 <th>Description</th>
 </tr>
 </thead>
-<tbody>
-<tr>
+<tbody><tr>
 <td><a href="#movement-correction-1">Movement Correction</a></td>
 <td>processing</td>
 <td>Symmetric Diffeomorphic, Translation, Rigid Body, Scaled Rotation, Affine</td>
@@ -414,6 +411,12 @@ If there is at least one source in the program, there will always be exactly one
 <td>processing</td>
 <td>ROI, Perisomatic</td>
 <td>Subtraction of a background ROI mean</td>
+</tr>
+<tr>
+<td><a href="#merge-tif">Merge Tif</a></td>
+<td>processing</td>
+<td></td>
+<td>Show mean of *.tif timeline for ROI selection</td>
 </tr>
 <tr>
 <td><a href="#baseline">Baseline</a></td>
@@ -469,13 +472,12 @@ If there is at least one source in the program, there will always be exactly one
 <td></td>
 <td>Cross correlation of processed data</td>
 </tr>
-</tbody>
-</table>
+</tbody></table>
 <p>In the following sections, some data notations, the features, and their methods are explained in more detail.</p>
 <h4 id="data-notations"><a class="header-link" href="#data-notations"></a>Data notations</h4>
 <p>The following data notations are used within this documentation:</p>
 <ul class="list">
-<li><strong>raw data</strong>: the raw data describes the data extracted from the source without any processing. For optical data, it&#39;s the mean of the ROI, for patch clamp data its just the data from the source. If the <a href="#background subtraction">Background Subtraction</a> is not active, the raw data is displayed in the <a href="#raw-plot">raw plot</a>.</li>
+<li><strong>raw data</strong>: the raw data describes the data extracted from the source without any processing. For optical data, it&#39;s the mean of the ROI, for patch clamp data its just the data from the source. If the [Background Subtraction](#background subtraction) is not active, the raw data is displayed in the <a href="#raw-plot">raw plot</a>.</li>
 <li><strong>processed data</strong>: the processed data describes the data after all processing features and the inversion. It is the input data for all analysing features and displayed in the processed plot. </li>
 </ul>
 <h4 id="movement-correction-1"><a class="header-link" href="#movement-correction-1"></a>Movement Correction</h4>
@@ -528,6 +530,12 @@ If there is at least one source in the program, there will always be exactly one
 <p>With the ROI method, the user manually selects a background ROI in the <a href="#cell-selection">Cell Selection</a>.  </p>
 <h5 id="perisomatic"><a class="header-link" href="#perisomatic"></a>Perisomatic</h5>
 <p>With the Perisomatic method, the user selects a radius. This radius determines a Background ROI that lies like a ring with the given radius around the ROI. </p>
+<h4 id="merge-tif"><a class="header-link" href="#merge-tif"></a>Merge Tif</h4>
+<p>The Merge Tif feature is available for optical data source that has a timeline. 
+The mean value of the entire image series is determined for each pixel of a layer 
+and the reduced image is displayed to make it easier to select the ROI.</p>
+<p>While the feature is selected, every other feature is deselected to prevent calculation.
+The reactivation and recalculation of the other selected features is carried out by deactivating Merge Tif.</p>
 <h4 id="baseline"><a class="header-link" href="#baseline"></a>Baseline</h4>
 <p>The Baseline feature affects patch clamp and optical data different.</p>
 <p>For patch clamp data, a baseline is calculated and subtracted from the data. Please note that this feature is designed to be used with optical data. Using a baseline for patch clamp data alters its absolute values and may only be useful for particular measurements.</p>
@@ -649,42 +657,12 @@ If there is at least one source in the program, there will always be exactly one
 <li><code>#4</code>: 300000 frames, 10000 Hz recording frequency, 500 Hz adjusted frequency (leads to 15000 frames), interpolation method: Nearest Neighbour, feature: Burst Detection</li>
 </ul>
 <p>Each experiment was executed 15 times. The average times are available in the following table:</p>
-<table>
-<thead>
-<tr>
-<th>experiment</th>
-<th>interpolation</th>
-<th>feature</th>
-<th>total</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>#1</code></td>
-<td>0 s</td>
-<td>0.871 s</td>
-<td>0.871 s</td>
-</tr>
-<tr>
-<td><code>#2</code></td>
-<td>0.101 s</td>
-<td>0.049 s</td>
-<td>0.150 s</td>
-</tr>
-<tr>
-<td><code>#3</code></td>
-<td>0 s</td>
-<td>1.248 s</td>
-<td>1.248 s</td>
-</tr>
-<tr>
-<td><code>#4</code></td>
-<td>0.114 s</td>
-<td>0.088 s</td>
-<td>0.202 s</td>
-</tr>
-</tbody>
-</table>
+<p>experiment | interpolation | feature | total
+--- | --- | --- | --- | --- | ---
+<code>#1</code> | 0 s | 0.871 s | 0.871 s
+<code>#2</code> | 0.101 s | 0.049 s | 0.150 s
+<code>#3</code> | 0 s | 1.248 s | 1.248 s
+<code>#4</code> | 0.114 s | 0.088 s | 0.202 s</p>
 <p>In the experiments with an adjusted frequency, the interpolation took about 100 ms. The time needed for Spike Detection dropped from over 800 ms to around 50 ms, and the time needed for Burst Detection dropped from around 1.25 s to around 200 ms. In total, time savings in these experiments are about 83-84%. However, the detected Events changed due to the adjusted frequency. Adjusting the frequency from 10000 Hz to 500 Hz</p>
 <ul class="list">
 <li>decreased the amount of detected Spikes by approx. 10%,</li>
@@ -711,11 +689,10 @@ If there is at least one source in the program, there will always be exactly one
 <tr>
 <th>experiment</th>
 <th>ellipse mode</th>
-<th>rectangle mode </th>
+<th>rectangle mode</th>
 </tr>
 </thead>
-<tbody>
-<tr>
+<tbody><tr>
 <td><code>#1</code></td>
 <td>0.615 s</td>
 <td>&lt; 0.001 s</td>
@@ -735,8 +712,7 @@ If there is at least one source in the program, there will always be exactly one
 <td>0.770 s</td>
 <td>&lt; 0.001 s</td>
 </tr>
-</tbody>
-</table>
+</tbody></table>
 <p>It&#39;s obvious to see that the time the ellipse mode needs is quite long, whereas the rectangle mode needed time below the measuring limit. </p>
 <h4 id="order-of-feature-usage"><a class="header-link" href="#order-of-feature-usage"></a>Order of Feature Usage</h4>
 <p>NOSA has a variety of processing and analysis features. The display order of the features in the <a href="#pipeline-manager">Pipeline Manager</a> partially visualizes the order of execution of features. The important thing to note is that the processing features are calculated before the analysing features. In order to improve performance the user should first use the processing features and once these are set, they should start using the analysing features. </p>
@@ -954,9 +930,9 @@ If there is at least one source in the program, there will always be exactly one
 <li><code>update</code>: Needs to be called when the feature should be calculated. The update method for the selected feature method may be called, <code>updateLivePlot</code> may be called and depending features may be updated with the DataManager method <code>refreshPipeline</code>.</li>
 </ul>
 <p>The probably most important method is <code>update</code>, which looks similar to this:</p>
-<pre class="hljs"><code><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">update</span><span class="hljs-params">(updateDependend, plot)</span>:</span>
+<pre class="hljs"><code><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">update</span>(<span class="hljs-params">updateDependend, plot</span>):</span>
     <span class="hljs-keyword">if</span> active:
-        output = selected_method.update(input, parameter)
+        output = selected_method.update(<span class="hljs-built_in">input</span>, parameter)
         <span class="hljs-keyword">if</span> plot:
             updateLivePlot()
         <span class="hljs-keyword">if</span> updateDependend:
@@ -986,12 +962,12 @@ If there is at least one source in the program, there will always be exactly one
 <pre class="hljs"><code>metric = dipy.align.metrics.CCMetric(<span class="hljs-number">2</span>, <span class="hljs-number">3.0</span>, <span class="hljs-number">4</span>)
 sdr = dipy.align.imwarp.SymmetricDiffeomorphicRegistration(metric, [<span class="hljs-number">25</span>])
 corrected[<span class="hljs-number">0</span>] = uncorrected[<span class="hljs-number">0</span>]
-<span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">1</span>, len(uncorrected)):
+<span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">1</span>, <span class="hljs-built_in">len</span>(uncorrected)):
     mapping = sdr.optimize(corrected[<span class="hljs-number">0</span>], uncorrected[i])
     corrected[i] = mapping.transform(uncorrected[i])</code></pre><p>First, a metric and a registration are created. The first image is the reference image. Every other image is transformed with a mapping, that optimizes the metric between the reference image and the other image.</p>
 <p>All other options are calculated using the <a href="#software-nosa-uses-and-their-licenses">pyStackReg</a> package. The following code is incomplete, but should give a good understanding of how the calculation is done:</p>
 <pre class="hljs"><code>sr = pystackreg.StackReg(option)
-corrected = sr.register_transform_stack(uncorrected, reference = <span class="hljs-string">'first'</span>)</code></pre><p>First, an instance of the <code>pystackreg.StackReg</code> class is created, using <code>option</code>, which is one of the following: <code>pystackreg.StackReg.TRANSLATION</code>, <code>pystackreg.StackReg.RIGID_BODY</code>, <code>pystackreg.StackReg.SCALED_ROTATION</code>, <code>pystackreg.StackReg.AFFINE</code>, according to what the user selected. After that, the correction is calculated using the first image as a reference. </p>
+corrected = sr.register_transform_stack(uncorrected, reference = <span class="hljs-string">&#x27;first&#x27;</span>)</code></pre><p>First, an instance of the <code>pystackreg.StackReg</code> class is created, using <code>option</code>, which is one of the following: <code>pystackreg.StackReg.TRANSLATION</code>, <code>pystackreg.StackReg.RIGID_BODY</code>, <code>pystackreg.StackReg.SCALED_ROTATION</code>, <code>pystackreg.StackReg.AFFINE</code>, according to what the user selected. After that, the correction is calculated using the first image as a reference. </p>
 <h4 id="cellselection"><a class="header-link" href="#cellselection"></a>CellSelection</h4>
 <p>The CellSelection has a fairly complex <code>inputConfiguration</code> method, which correctly hides everything if no input is given. Otherwise, a distinction between optical data sources and patch clamp data sources is done and suitable actions are taken, such as displaying or hiding the ROI.</p>
 <p>When the CellSelection is updated, e.g. by moving the ROI, the data defined by the ROI will be extracted from the source using the <a href="#software-nosa-uses-and-their-licenses">PyQtGraph</a> package. The following code is incomplete, but should give a good understanding of how the calculation is done:</p>
@@ -1004,8 +980,8 @@ corrected = sr.register_transform_stack(uncorrected, reference = <span class="hl
     size = (math.ceil(size[<span class="hljs-number">0</span>]), math.ceil(size[<span class="hljs-number">1</span>]))
     rect_roi.setPos(pos)
     rect_roi.setSize(size)
-    _slice = rect_roi.getArraySlice(img.view(numpy.ndarray), imv.imageItem, axes=(<span class="hljs-number">1</span>,<span class="hljs-number">2</span>))
-    cell = img[_slice[<span class="hljs-number">0</span>]]
+    _<span class="hljs-built_in">slice</span> = rect_roi.getArraySlice(img.view(numpy.ndarray), imv.imageItem, axes=(<span class="hljs-number">1</span>,<span class="hljs-number">2</span>))
+    cell = img[_<span class="hljs-built_in">slice</span>[<span class="hljs-number">0</span>]]
 cell_mean = cell.mean(axis=(<span class="hljs-number">1</span>,<span class="hljs-number">2</span>))</code></pre><p>If the ROI is in ellipse mode, the <code>pyqtgraph.ROI.getArrayRegion</code> method is called to extract the data from the source. The parameters are: <code>img.view(numpy.ndarray)</code> (a copy of the source data), <code>imv.imageItem</code> (the <code>imageItem</code> of the <code>pyqtgraph.ImageView</code> that is displays the visual data and where the ROI is in), and the axes of the data array the ROI works on.</p>
 <p>If the ROI is in rectangle mode, the position and size of the ROI will be changed to integers instead of floats such that a simple array slice can be used to extract the data from the source. The slice is created using the <code>pyqtgraph.ROI.getArraySlice</code> method with the same parameters as explained above for <code>getArrayRegion</code>. The second return parameter of <code>getArraySlice</code> is a transform that we do not need, that is why the first part of the return value is accessed in the line <code>cell = img[_slice[0]]</code>.</p>
 <p>Finally, the cell mean is calculated using the <code>numpy.ndarray.mean</code> method.</p>
@@ -1018,24 +994,27 @@ cell_mean = cell.mean(axis=(<span class="hljs-number">1</span>,<span class="hljs
 <p>The update procedure of the feature method <code>Perisomatic</code> also works very similar to the one of the CellSelection, but before the data is extracted from the source, the correct position, size and angle for the perisomatic ROI must be calculated from the CellSelection ROI&#39;s parameters and the user-set radius. The following code is incomplete, but should give a good understanding of how the calculation is done:</p>
 <pre class="hljs"><code>p_angle = angle
 p_size = size[<span class="hljs-number">0</span>] + radius, size[<span class="hljs-number">1</span>] + radius
-angle_of_position = math.radians(angle<span class="hljs-number">-135</span>)
+angle_of_position = math.radians(angle-<span class="hljs-number">135</span>)
 shift_x = math.sqrt(<span class="hljs-number">2</span>) * math.cos(angle_of_position) * radius / <span class="hljs-number">2</span>
 shift_y = math.sqrt(<span class="hljs-number">2</span>) * math.sin(angle_of_position) * radius / <span class="hljs-number">2</span>
 p_pos = pos[<span class="hljs-number">0</span>] + shift_x, pos[<span class="hljs-number">1</span>] + shift_y</code></pre><p>Where <code>pos</code>, <code>size</code>, and <code>angle</code> are the parameter of the CellSelection ROI, <code>radius</code> is the user-set radius, and <code>p_angle</code>, <code>p_size</code>, and <code>p_pos</code> are the perisomatic ROI attributes. The data extracted with this perisomatic ROI still includes the data of the original ROI because its just a bigger version of it with the same center and angle. This is why the data needs to be corrected by subtracting the original cell data. The following code is incomplete, but should give a good understanding of how the calculation is done:</p>
-<pre class="hljs"><code>p_ring = numpy.sum(p_cell, axis=(<span class="hljs-number">1</span>,<span class="hljs-number">2</span>)) - numpy.sum(cell, axis=(<span class="hljs-number">1</span>,<span class="hljs-number">2</span>))
+<pre class="hljs"><code>p_ring = numpy.<span class="hljs-built_in">sum</span>(p_cell, axis=(<span class="hljs-number">1</span>,<span class="hljs-number">2</span>)) - numpy.<span class="hljs-built_in">sum</span>(cell, axis=(<span class="hljs-number">1</span>,<span class="hljs-number">2</span>))
 _, p1, p2 = p_cell.shape
 _, c1, c2 = cell.shape
 p_ring_size = (p1 * p2) - (c1 * c2)
 background_mean = p_ring / p_ring_size</code></pre><p>Where <code>p_cell</code> is the extracted data for the background ROI and <code>cell</code> is the original cell data. </p>
+<h4 id="merge-tif-1"><a class="header-link" href="#merge-tif-1"></a>Merge Tif</h4>
+<p>The MergeTif is the second feature in every pipeline. It should never be active for objects that belong to a patch clamp data source. It uses the same <code>pyqtgraph.ImageView</code> as well as the ROI selection from CellSelection, but prevents the recalculation of the selected ROI as the resulting image has no timeline. </p>
+<p>The selected ROI and all other selected features are recalculated as soon as the feature is deactivated.</p>
 <h4 id="baseline-1"><a class="header-link" href="#baseline-1"></a>Baseline</h4>
 <p>The Baseline displays the baseline calculated in the <a href="#raw-plot">raw plot</a> and also needs the parent view of that plot, thats why it holds a <code>liveplot</code> and a <code>liveplot_container</code>. This is also the reason why at some points of the program the <code>undisplayPlots</code> method may be called, just like for the BackgroundSubtraction.</p>
 <p>The Baseline does not only calculate the baseline but also subtracts it from the data (if the object belongs to a patch clamp data source) or calculates a gradient based on the baseline with the following method:</p>
-<pre class="hljs"><code><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">getGradient</span><span class="hljs-params">(y, baseline)</span>:</span>
-    grad = numpy.zeros(len(y), dtype=float)
-    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(len(y)):
+<pre class="hljs"><code><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">getGradient</span>(<span class="hljs-params">y, baseline</span>):</span>
+    grad = numpy.zeros(<span class="hljs-built_in">len</span>(y), dtype=<span class="hljs-built_in">float</span>)
+    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-built_in">len</span>(y)):
         bli = baseline[i]
         <span class="hljs-keyword">try</span>:
-            grad[i] = (float(y[i]-bli)/bli)*<span class="hljs-number">100</span>
+            grad[i] = (<span class="hljs-built_in">float</span>(y[i]-bli)/bli)*<span class="hljs-number">100</span>
         <span class="hljs-keyword">except</span>:
             <span class="hljs-keyword">pass</span>
     <span class="hljs-keyword">return</span> grad</code></pre><h5 id="polynomial-fitting-baseline"><a class="header-link" href="#polynomial-fitting-baseline"></a>Polynomial Fitting Baseline</h5>
@@ -1050,22 +1029,22 @@ background_mean = p_ring / p_ring_size</code></pre><p>Where <code>p_cell</code> 
     y = y - baseline</code></pre><p>Where <code>x</code> is the frame range of the source, <code>y</code> is the data, <code>marker</code> is a list of frame numbers that mark the data point to fit the function, <code>intercept</code> is the user-set intercept, and <code>polyorder</code> is the user-set polynomial order. The <code>fitting</code> method is as follows:</p>
 <pre class="hljs"><code>funcList = [func_lin,func_poly2,func_poly3, func_poly4,func_poly5,func_poly6]
 
-<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">fitting</span><span class="hljs-params">(x1, x2, y, intercept=<span class="hljs-number">0</span>, degree=<span class="hljs-number">0</span>)</span>:</span>
-    func = funcList[degree<span class="hljs-number">-1</span>]
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">fitting</span>(<span class="hljs-params">x1, x2, y, intercept=<span class="hljs-number">0</span>, degree=<span class="hljs-number">0</span></span>):</span>
+    func = funcList[degree-<span class="hljs-number">1</span>]
     <span class="hljs-keyword">if</span> degree &gt; <span class="hljs-number">0</span> <span class="hljs-keyword">and</span> degree &lt;= <span class="hljs-number">6</span>:
         popt, _ = scipy.optimize.curve_fit(func, xdata=x2, ydata=y)
         fit = func(x1, *popt)
     <span class="hljs-keyword">else</span>:
-        fit = numpy.repeat(numpy.mean(y),len(x1))
+        fit = numpy.repeat(numpy.mean(y),<span class="hljs-built_in">len</span>(x1))
     <span class="hljs-keyword">return</span> fit+intercept</code></pre><h5 id="asymmetrical-least-squares-baseline"><a class="header-link" href="#asymmetrical-least-squares-baseline"></a>Asymmetrical Least Squares Baseline</h5>
 <p>For the feature method Asymmetrical Least Squares, the baseline is calculated using an algorithm that was originally described in the following publication: <a href="https://zanran_storage.s3.amazonaws.com/www.science.uva.nl/ContentPages/443199618.pdf">Paul H. C. Eilers, and Hans F. M. Boelens (2005). Baseline Correction with Asymmetric Least Squares Smoothing</a>. The python code is adapted from a StackOverflow <a href="https://stackoverflow.com/a/50160920">answer</a> by user <a href="https://stackoverflow.com/users/6126163/jpantina">jpantina</a>:</p>
 <pre class="hljs"><code><span class="hljs-keyword">from</span> scipy <span class="hljs-keyword">import</span> sparse
-<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">als</span><span class="hljs-params">(y, iterations, smooth, p=<span class="hljs-number">0.001</span>)</span>:</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">als</span>(<span class="hljs-params">y, iterations, smooth, p=<span class="hljs-number">0.001</span></span>):</span>
     smooth=smooth**<span class="hljs-number">3</span>
-    L = len(y)
-    D = sparse.diags([<span class="hljs-number">1</span>,<span class="hljs-number">-2</span>,<span class="hljs-number">1</span>],[<span class="hljs-number">0</span>,<span class="hljs-number">-1</span>,<span class="hljs-number">-2</span>], shape=(L,L<span class="hljs-number">-2</span>))
+    L = <span class="hljs-built_in">len</span>(y)
+    D = sparse.diags([<span class="hljs-number">1</span>,-<span class="hljs-number">2</span>,<span class="hljs-number">1</span>],[<span class="hljs-number">0</span>,-<span class="hljs-number">1</span>,-<span class="hljs-number">2</span>], shape=(L,L-<span class="hljs-number">2</span>))
     w = numpy.ones(L)
-    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(iterations):
+    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(iterations):
         W = sparse.spdiags(w, <span class="hljs-number">0</span>, L, L)
         Z = W + smooth * D.dot(D.transpose())
         z = sparse.linalg.spsolve(Z, w*y)
@@ -1074,10 +1053,10 @@ background_mean = p_ring / p_ring_size</code></pre><p>Where <code>p_cell</code> 
 <h5 id="top-hat-baseline"><a class="header-link" href="#top-hat-baseline"></a>Top Hat Baseline</h5>
 <p>For the feature method Top Hat, the baseline is calculated using the following method that uses the <a href="#software-nosa-uses-and-their-licenses">SciPy</a> method <code>scipy.ndimage.white_tophat</code>:</p>
 <pre class="hljs"><code><span class="hljs-keyword">from</span> scipy <span class="hljs-keyword">import</span> ndimage
-<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">topHat</span><span class="hljs-params">(y, pntFactor)</span>:</span>
-    struct_pts = int(round(y.size*pntFactor))
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">topHat</span>(<span class="hljs-params">y, pntFactor</span>):</span>
+    struct_pts = <span class="hljs-built_in">int</span>(<span class="hljs-built_in">round</span>(y.size*pntFactor))
     str_el = numpy.repeat([<span class="hljs-number">1</span>], struct_pts)
-    tFil = ndimage.white_tophat(y, <span class="hljs-keyword">None</span>, str_el)
+    tFil = ndimage.white_tophat(y, <span class="hljs-literal">None</span>, str_el)
     <span class="hljs-keyword">return</span> y-tFil</code></pre><p>Where <code>y</code> is the data and <code>pntFactor</code> is the factor that the user sets. The code was adapted from this <a href="http://machc.blogspot.com/2008/12/tophat-filter.html">blogpost</a>.</p>
 <h5 id="moving-average-baseline"><a class="header-link" href="#moving-average-baseline"></a>Moving Average Baseline</h5>
 <p>For the feature method Moving Average, the baseline is calculated using the <a href="#movingaverage">moving average</a> function.</p>
@@ -1089,10 +1068,10 @@ background_mean = p_ring / p_ring_size</code></pre><p>Where <code>p_cell</code> 
 <p>The Moving Average feature method smoothes by using the <a href="#movingaverage">moving average</a> function.</p>
 <h5 id="butterworth-smoothing"><a class="header-link" href="#butterworth-smoothing"></a>Butterworth Smoothing</h5>
 <p>The Butterworth feature method smoothes by using a butterworth filter. For this, the <a href="#software-nosa-uses-and-their-licenses">SciPy</a> methods <code>scipy.signal.butter</code>, <code>scipy.signal.lfilter_zi</code>, and <code>scipy.signal.lfilter</code> are used:</p>
-<pre class="hljs"><code><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">butter_lowpass_filter</span><span class="hljs-params">(y, freq, highcut, order)</span>:</span>
+<pre class="hljs"><code><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">butter_lowpass_filter</span>(<span class="hljs-params">y, freq, highcut, order</span>):</span>
     nyq = <span class="hljs-number">0.5</span> * freq
     high = highcut / nyq
-    b, a = scipy.signal.butter(order, high, btype=<span class="hljs-string">'lowpass'</span>)
+    b, a = scipy.signal.butter(order, high, btype=<span class="hljs-string">&#x27;lowpass&#x27;</span>)
     zi = scipy.signal.lfilter_zi(b, a)
     z, _ = scipy.signal.lfilter(b, a, y, zi = zi * y[<span class="hljs-number">0</span>])
     <span class="hljs-keyword">return</span> z</code></pre><p>Where <code>y</code> is the data, <code>freq</code> the frequency of the source, and <code>highcut</code> and <code>order</code> the user-set parameters.</p>
@@ -1100,17 +1079,17 @@ background_mean = p_ring / p_ring_size</code></pre><p>Where <code>p_cell</code> 
 <p>The Sacled Window Convolution feature method smoothes by convolving the data with a scaled window. For this, the the <a href="#software-nosa-uses-and-their-licenes">NumPy</a> methods <code>numpy.r_</code>, <code>numpy.hamming</code>, <code>numpy.hanning</code>, <code>numpy.bartlett</code>, <code>numpy.blackman</code>, and <code>numpy.convolve</code> are used:</p>
 <pre class="hljs"><code><span class="hljs-keyword">if</span> window_len % <span class="hljs-number">2</span> == <span class="hljs-number">0</span>:
     window_len += <span class="hljs-number">1</span>
-s=numpy.r_[y[window_len<span class="hljs-number">-1</span>:<span class="hljs-number">0</span>:<span class="hljs-number">-1</span>],y,y[<span class="hljs-number">-2</span>:-window_len<span class="hljs-number">-1</span>:<span class="hljs-number">-1</span>]]
-<span class="hljs-keyword">if</span> (window == <span class="hljs-string">'hamming'</span>):
+s=numpy.r_[y[window_len-<span class="hljs-number">1</span>:<span class="hljs-number">0</span>:-<span class="hljs-number">1</span>],y,y[-<span class="hljs-number">2</span>:-window_len-<span class="hljs-number">1</span>:-<span class="hljs-number">1</span>]]
+<span class="hljs-keyword">if</span> (window == <span class="hljs-string">&#x27;hamming&#x27;</span>):
     w = numpy.hamming(window_len)
-<span class="hljs-keyword">elif</span> (window == <span class="hljs-string">'bartlett'</span>):
+<span class="hljs-keyword">elif</span> (window == <span class="hljs-string">&#x27;bartlett&#x27;</span>):
     w = numpy.bartlett(window_len)
-<span class="hljs-keyword">elif</span> (window == <span class="hljs-string">'blackman'</span>):
+<span class="hljs-keyword">elif</span> (window == <span class="hljs-string">&#x27;blackman&#x27;</span>):
     w = numpy.blackman(window_len)
 <span class="hljs-keyword">else</span>:
     w = numpy.hanning(window_len)
-swc = numpy.convolve(w/w.sum(), s, mode=<span class="hljs-string">'valid'</span>)
-swc = swc[(int(window_len/<span class="hljs-number">2</span>)<span class="hljs-number">-1</span>):-int(window_len/<span class="hljs-number">2</span>)<span class="hljs-number">-1</span>]</code></pre><p>Where <code>window_len</code> is the window length in frames, <code>y</code> is the data, <code>window</code> the window type, and <code>swc</code> the smoothed result that will be returned.</p>
+swc = numpy.convolve(w/w.<span class="hljs-built_in">sum</span>(), s, mode=<span class="hljs-string">&#x27;valid&#x27;</span>)
+swc = swc[(<span class="hljs-built_in">int</span>(window_len/<span class="hljs-number">2</span>)-<span class="hljs-number">1</span>):-<span class="hljs-built_in">int</span>(window_len/<span class="hljs-number">2</span>)-<span class="hljs-number">1</span>]</code></pre><p>Where <code>window_len</code> is the window length in frames, <code>y</code> is the data, <code>window</code> the window type, and <code>swc</code> the smoothed result that will be returned.</p>
 <h4 id="adjustfrequency"><a class="header-link" href="#adjustfrequency"></a>AdjustFrequency</h4>
 <p>AdjustFrequency is source specific and due to that, handled differently than other features. It is not displayed in the PipelineManager and does not have a <code>liveplot</code>. It is displayed in a separate dialog, namely the <code>view.AdjustFrequencyDialog.AdjustFrequencyDialog</code>. When the user clicks on the <a href="#movement-correction">movement correction button</a>, the AdjustFrequencyDialog is displayed. The AdjustFrequencyDialog has a <a href="https://doc.qt.io/qt-5/qstackedwidget.html">QStackedWidget</a> as view for the features, which will be displayed one feature at a time, or no feature. To change the settings of the feature, the user must activate it. Once activated, the user can change the settings any way he wants, no update of the feature will be executed. Only when the confirm button in the AdjustFrequencyDialog is clicked, some checks will be made: when the adjusted frequency equals the original frequency, the feature is deactivated; when the feature was not active before and is not active after the confirmation, the method returns; when the same method and parameters are selected, the method returns. If the method did not return until this point, the <code>refreshView</code> method of the SourceManager is called and the <code>refreshPipeline</code> method of the DataManager refreshes the pipeline for all affected objects, which will update the feature too.</p>
 <h4 id="spikedetection"><a class="header-link" href="#spikedetection"></a>SpikeDetection</h4>
@@ -1122,22 +1101,22 @@ swc = swc[(int(window_len/<span class="hljs-number">2</span>)<span class="hljs-n
 
 <span class="hljs-keyword">if</span> relative_threshold:
     amplitude = amplitude * (noise_std <span class="hljs-keyword">if</span> use_noise_std <span class="hljs-keyword">else</span> data_std)
-
+    
 <span class="hljs-keyword">if</span> dynamic_threshold:
     threshold = movingAverage(y, smooth) + amplitude
 <span class="hljs-keyword">else</span>:
-    threshold = numpy.full(len(y), amplitude, dtype = float)</code></pre><p>After that, spikes are detected using the following function:</p>
-<pre class="hljs"><code><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">spikeDetection</span><span class="hljs-params">(y, thresh, interval)</span>:</span>
+    threshold = numpy.full(<span class="hljs-built_in">len</span>(y), amplitude, dtype = <span class="hljs-built_in">float</span>)</code></pre><p>After that, spikes are detected using the following function:</p>
+<pre class="hljs"><code><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">spikeDetection</span>(<span class="hljs-params">y, thresh, interval</span>):</span>
     spikes = []
     i = <span class="hljs-number">1</span>
-    n = len(y)
-    <span class="hljs-keyword">while</span> i &lt; n<span class="hljs-number">-1</span>:
+    n = <span class="hljs-built_in">len</span>(y)
+    <span class="hljs-keyword">while</span> i &lt; n-<span class="hljs-number">1</span>:
         <span class="hljs-keyword">if</span> y[i]&gt;thresh[i]:
-            <span class="hljs-keyword">if</span> (y[i] &gt;= y[i<span class="hljs-number">-1</span>] <span class="hljs-keyword">and</span> y[i] &gt;= y[i+<span class="hljs-number">1</span>]):
+            <span class="hljs-keyword">if</span> (y[i] &gt;= y[i-<span class="hljs-number">1</span>] <span class="hljs-keyword">and</span> y[i] &gt;= y[i+<span class="hljs-number">1</span>]):
                 spikes.append(i)
         i+=<span class="hljs-number">1</span>
     j = <span class="hljs-number">0</span>
-    <span class="hljs-keyword">while</span> j &lt; len(spikes)<span class="hljs-number">-1</span>:
+    <span class="hljs-keyword">while</span> j &lt; <span class="hljs-built_in">len</span>(spikes)-<span class="hljs-number">1</span>:
         <span class="hljs-keyword">if</span> (spikes[j+<span class="hljs-number">1</span>]-spikes[j]) &lt; interval:
             <span class="hljs-keyword">if</span> y[spikes[j]]&gt;y[spikes[j+<span class="hljs-number">1</span>]]:
                 <span class="hljs-keyword">del</span> spikes[j+<span class="hljs-number">1</span>]
@@ -1162,19 +1141,19 @@ swc = swc[(int(window_len/<span class="hljs-number">2</span>)<span class="hljs-n
         base = numpy.mean(y)
     <span class="hljs-keyword">else</span>:
         base = <span class="hljs-number">0</span>
-
+    
 <span class="hljs-keyword">if</span> dynamic_threshold:
     amplitude_threshold = movingAverage(y, smooth) + amplitude
     base_threshold = movingAverage(y, smooth) + base
 <span class="hljs-keyword">else</span>:
-    amplitude_threshold = numpy.full(len(y), amplitude, dtype = float)
-    base_threshold = numpy.full(len(y), base, dtype = float)</code></pre><p>After that, the bursts are detected using the following function:</p>
-<pre class="hljs"><code><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">burstDetection</span><span class="hljs-params">(y, amplitude, base, duration, isDepolarization)</span>:</span>
-    <span class="hljs-string">"""
+    amplitude_threshold = numpy.full(<span class="hljs-built_in">len</span>(y), amplitude, dtype = <span class="hljs-built_in">float</span>)
+    base_threshold = numpy.full(<span class="hljs-built_in">len</span>(y), base, dtype = <span class="hljs-built_in">float</span>)</code></pre><p>After that, the bursts are detected using the following function:</p>
+<pre class="hljs"><code><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">burstDetection</span>(<span class="hljs-params">y, amplitude, base, duration, isDepolarization</span>):</span>
+    <span class="hljs-string">&quot;&quot;&quot;
     y: signal
     amplitude: upper threshold to decide whether there is a burst or not
     base: lower threshold to determine the start and end of the burst
-    duration: amount of frames that a burst's length must be at minimum
+    duration: amount of frames that a burst&#x27;s length must be at minimum
     isDepolarization: defines if depolarization or hyperpolarization 
             should be detected
 
@@ -1186,13 +1165,13 @@ swc = swc[(int(window_len/<span class="hljs-number">2</span>)<span class="hljs-n
     the end of the burst is the intersection of the signal (y) with the 
     lower threshold (base) on the right of the point above the upper threshold.
     the burst only counts if it is at least duration long.
-    """</span>
+    &quot;&quot;&quot;</span>
     bursts = ([],[])
-    n = len(y)
+    n = <span class="hljs-built_in">len</span>(y)
     i = <span class="hljs-number">1</span>
-    <span class="hljs-keyword">while</span> (i &lt; n<span class="hljs-number">-2</span>):
+    <span class="hljs-keyword">while</span> (i &lt; n-<span class="hljs-number">2</span>):
         <span class="hljs-keyword">if</span> (isDepolarization <span class="hljs-keyword">and</span> y[i] &gt; amplitude[i]) <span class="hljs-keyword">or</span> (<span class="hljs-keyword">not</span> isDepolarization <span class="hljs-keyword">and</span> y[i] &lt; amplitude[i]):
-            start, end, error = burstBorderDetection(y, base, i, <span class="hljs-number">0</span> <span class="hljs-keyword">if</span> len(bursts[<span class="hljs-number">0</span>]) == <span class="hljs-number">0</span> <span class="hljs-keyword">else</span> bursts[<span class="hljs-number">1</span>][<span class="hljs-number">-1</span>]+<span class="hljs-number">1</span>, isDepolarization)
+            start, end, error = burstBorderDetection(y, base, i, <span class="hljs-number">0</span> <span class="hljs-keyword">if</span> <span class="hljs-built_in">len</span>(bursts[<span class="hljs-number">0</span>]) == <span class="hljs-number">0</span> <span class="hljs-keyword">else</span> bursts[<span class="hljs-number">1</span>][-<span class="hljs-number">1</span>]+<span class="hljs-number">1</span>, isDepolarization)
             <span class="hljs-keyword">if</span> end-start &gt; duration <span class="hljs-keyword">and</span> <span class="hljs-keyword">not</span> error:
                 bursts[<span class="hljs-number">0</span>].append(start)
                 bursts[<span class="hljs-number">1</span>].append(end)
@@ -1200,8 +1179,8 @@ swc = swc[(int(window_len/<span class="hljs-number">2</span>)<span class="hljs-n
         <span class="hljs-keyword">else</span>:
             i += <span class="hljs-number">1</span>
     <span class="hljs-keyword">return</span> bursts</code></pre><p>Where <code>y</code> is the data, <code>amplitude</code> the minimal amplitude threshold, <code>base</code> the minimal base threshold, <code>duration</code> the user-set duration, &#39;isDepolarization&#39; is a boolean set to true when detecting depolarization and set to false when detecting hyperpolarization, and <code>burstBorderDetection</code> the following method:</p>
-<pre class="hljs"><code><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">burstBorderDetection</span><span class="hljs-params">(y, base, i, leftborder, isDepolarization)</span>:</span>
-    <span class="hljs-string">"""
+<pre class="hljs"><code><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">burstBorderDetection</span>(<span class="hljs-params">y, base, i, leftborder, isDepolarization</span>):</span>
+    <span class="hljs-string">&quot;&quot;&quot;
     y: signal
     base: lower threshold to determine start and end of burst
     i: frame of the point above the upper threshold
@@ -1213,8 +1192,8 @@ swc = swc[(int(window_len/<span class="hljs-number">2</span>)<span class="hljs-n
     of the point above the upper threshold, and an error-boolean. this 
     is True when start/end are not below the base, but we stopped because
     of the borders.
-    """</span>
-    n = len(y) - <span class="hljs-number">1</span>
+    &quot;&quot;&quot;</span>
+    n = <span class="hljs-built_in">len</span>(y) - <span class="hljs-number">1</span>
     start = i - <span class="hljs-number">1</span>
     <span class="hljs-keyword">while</span> (start &gt; leftborder <span class="hljs-keyword">and</span> ((isDepolarization <span class="hljs-keyword">and</span> y[start] &gt;= base[start]) <span class="hljs-keyword">or</span> (<span class="hljs-keyword">not</span> isDepolarization <span class="hljs-keyword">and</span> y[start] &lt;= base[start]))):
         start -= <span class="hljs-number">1</span>
@@ -1233,11 +1212,11 @@ swc = swc[(int(window_len/<span class="hljs-number">2</span>)<span class="hljs-n
 <pre class="hljs"><code>y_detrended = y - numpy.mean(y)
 
 fft = numpy.fft.fft(y_detrended)
-fft = fft / len(fft)
-psd = numpy.abs(fft)**<span class="hljs-number">2</span>
-freqs = numpy.fft.fftfreq(len(y_detrended), <span class="hljs-number">1</span> / frequency)</code></pre><p>Where <code>y</code> is the data, and <code>frequency</code> is the frequency of the source. As explained in the <a href="https://docs.scipy.org/doc/numpy/reference/routines.fft.html">module description</a>, the power spectrum is obtained using <code>numpy.abs</code> of <code>numpy.fft.fft</code>, where <code>y_detrended</code> is the data normalized around zero by subtracting the mean. The power spectrum is normalized by dividing by the length of the spectrum. The frequencies are obtained using the <code>numpy.fft.fftfreq</code> method. After that, the frequencies the user is interested are extracted, and thresholding and smoothing are done:</p>
-<pre class="hljs"><code>left_closest_index = numpy.argmin(numpy.abs(freqs - interval[<span class="hljs-number">0</span>]))
-right_closest_index = numpy.argmin(numpy.abs(freqs - interval[<span class="hljs-number">1</span>]))
+fft = fft / <span class="hljs-built_in">len</span>(fft)
+psd = numpy.<span class="hljs-built_in">abs</span>(fft)**<span class="hljs-number">2</span>
+freqs = numpy.fft.fftfreq(<span class="hljs-built_in">len</span>(y_detrended), <span class="hljs-number">1</span> / frequency)</code></pre><p>Where <code>y</code> is the data, and <code>frequency</code> is the frequency of the source. As explained in the <a href="https://docs.scipy.org/doc/numpy/reference/routines.fft.html">module description</a>, the power spectrum is obtained using <code>numpy.abs</code> of <code>numpy.fft.fft</code>, where <code>y_detrended</code> is the data normalized around zero by subtracting the mean. The power spectrum is normalized by dividing by the length of the spectrum. The frequencies are obtained using the <code>numpy.fft.fftfreq</code> method. After that, the frequencies the user is interested are extracted, and thresholding and smoothing are done:</p>
+<pre class="hljs"><code>left_closest_index = numpy.argmin(numpy.<span class="hljs-built_in">abs</span>(freqs - interval[<span class="hljs-number">0</span>]))
+right_closest_index = numpy.argmin(numpy.<span class="hljs-built_in">abs</span>(freqs - interval[<span class="hljs-number">1</span>]))
 
 freqs = freqs[left_closest_index:right_closest_index+<span class="hljs-number">1</span>]
 psd = psd[left_closest_index:right_closest_index+<span class="hljs-number">1</span>]
@@ -1248,13 +1227,13 @@ psd = movingAverage(psd, window = smooth)</code></pre><p>Where <code>interval</c
 <p>Both features SpikeCrossCorrelation and AmplitudeCrossCorrelation extend the base class <code>features.CrossCorrelation.CrossCorrelation</code>. This base class provides some functionality, that include two methods: <code>adjustFrequencies</code> and <code>sliceSignals</code>. These are of great importance for the correct cross correlation and will be explained here.</p>
 <h5 id="adjustfrequencies"><a class="header-link" href="#adjustfrequencies"></a>adjustFrequencies</h5>
 <p>The <code>adjustFrequencies</code> method adjusts all signals towards the same frequency, in concrete the lowest frequency given. The method uses the <a href="#software-nosa-uses-and-their-licenses">NumPy</a> method <code>numpy.interp</code> (amongst others) to interpolate the data and looks as follows:</p>
-<pre class="hljs"><code><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">adjustFrequencies</span><span class="hljs-params">(signals, freqs)</span>:</span>
-    min_freq = min(freqs)
-    <span class="hljs-keyword">for</span> signal_index, freq <span class="hljs-keyword">in</span> zip(range(len(signals)), freqs):
+<pre class="hljs"><code><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">adjustFrequencies</span>(<span class="hljs-params">signals, freqs</span>):</span>
+    min_freq = <span class="hljs-built_in">min</span>(freqs)
+    <span class="hljs-keyword">for</span> signal_index, freq <span class="hljs-keyword">in</span> <span class="hljs-built_in">zip</span>(<span class="hljs-built_in">range</span>(<span class="hljs-built_in">len</span>(signals)), freqs):
         <span class="hljs-keyword">if</span> freq != min_freq:
-            signal_len = len(signals[signal_index])
+            signal_len = <span class="hljs-built_in">len</span>(signals[signal_index])
             new_signal_len = math.ceil(signal_len * min_freq / freq)
-            signals[signal_index] = numpy.interp(numpy.linspace(<span class="hljs-number">0</span>, signal_len<span class="hljs-number">-1</span>, num = new_signal_len), numpy.arange(signal_len), signals[signal_index])
+            signals[signal_index] = numpy.interp(numpy.linspace(<span class="hljs-number">0</span>, signal_len-<span class="hljs-number">1</span>, num = new_signal_len), numpy.arange(signal_len), signals[signal_index])
     <span class="hljs-keyword">return</span> signals, min_freq</code></pre><p>This function accepts two lists of same length and returns a list with the adjusted signals and the frequency these adjusted signals have. If the frequencies are all the same, e.g. when they come from the same source, nothing will be adjusted here.</p>
 <h5 id="slicesignals"><a class="header-link" href="#slicesignals"></a>sliceSignals</h5>
 <p>The <code>sliceSignals</code> method determines the time points in the common time domain in which both signals are well defined. This is affected by the length of the signal, cropping, and the offset. For example, if signal one is 800 frames long and has an offset of 100 frames, and signal two is 600 frames long and does not have an offset, in the common time domain signal one is defined from frame 100 to frame 900, and signal two is defined from frame 0 to frame 600. In the following image, signal one is represented by the red graph, and signal two is represented by the green graph. The frequency in this example is set to 100 Hz.</p>
@@ -1262,10 +1241,10 @@ psd = movingAverage(psd, window = smooth)</code></pre><p>Where <code>interval</c
 <p>This makes the time points where both signals are well defined the frames 100 to 600, which leads to slicing the signal one from frame 0 to frame 500, and signal two from frame 100 to frame 600. After slicing, the signals look like this:</p>
 <p class="img-container"><img src="images/screen-for-slice-signals-2.png" alt="Two signals of different length and offset, sliced to a common defined time domain" title="Two signals of different length and offset, sliced to a common defined time domain"></p>
 <p>The method looks as follows:</p>
-<pre class="hljs"><code><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">sliceSignals</span><span class="hljs-params">(len1, len2, offset1, offset2)</span>:</span>
-    start = max(offset1, offset2)
-    end = min(offset1 + len1, offset2 + len2)
-    <span class="hljs-keyword">return</span> slice(start-offset1, end-offset1), slice(start-offset2, end-offset2)</code></pre><p>Where <code>len1</code> and <code>len2</code> are the lengths of the signals in frames, and <code>offset1</code> and <code>offset2</code> are the offsets of the signals in frames. </p>
+<pre class="hljs"><code><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">sliceSignals</span>(<span class="hljs-params">len1, len2, offset1, offset2</span>):</span>
+    start = <span class="hljs-built_in">max</span>(offset1, offset2)
+    end = <span class="hljs-built_in">min</span>(offset1 + len1, offset2 + len2)
+    <span class="hljs-keyword">return</span> <span class="hljs-built_in">slice</span>(start-offset1, end-offset1), <span class="hljs-built_in">slice</span>(start-offset2, end-offset2)</code></pre><p>Where <code>len1</code> and <code>len2</code> are the lengths of the signals in frames, and <code>offset1</code> and <code>offset2</code> are the offsets of the signals in frames. </p>
 <h5 id="spikecrosscorrelation"><a class="header-link" href="#spikecrosscorrelation"></a>SpikeCrossCorrelation</h5>
 <p>The SpikeCrossCorrelation calculates a pairwise cross correlation between spike trains. When the feature is updated, the following things, amongst others, may happen:</p>
 <ul class="list">
@@ -1281,7 +1260,7 @@ psd = movingAverage(psd, window = smooth)</code></pre><p>Where <code>interval</c
 </li>
 </ul>
 <p>The correlation coefficient and the main lag and the correlation coefficient at the main lag are calculated using the <a href="#software-nosa-uses-and-their-licenses">NumPy</a> methods <code>numpy.argmax</code> and <code>numpy.abs</code> methods. The following code is incomplete, but should give a good understanding of how the thresholds are determined:</p>
-<pre class="hljs"><code>argmax = numpy.argmax(numpy.abs(scc))
+<pre class="hljs"><code>argmax = numpy.argmax(numpy.<span class="hljs-built_in">abs</span>(scc))
 delay[i,j] = bins[argmax] + <span class="hljs-number">0.5</span> * binsize
 coef[i,j] = np.corrcoef(data1, data2)[<span class="hljs-number">0</span>,<span class="hljs-number">1</span>]</code></pre><p>Where <code>scc</code> is the correlation result, <code>bins</code> are the x-values (bins), and <code>binsize</code> is the width of a bin. This way, the center of the bin represents the main lag.</p>
 <h5 id="amplitudecrosscorrelation"><a class="header-link" href="#amplitudecrosscorrelation"></a>AmplitudeCrossCorrelation</h5>
@@ -1302,24 +1281,24 @@ coef[i,j] = np.corrcoef(data1, data2)[<span class="hljs-number">0</span>,<span c
 </li>
 </ul>
 <p>The bandpass is applied using the <a href="#software-nosa-uses-and-their-licenses">SciPy</a> module <code>scipy.signal</code> as follows:</p>
-<pre class="hljs"><code><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">bandpass</span><span class="hljs-params">(signal, order, freq, highpass_freq, lowpass_freq)</span>:</span>
-    filter_ = scipy.signal.firwin(order, [highpass_freq, lowpass_freq], fs = freq, pass_zero = <span class="hljs-keyword">False</span>)
+<pre class="hljs"><code><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">bandpass</span>(<span class="hljs-params">signal, order, freq, highpass_freq, lowpass_freq</span>):</span>
+    filter_ = scipy.signal.firwin(order, [highpass_freq, lowpass_freq], fs = freq, pass_zero = <span class="hljs-literal">False</span>)
     zi = scipy.signal.lfilter_zi(filter_, <span class="hljs-number">1.0</span>)
     <span class="hljs-keyword">return</span> scipy.signal.lfilter(filter_, <span class="hljs-number">1.0</span>, signal, zi = zi * signal[<span class="hljs-number">0</span>])[<span class="hljs-number">0</span>]</code></pre><p>Where <code>signal</code> is the data, and <code>order</code>, <code>highpass_freq</code>, and <code>lowpass_freq</code> are the user-set filter parameters.</p>
 <p>The instantaneous amplitude is applied using the <a href="#software-nosa-uses-and-their-licenses">SciPy</a> method <code>scipy.signal.hilbert</code>, and the <a href="#software-nosa-uses-and-their-licenses">NumPy</a> method <code>numpy.abs</code> as follows:</p>
-<pre class="hljs"><code><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">instantaneous_amplitude</span><span class="hljs-params">(signal)</span>:</span>
+<pre class="hljs"><code><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">instantaneous_amplitude</span>(<span class="hljs-params">signal</span>):</span>
     hilbert_ = scipy.signal.hilbert(signal)
-    <span class="hljs-keyword">return</span> numpy.abs(hilbert_)</code></pre><p>Where <code>signal</code> is the data.</p>
+    <span class="hljs-keyword">return</span> numpy.<span class="hljs-built_in">abs</span>(hilbert_)</code></pre><p>Where <code>signal</code> is the data.</p>
 <p>The linear correlation is done using the <a href="#software-nosa-uses-and-their-licenses">SciPy</a> method <code>scipy.signal.correlate</code>, and the normalization is done using the <a href="#software-nosa-uses-and-their-licenses">SciPy</a> method <code>scipy.signal.correlate</code> and the <a href="#software-nosa-uses-and-their-licenses">NumPy</a> methods <code>numpy.ones</code> and <code>numpy.std</code> as follows:</p>
-<pre class="hljs"><code>norm_ones = numpy.ones(len(data1))
-norm = scipy.signal.correlate(norm_ones, norm_ones, mode=<span class="hljs-string">'same'</span>)
-acc = scipy.signal.correlate(data1, data2, mode=<span class="hljs-string">'same'</span>) / (numpy.std(data1) * numpy.std(data2) * norm)</code></pre><p>Where <code>data1</code> and <code>data2</code> are the data of the object pair. Dividing by the product of the standard deviations normalizes the cross correlation in combination with dividing by the number of bins. The <code>same</code> mode is used to prevent bad results at the border of the data.</p>
+<pre class="hljs"><code>norm_ones = numpy.ones(<span class="hljs-built_in">len</span>(data1))
+norm = scipy.signal.correlate(norm_ones, norm_ones, mode=<span class="hljs-string">&#x27;same&#x27;</span>)
+acc = scipy.signal.correlate(data1, data2, mode=<span class="hljs-string">&#x27;same&#x27;</span>) / (numpy.std(data1) * numpy.std(data2) * norm)</code></pre><p>Where <code>data1</code> and <code>data2</code> are the data of the object pair. Dividing by the product of the standard deviations normalizes the cross correlation in combination with dividing by the number of bins. The <code>same</code> mode is used to prevent bad results at the border of the data.</p>
 <p>Finally, the correlation coefficient, the main lag and the correlation coefficient at the main lag are calculated using the <a href="#software-nosa-uses-and-their-licenses">NumPy</a> methods <code>numpy.argmax</code>, <code>numpy.abs</code>, and <code>numpy.corrcoeff</code>, and the <code>sliceSignals</code> method. The following code is incomplete, but should give a good understanding of how the thresholds are determined:</p>
-<pre class="hljs"><code>argmax = numpy.argmax(numpy.abs(acc))
+<pre class="hljs"><code>argmax = numpy.argmax(numpy.<span class="hljs-built_in">abs</span>(acc))
 delay = xrange_[argmax]
 coef = numpy.corrcoef(data1, data2)[<span class="hljs-number">0</span>,<span class="hljs-number">1</span>]
-offset_in_frames = argmax - int(len(xrange_) / <span class="hljs-number">2</span>)
-slice1, slice2 = sliceSignals(len(data1), len(data2), <span class="hljs-number">0</span>, offset_in_frames)
+offset_in_frames = argmax - <span class="hljs-built_in">int</span>(<span class="hljs-built_in">len</span>(xrange_) / <span class="hljs-number">2</span>)
+slice1, slice2 = sliceSignals(<span class="hljs-built_in">len</span>(data1), <span class="hljs-built_in">len</span>(data2), <span class="hljs-number">0</span>, offset_in_frames)
 data1 = data1[slice1]
 data2 = data2[slice2]
 delay_coefficient[i,j] = numpy.corrcoef(data1, data2)[<span class="hljs-number">0</span>,<span class="hljs-number">1</span>]</code></pre><p>Where <code>acc</code> is the correlation result, <code>xrange_</code> are the x-values, and <code>data1</code> and <code>data2</code> are the data of the object pair. This piece of code calculates the main delay and the correlation coefficient in the first three lines, then shifts the data accordingly to the calculated main delay, slices the data again, and finally calculates the correlation coefficient of the adjusted data.</p>
@@ -1333,10 +1312,10 @@ delay_coefficient[i,j] = numpy.corrcoef(data1, data2)[<span class="hljs-number">
 <p>For these occasions, the classes in the <code>threads</code> directory are used. There is the <code>threads.Worker.Worker</code> class and the <code>threads.WorkerSignals.WorkerSignals</code> class. The <code>threads.Worker.Worker</code> class extends <a href="https://doc.qt.io/qt-5/qrunnable.html">QRunnable</a> and can be initialized with some parameters that control what the thread does, how progress can be visualized and how the result will be finished. The <code>threads.WorkerSignals.WorkerSignals</code> class is only used by the <code>threads.Worker.Worker</code> and may not be used at any other place. It only extends <a href="https://doc.qt.io/qt-5/qobject.html">QObject</a> to hold three instances of <code>QtCore.pyqtSignal</code> to realize the signaling done in <code>threads.Worker.Worker</code>.</p>
 <h3 id="movingaverage"><a class="header-link" href="#movingaverage"></a>movingAverage</h3>
 <p>The <code>movingAverage</code> function is part of the <code>util.functions</code> file and calculates a moving average of the given data. For this, a window is used. The following code is incomplete, but should give a good understanding of how the calculation is done:</p>
-<pre class="hljs"><code><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">movingAverage</span><span class="hljs-params">(y, window)</span>:</span>
-    s = numpy.pad(y, int(window/<span class="hljs-number">2</span>), mode=<span class="hljs-string">'reflect'</span>)
+<pre class="hljs"><code><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">movingAverage</span>(<span class="hljs-params">y, window</span>):</span>
+    s = numpy.pad(y, <span class="hljs-built_in">int</span>(window/<span class="hljs-number">2</span>), mode=<span class="hljs-string">&#x27;reflect&#x27;</span>)
     w = numpy.hanning(window)
-    z = numpy.convolve(w / numpy.sum(w), s, mode=<span class="hljs-string">'valid'</span>)
+    z = numpy.convolve(w / numpy.<span class="hljs-built_in">sum</span>(w), s, mode=<span class="hljs-string">&#x27;valid&#x27;</span>)
     <span class="hljs-keyword">return</span> z</code></pre><p>Where <code>y</code> is the data and <code>window</code> is the window length. First, the method pads the original data by half the window size by reflecting the values using the <a href="#software-nosa-uses-and-their-licenses">NumPy</a> method <code>numpy.pad</code>. This will increase the overall size by <code>2*(int(window/2))</code>. After that, a hanning window is obtained using the <a href="#software-nosa-uses-and-their-licenses">NumPy</a> method <code>numpy.hanning</code>. Finally, the normalized hanning window and the padded data will be convolved using the <a href="#software-nosa-uses-and-their-licenses">NumPy</a> method <code>numpy.convolve</code>.</p>
     </article>
   </body>
